@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "salty.core", "salty.core\salty.core.shproj", "{A0CDBD0E-3A41-42B7-9425-A838BC2C7383}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "salty.desktopgl", "salty.desktopgl\salty.desktopgl.csproj", "{C7F91663-216A-44A1-A556-D57168E3FA26}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		salty.core\salty.core.projitems*{a0cdbd0e-3a41-42b7-9425-a838bc2c7383}*SharedItemsImports = 13
+		salty.core\salty.core.projitems*{c7f91663-216a-44a1-a556-d57168e3fa26}*SharedItemsImports = 5
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C7F91663-216A-44A1-A556-D57168E3FA26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7F91663-216A-44A1-A556-D57168E3FA26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7F91663-216A-44A1-A556-D57168E3FA26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7F91663-216A-44A1-A556-D57168E3FA26}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E8CFED97-AAE1-48B0-B67D-5999360A9AB4}
+	EndGlobalSection
+EndGlobal

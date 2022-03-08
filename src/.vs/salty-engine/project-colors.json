@@ -1,0 +1,21 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "31c97c99-e5bc-4359-8269-45d052436e70": {
+      "ProjectGuid": "31c97c99-e5bc-4359-8269-45d052436e70",
+      "DisplayName": "ConsoleApp1",
+      "ColorIndex": 0
+    },
+    "c7f91663-216a-44a1-a556-d57168e3fa26": {
+      "ProjectGuid": "c7f91663-216a-44a1-a556-d57168e3fa26",
+      "DisplayName": "salty.desktopgl",
+      "ColorIndex": 1
+    },
+    "a0cdbd0e-3a41-42b7-9425-a838bc2c7383": {
+      "ProjectGuid": "a0cdbd0e-3a41-42b7-9425-a838bc2c7383",
+      "DisplayName": "salty.core",
+      "ColorIndex": 2
+    }
+  },
+  "NextColorIndex": 3
+}
