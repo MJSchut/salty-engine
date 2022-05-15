@@ -1,15 +1,22 @@
 {
   "version": 2,
-  "dgSpecHash": "Y2DYq/7XgFw64uHS+/nSMmX+wmQP34xp8IJttWDgh0ubQk3hz4YLDWSQG96Qm5eQBMBenWtjDVwuZBlduEUm6g==",
+  "dgSpecHash": "8U4TI4x2mtQnuIIEG2fJfsAOWRwcS99TI4/Et9tYG9TAtp5yxUo1fTS36zpVoaNzuTw4vNft37iAD4+WqqWyzQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\marti_2mwzmqg\\OneDrive\\Documents\\GitHub\\salty-engine\\src\\salty.desktopgl\\salty.desktopgl.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\marti_2mwzmqg\\.nuget\\packages\\autofac\\5.2.0\\autofac.5.2.0.nupkg.sha512",
+    "C:\\Users\\marti_2mwzmqg\\.nuget\\packages\\defaultecs\\0.17.2\\defaultecs.0.17.2.nupkg.sha512",
     "C:\\Users\\marti_2mwzmqg\\.nuget\\packages\\monogame.content.builder.task\\3.8.0.1641\\monogame.content.builder.task.3.8.0.1641.nupkg.sha512",
+    "C:\\Users\\marti_2mwzmqg\\.nuget\\packages\\monogame.extended\\3.8.0\\monogame.extended.3.8.0.nupkg.sha512",
+    "C:\\Users\\marti_2mwzmqg\\.nuget\\packages\\monogame.extended.content.pipeline\\3.8.0\\monogame.extended.content.pipeline.3.8.0.nupkg.sha512",
+    "C:\\Users\\marti_2mwzmqg\\.nuget\\packages\\monogame.extended.graphics\\3.8.0\\monogame.extended.graphics.3.8.0.nupkg.sha512",
+    "C:\\Users\\marti_2mwzmqg\\.nuget\\packages\\monogame.extended.tiled\\3.8.0\\monogame.extended.tiled.3.8.0.nupkg.sha512",
     "C:\\Users\\marti_2mwzmqg\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.0.1641\\monogame.framework.desktopgl.3.8.0.1641.nupkg.sha512",
-    "C:\\Users\\marti_2mwzmqg\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.22\\microsoft.netcore.app.host.win-x64.3.1.22.nupkg.sha512",
-    "C:\\Users\\marti_2mwzmqg\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512",
+    "C:\\Users\\marti_2mwzmqg\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\marti_2mwzmqg\\.nuget\\packages\\microsoft.netcore.app.ref\\3.1.0\\microsoft.netcore.app.ref.3.1.0.nupkg.sha512",
     "C:\\Users\\marti_2mwzmqg\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\3.1.0\\microsoft.windowsdesktop.app.ref.3.1.0.nupkg.sha512",
-    "C:\\Users\\marti_2mwzmqg\\.nuget\\packages\\microsoft.netcore.app.ref\\3.1.0\\microsoft.netcore.app.ref.3.1.0.nupkg.sha512"
+    "C:\\Users\\marti_2mwzmqg\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512",
+    "C:\\Users\\marti_2mwzmqg\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.22\\microsoft.netcore.app.host.win-x64.3.1.22.nupkg.sha512"
   ],
   "logs": []
 }

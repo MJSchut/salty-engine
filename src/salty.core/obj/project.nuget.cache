@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "DHrFMvOaEbuCbuBVCHawvC6TTvKGc7amRAXIGiGprIWnxbzO+LM6LILIvTCg9aTehH6iQTkQ+qhlybSTG026hQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\marti_2mwzmqg\\OneDrive\\Documents\\GitHub\\salty-engine\\src\\salty.core\\salty.core.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\marti_2mwzmqg\\.nuget\\packages\\defaultecs\\0.17.2\\defaultecs.0.17.2.nupkg.sha512"
+  ],
+  "logs": []
+}

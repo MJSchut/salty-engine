@@ -1,15 +1,16 @@
 ﻿using System;
 using salty.core;
+using salty.game;
 
 namespace salty.desktopgl
 {
     public static class Program
     {
         [STAThread]
-        static void Main()
+        private static void Main()
         {
-            using (var game = new Game1())
-                game.Run();
+            using var game = new GameState();
+            game.Run();
         }
     }
 }
