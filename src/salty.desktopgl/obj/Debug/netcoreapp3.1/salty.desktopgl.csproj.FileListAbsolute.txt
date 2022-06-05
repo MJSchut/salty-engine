@@ -33,3 +33,4 @@ C:\Users\marti_2mwzmqg\OneDrive\Documents\GitHub\salty-engine\src\salty.desktopg
 C:\Users\marti_2mwzmqg\OneDrive\Documents\GitHub\salty-engine\src\salty.desktopgl\bin\Debug\netcoreapp3.1\MonoGame.Extended.Graphics.dll
 C:\Users\marti_2mwzmqg\OneDrive\Documents\GitHub\salty-engine\src\salty.desktopgl\bin\Debug\netcoreapp3.1\MonoGame.Extended.Tiled.dll
 C:\Users\marti_2mwzmqg\OneDrive\Documents\GitHub\salty-engine\src\salty.desktopgl\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\marti_2mwzmqg\OneDrive\Documents\GitHub\salty-engine\src\salty.desktopgl\bin\Debug\netcoreapp3.1\MonoGame.Extended.Entities.dll

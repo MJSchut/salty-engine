@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using salty.core;
 
 namespace salty.game
 {
@@ -8,6 +9,7 @@ namespace salty.game
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        private GameWorld _gameWorld;
 
         public GameState()
         {
@@ -19,6 +21,8 @@ namespace salty.game
             _graphics.SynchronizeWithVerticalRetrace = true;
             _graphics.ApplyChanges();
 
+            _gameWorld = new GameWorld(_graphics.GraphicsDevice);
+
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
@@ -26,8 +30,6 @@ namespace salty.game
         protected override void Initialize()
         {
             base.Initialize();
-            
-            
         }
 
         protected override void LoadContent()
@@ -37,11 +39,14 @@ namespace salty.game
 
             // TODO: use this.Content to load your game content here
         }
+        
 
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+            
+            _gameWorld.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -49,6 +54,8 @@ namespace salty.game
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+            
+            _gameWorld.Update(gameTime);
             
             base.Draw(gameTime);
         }

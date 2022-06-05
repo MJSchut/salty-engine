@@ -1,5 +1,4 @@
 ﻿using System;
-using salty.core;
 using salty.game;
 
 namespace salty.desktopgl

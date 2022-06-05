@@ -47,6 +47,18 @@
             "DefaultEcs": {
               "target": "Package",
               "version": "[0.17.2, )"
+            },
+            "MonoGame.Extended": {
+              "target": "Package",
+              "version": "[3.8.0, )"
+            },
+            "MonoGame.Extended.Entities": {
+              "target": "Package",
+              "version": "[3.8.0, )"
+            },
+            "MonoGame.Framework.DesktopGL": {
+              "target": "Package",
+              "version": "[3.8.0.1641, )"
             }
           },
           "imports": [

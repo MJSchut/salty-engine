@@ -62,6 +62,18 @@
           }
         }
       },
+      "MonoGame.Extended.Entities/3.8.0": {
+        "type": "package",
+        "dependencies": {
+          "MonoGame.Extended": "3.8.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/MonoGame.Extended.Entities.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/MonoGame.Extended.Entities.dll": {}
+        }
+      },
       "MonoGame.Extended.Graphics/3.8.0": {
         "type": "package",
         "dependencies": {
@@ -146,7 +158,10 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
         "dependencies": {
-          "DefaultEcs": "0.17.2"
+          "DefaultEcs": "0.17.2",
+          "MonoGame.Extended": "3.8.0",
+          "MonoGame.Extended.Entities": "3.8.0",
+          "MonoGame.Framework.DesktopGL": "3.8.0.1641"
         },
         "compile": {
           "bin/placeholder/salty.core.dll": {}
@@ -371,6 +386,18 @@
         "tools/MonoGame.Extended.Tiled.dll",
         "tools/MonoGame.Extended.dll",
         "tools/Newtonsoft.Json.dll"
+      ]
+    },
+    "MonoGame.Extended.Entities/3.8.0": {
+      "sha512": "qg/Kpe3z/5ZbRn/8kFCJaXCxWkR41EazIwaWnYOCCgTzb6QCqBr0hyNV0FdyyeETEWeDDJP1ZeGzaHnLwCl7kg==",
+      "type": "package",
+      "path": "monogame.extended.entities/3.8.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/MonoGame.Extended.Entities.dll",
+        "monogame.extended.entities.3.8.0.nupkg.sha512",
+        "monogame.extended.entities.nuspec"
       ]
     },
     "MonoGame.Extended.Graphics/3.8.0": {
