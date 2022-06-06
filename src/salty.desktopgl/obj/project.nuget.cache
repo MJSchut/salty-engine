@@ -1,11 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "8yp2OBusOPi8lirAVW/N8lIx9TopWusnRWO3XPIjeeB2gyxH+163G5KNr5ALpzvUtz6FjIKk0jTW6hZibXA3gw==",
+  "dgSpecHash": "PSD3ciZy/+O3T/GmU6LO1GusecGKG8gDxCb+ki0cMOrRjtDmaorOryyZCVc7qdoeJ4FRd4Z76tgyB4rGougkUg==",
   "success": true,
   "projectFilePath": "C:\\Users\\marti_2mwzmqg\\OneDrive\\Documents\\GitHub\\salty-engine\\src\\salty.desktopgl\\salty.desktopgl.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\marti_2mwzmqg\\.nuget\\packages\\autofac\\5.2.0\\autofac.5.2.0.nupkg.sha512",
-    "C:\\Users\\marti_2mwzmqg\\.nuget\\packages\\defaultecs\\0.17.2\\defaultecs.0.17.2.nupkg.sha512",
     "C:\\Users\\marti_2mwzmqg\\.nuget\\packages\\monogame.content.builder.task\\3.8.0.1641\\monogame.content.builder.task.3.8.0.1641.nupkg.sha512",
     "C:\\Users\\marti_2mwzmqg\\.nuget\\packages\\monogame.extended\\3.8.0\\monogame.extended.3.8.0.nupkg.sha512",
     "C:\\Users\\marti_2mwzmqg\\.nuget\\packages\\monogame.extended.content.pipeline\\3.8.0\\monogame.extended.content.pipeline.3.8.0.nupkg.sha512",

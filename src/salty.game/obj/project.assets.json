@@ -2,15 +2,6 @@
   "version": 3,
   "targets": {
     ".NETStandard,Version=v2.1": {
-      "DefaultEcs/0.17.2": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard2.1/DefaultEcs.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.1/DefaultEcs.dll": {}
-        }
-      },
       "MonoGame.Extended/3.8.0": {
         "type": "package",
         "dependencies": {
@@ -159,7 +150,6 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
         "dependencies": {
-          "DefaultEcs": "0.17.2",
           "MonoGame.Extended": "3.8.0",
           "MonoGame.Extended.Entities": "3.8.0",
           "MonoGame.Framework.DesktopGL": "3.8.0.1641"
@@ -174,24 +164,6 @@
     }
   },
   "libraries": {
-    "DefaultEcs/0.17.2": {
-      "sha512": "3It4x4eCRuJZ3jvMFJFuyL6a4N6+zT0QUopY60xQxikAtzFh7tZ0oDtw8VVT83H95LOJzWZud8lIMVUbtOA7kg==",
-      "type": "package",
-      "path": "defaultecs/0.17.2",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "defaultecs.0.17.2.nupkg.sha512",
-        "defaultecs.nuspec",
-        "lib/netstandard1.1/DefaultEcs.dll",
-        "lib/netstandard1.1/DefaultEcs.xml",
-        "lib/netstandard2.0/DefaultEcs.dll",
-        "lib/netstandard2.0/DefaultEcs.xml",
-        "lib/netstandard2.1/DefaultEcs.dll",
-        "lib/netstandard2.1/DefaultEcs.xml",
-        "logo.png"
-      ]
-    },
     "MonoGame.Extended/3.8.0": {
       "sha512": "FDPoUOFtslGNHCWSqjKD0C67RYN6Stb6NWnn+rkCmtkPBZlE6LvwuGyQBkHUkAMANO3LzO/Wsz9etMhwZLInqg==",
       "type": "package",
@@ -345,7 +317,6 @@
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.1": [
-      "DefaultEcs >= 0.17.2",
       "MonoGame.Extended >= 3.8.0",
       "MonoGame.Extended.Content.Pipeline >= 3.8.0",
       "MonoGame.Framework.DesktopGL >= 3.8.0.1641",
@@ -400,10 +371,6 @@
       "netstandard2.1": {
         "targetAlias": "netstandard2.1",
         "dependencies": {
-          "DefaultEcs": {
-            "target": "Package",
-            "version": "[0.17.2, )"
-          },
           "MonoGame.Extended": {
             "target": "Package",
             "version": "[3.8.0, )"

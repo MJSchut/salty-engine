@@ -44,10 +44,6 @@
         "netstandard2.1": {
           "targetAlias": "netstandard2.1",
           "dependencies": {
-            "DefaultEcs": {
-              "target": "Package",
-              "version": "[0.17.2, )"
-            },
             "MonoGame.Extended": {
               "target": "Package",
               "version": "[3.8.0, )"

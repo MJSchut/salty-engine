@@ -9,21 +9,12 @@
     ".NETStandard,Version=v2.1/": {
       "salty.core/1.0.0": {
         "dependencies": {
-          "DefaultEcs": "0.17.2",
           "MonoGame.Extended": "3.8.0",
           "MonoGame.Extended.Entities": "3.8.0",
           "MonoGame.Framework.DesktopGL": "3.8.0.1641"
         },
         "runtime": {
           "salty.core.dll": {}
-        }
-      },
-      "DefaultEcs/0.17.2": {
-        "runtime": {
-          "lib/netstandard2.1/DefaultEcs.dll": {
-            "assemblyVersion": "0.17.2.0",
-            "fileVersion": "0.17.2.0"
-          }
         }
       },
       "MonoGame.Extended/3.8.0": {
@@ -71,13 +62,6 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
-    },
-    "DefaultEcs/0.17.2": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-3It4x4eCRuJZ3jvMFJFuyL6a4N6+zT0QUopY60xQxikAtzFh7tZ0oDtw8VVT83H95LOJzWZud8lIMVUbtOA7kg==",
-      "path": "defaultecs/0.17.2",
-      "hashPath": "defaultecs.0.17.2.nupkg.sha512"
     },
     "MonoGame.Extended/3.8.0": {
       "type": "package",

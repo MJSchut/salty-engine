@@ -136,3 +136,14 @@ $RECYCLE.BIN/
 
 _NCrunch*
 src/salty.core.tests/obj
+src/salty.core.tests/bin/Debug/net6.0/DefaultEcs.dll
+src/salty.core.tests/bin/Debug/net6.0/DefaultEcs.dll
+src/salty.core.tests/bin/Debug/net6.0/Newtonsoft.Json.dll
+src/salty.core.tests/bin/Debug/net6.0/ref/salty.core.tests.dll
+src/salty.core.tests/bin/Debug/net6.0/salty.core.dll
+src/salty.core.tests/bin/Debug/net6.0/salty.core.pdb
+src/salty.game/bin/Debug/netstandard2.1/salty.core.dll
+src/salty.game/bin/Debug/netstandard2.1/salty.core.pdb
+src/salty.game/bin/Debug/netstandard2.1/salty.game.deps.json
+src/salty.game/bin/Debug/netstandard2.1/salty.game.dll
+src/salty.game/bin/Debug/netstandard2.1/salty.game.pdb

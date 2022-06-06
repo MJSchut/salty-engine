@@ -1,10 +1,9 @@
 {
   "version": 2,
-  "dgSpecHash": "M/+qVHyJVsaQpdTSzX1kEAgT5wdNA9Fvyag9E08mzwuXXDKTXbx+65m2nRc0/d3k2nmeN7/Bl9mf6w1JIb5g8A==",
+  "dgSpecHash": "2K/lUkNhDHIxgtrHPdlM47CiiCnlG3HtBTW/KPNX7/mORkebxgw7EevYXyH6RZOKJu8A0pYRdOODh0siRLFFeg==",
   "success": true,
   "projectFilePath": "C:\\Users\\marti_2mwzmqg\\OneDrive\\Documents\\GitHub\\salty-engine\\src\\salty.game\\salty.game.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\marti_2mwzmqg\\.nuget\\packages\\defaultecs\\0.17.2\\defaultecs.0.17.2.nupkg.sha512",
     "C:\\Users\\marti_2mwzmqg\\.nuget\\packages\\monogame.extended\\3.8.0\\monogame.extended.3.8.0.nupkg.sha512",
     "C:\\Users\\marti_2mwzmqg\\.nuget\\packages\\monogame.extended.content.pipeline\\3.8.0\\monogame.extended.content.pipeline.3.8.0.nupkg.sha512",
     "C:\\Users\\marti_2mwzmqg\\.nuget\\packages\\monogame.extended.entities\\3.8.0\\monogame.extended.entities.3.8.0.nupkg.sha512",

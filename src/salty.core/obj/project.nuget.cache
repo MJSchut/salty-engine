@@ -1,10 +1,9 @@
 {
   "version": 2,
-  "dgSpecHash": "OVrej9flgSszkw2fTKAIzqBTOXt59+/ML/MSj5YF15SBn+pKuBBhUncuxQkWIn09ysvIbvnHs7qAw60LSOpEOQ==",
+  "dgSpecHash": "QTAVJZmueyI42bz7rHwb5eiHAfPmw4BpyiYEScXGLjALHkTnR2I6J1VPuwKalPvdbGx/Pc+MMRNA6X6By1PpMw==",
   "success": true,
   "projectFilePath": "C:\\Users\\marti_2mwzmqg\\OneDrive\\Documents\\GitHub\\salty-engine\\src\\salty.core\\salty.core.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\marti_2mwzmqg\\.nuget\\packages\\defaultecs\\0.17.2\\defaultecs.0.17.2.nupkg.sha512",
     "C:\\Users\\marti_2mwzmqg\\.nuget\\packages\\monogame.extended\\3.8.0\\monogame.extended.3.8.0.nupkg.sha512",
     "C:\\Users\\marti_2mwzmqg\\.nuget\\packages\\monogame.extended.entities\\3.8.0\\monogame.extended.entities.3.8.0.nupkg.sha512",
     "C:\\Users\\marti_2mwzmqg\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.0.1641\\monogame.framework.desktopgl.3.8.0.1641.nupkg.sha512",

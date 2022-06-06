@@ -55,7 +55,7 @@ namespace salty.game
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             
-            _gameWorld.Update(gameTime);
+            _gameWorld.Draw(gameTime);
             
             base.Draw(gameTime);
         }

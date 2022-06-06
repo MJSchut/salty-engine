@@ -22,7 +22,6 @@ C:\Users\marti_2mwzmqg\OneDrive\Documents\GitHub\salty-engine\src\salty.desktopg
 C:\Users\marti_2mwzmqg\OneDrive\Documents\GitHub\salty-engine\src\salty.desktopgl\obj\Debug\netcoreapp3.1\salty.desktopgl.dll
 C:\Users\marti_2mwzmqg\OneDrive\Documents\GitHub\salty-engine\src\salty.desktopgl\obj\Debug\netcoreapp3.1\salty.desktopgl.pdb
 C:\Users\marti_2mwzmqg\OneDrive\Documents\GitHub\salty-engine\src\salty.desktopgl\obj\Debug\netcoreapp3.1\salty.desktopgl.genruntimeconfig.cache
-C:\Users\marti_2mwzmqg\OneDrive\Documents\GitHub\salty-engine\src\salty.desktopgl\bin\Debug\netcoreapp3.1\DefaultEcs.dll
 C:\Users\marti_2mwzmqg\OneDrive\Documents\GitHub\salty-engine\src\salty.desktopgl\bin\Debug\netcoreapp3.1\Content\sprites\square.xnb
 C:\Users\marti_2mwzmqg\OneDrive\Documents\GitHub\salty-engine\src\salty.desktopgl\bin\Debug\netcoreapp3.1\salty.game.dll
 C:\Users\marti_2mwzmqg\OneDrive\Documents\GitHub\salty-engine\src\salty.desktopgl\bin\Debug\netcoreapp3.1\salty.game.pdb
