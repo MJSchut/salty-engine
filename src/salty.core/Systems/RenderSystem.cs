@@ -1,9 +1,11 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using MonoGame.Extended.Collections;
 using MonoGame.Extended.Entities;
 using MonoGame.Extended.Entities.Systems;
+using MonoGame.Extended.Graphics;
 using MonoGame.Extended.Sprites;
 
 namespace salty.core.Systems
@@ -11,16 +13,17 @@ namespace salty.core.Systems
     public class RenderSystem : EntityDrawSystem
     {
         private readonly SpriteBatch _spriteBatch;
+        private OrthographicCamera _camera;
 
         private ComponentMapper<Transform2>? _transformMapper;
         private ComponentMapper<Sprite>? _spriteMapper;
         
         
-        public RenderSystem(GraphicsDevice graphicsDevice)
+        public RenderSystem(GraphicsDevice graphicsDevice, OrthographicCamera camera)
             : base(Aspect.All(typeof(Sprite), typeof(Transform2)))
         {
             _spriteBatch = new SpriteBatch(graphicsDevice);
-            
+            _camera = camera;
         }
 
         public override void Initialize(IComponentMapperService mapperService)
@@ -31,7 +34,9 @@ namespace salty.core.Systems
 
         public override void Draw(GameTime gameTime)
         {
-            _spriteBatch.Begin();
+            _camera.Zoom = 0.5f;
+            var transformMatrix = _camera.GetViewMatrix(Vector2.Zero);
+            _spriteBatch.Begin(transformMatrix: transformMatrix, samplerState: SamplerState.PointClamp);
 
             foreach (var entity in ActiveEntities)
             {

@@ -144,3 +144,5 @@ src/salty.game/obj/
 src/salty.desktopgl/obj/
 src/salty.desktopgl/obj/
 
+src/salty.desktopgl/obj/project.nuget.cache
+src/salty.desktopgl/obj/project.nuget.cache

@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGame.Extended;
+using MonoGame.Extended.ViewportAdapters;
 using salty.core;
 
 namespace salty.game
@@ -10,21 +12,21 @@ namespace salty.game
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private GameWorld _gameWorld;
+        private OrthographicCamera _camera;
 
         public GameState()
         {
             _graphics = new GraphicsDeviceManager(this);
-            
+
             _graphics.GraphicsProfile = GraphicsProfile.HiDef;
             _graphics.PreferredBackBufferWidth = 1600;
             _graphics.PreferredBackBufferHeight = 900;
             _graphics.SynchronizeWithVerticalRetrace = true;
             _graphics.ApplyChanges();
 
-            _gameWorld = new GameWorld(_graphics.GraphicsDevice);
-
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            
         }
 
         protected override void Initialize()
@@ -34,8 +36,11 @@ namespace salty.game
 
         protected override void LoadContent()
         {
-            
+            var viewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, 800, 480);
+            _camera = new OrthographicCamera(viewportAdapter);
             _spriteBatch = new SpriteBatch(_graphics.GraphicsDevice);
+            _gameWorld = new GameWorld(_graphics.GraphicsDevice, _camera);
+            
 
             // TODO: use this.Content to load your game content here
         }
