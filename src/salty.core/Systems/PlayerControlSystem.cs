@@ -1,11 +1,9 @@
-﻿using System.Diagnostics;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using MonoGame.Extended.Entities;
 using MonoGame.Extended.Entities.Systems;
 using MonoGame.Extended.Input;
-using MonoGame.Extended.Input.InputListeners;
 using salty.core.Components;
 
 namespace salty.core.Systems

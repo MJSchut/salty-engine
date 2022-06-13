@@ -5,8 +5,12 @@
   <Config />
   <SourceFiles>
     <File>C:/Users/marti_2mwzmqg/OneDrive/Documents/GitHub/salty-engine/src/salty.game/Content/sprites/square.png</File>
+    <File>C:/Users/marti_2mwzmqg/OneDrive/Documents/GitHub/salty-engine/src/salty.game/Content/sprites/worldtileset.png</File>
+    <File>C:/Users/marti_2mwzmqg/OneDrive/Documents/GitHub/salty-engine/src/salty.game/Content/tilemaps/example_map.tmx</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>
 </SourceFileCollection>

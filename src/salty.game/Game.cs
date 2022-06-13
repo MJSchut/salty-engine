@@ -1,7 +1,11 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
+using MonoGame.Extended.Tiled;
+using MonoGame.Extended.Tiled.Renderers;
 using MonoGame.Extended.ViewportAdapters;
 using salty.core;
 
@@ -19,14 +23,25 @@ namespace salty.game
             _graphics = new GraphicsDeviceManager(this);
 
             _graphics.GraphicsProfile = GraphicsProfile.HiDef;
-            _graphics.PreferredBackBufferWidth = 1600;
-            _graphics.PreferredBackBufferHeight = 900;
             _graphics.SynchronizeWithVerticalRetrace = true;
-            _graphics.ApplyChanges();
+
+            Window.AllowUserResizing = true;
+            Window.ClientSizeChanged += OnResize;
 
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-            
+        }
+        
+        public void OnResize(Object sender, EventArgs e)
+        {
+
+            if (_graphics.PreferredBackBufferWidth != _graphics.GraphicsDevice.Viewport.Width ||
+                _graphics.PreferredBackBufferHeight != _graphics.GraphicsDevice.Viewport.Height)
+            {
+                _graphics.PreferredBackBufferWidth = _graphics.GraphicsDevice.Viewport.Width;
+                _graphics.PreferredBackBufferHeight = _graphics.GraphicsDevice.Viewport.Height;
+                _graphics.ApplyChanges();
+            }
         }
 
         protected override void Initialize()
@@ -36,13 +51,14 @@ namespace salty.game
 
         protected override void LoadContent()
         {
-            var viewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, 800, 480);
+            var viewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, 1600, 900);
             _camera = new OrthographicCamera(viewportAdapter);
             _spriteBatch = new SpriteBatch(_graphics.GraphicsDevice);
-            _gameWorld = new GameWorld(_graphics.GraphicsDevice, _camera);
+            _gameWorld = new GameWorld(_graphics.GraphicsDevice, Content, _camera);
             
-
-            // TODO: use this.Content to load your game content here
+            _graphics.PreferredBackBufferWidth = 1600;
+            _graphics.PreferredBackBufferHeight = 900;
+            _graphics.ApplyChanges();
         }
         
 
