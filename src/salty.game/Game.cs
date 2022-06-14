@@ -1,18 +1,22 @@
 ﻿using System;
+using System.Diagnostics;
+using System.IO;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
-using MonoGame.Extended.Tiled;
-using MonoGame.Extended.Tiled.Renderers;
 using MonoGame.Extended.ViewportAdapters;
-using salty.core;
+using salty.core.Data;
 
 namespace salty.game
 {
     public class GameState : Game
     {
+        private const string GameName = "LittleGarden";
+        private const string GameVersion = "pre-alpha";
+        private string AppDataFolderPath = string.Empty;
+
+        private WindowOptions _windowOptions;
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private GameWorld _gameWorld;
@@ -27,6 +31,8 @@ namespace salty.game
 
             Window.AllowUserResizing = true;
             Window.ClientSizeChanged += OnResize;
+
+            _windowOptions = new WindowOptions(1600, 900);
 
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
@@ -47,17 +53,48 @@ namespace salty.game
         protected override void Initialize()
         {
             base.Initialize();
+            Window.Title = $"{GameName} {GameVersion}";
+            
+            InitializeAppDataFolder();
+            LoadWindowData();
+        }
+
+        private void InitializeAppDataFolder()
+        {
+            // The folder for the roaming current user 
+            string folder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+
+            // Combine the base folder with your specific folder....
+            string gameFolder = Path.Combine(folder, $"{GameName}");
+
+            // CreateDirectory will check if every folder in path exists and, if not, create them.
+            // If all folders exist then CreateDirectory will do nothing.
+            Directory.CreateDirectory(gameFolder);
+            
+            // Combine the base folder with your specific folder....
+            AppDataFolderPath = Path.Combine(gameFolder, $"{GameVersion}");
+
+            // CreateDirectory will check if every folder in path exists and, if not, create them.
+            // If all folders exist then CreateDirectory will do nothing.
+            Directory.CreateDirectory(AppDataFolderPath);
+        }
+
+        private void LoadWindowData()
+        {
+            
         }
 
         protected override void LoadContent()
         {
-            var viewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, 1600, 900);
+            var viewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, _windowOptions.Width, _windowOptions.Height);
+            
             _camera = new OrthographicCamera(viewportAdapter);
+            _camera.Zoom = 3f;
             _spriteBatch = new SpriteBatch(_graphics.GraphicsDevice);
             _gameWorld = new GameWorld(_graphics.GraphicsDevice, Content, _camera);
             
-            _graphics.PreferredBackBufferWidth = 1600;
-            _graphics.PreferredBackBufferHeight = 900;
+            _graphics.PreferredBackBufferWidth = _windowOptions.Width;
+            _graphics.PreferredBackBufferHeight = _windowOptions.Height;
             _graphics.ApplyChanges();
         }
         
@@ -74,7 +111,8 @@ namespace salty.game
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            Console.WriteLine(gameTime.GetElapsedSeconds());
+            GraphicsDevice.Clear(Color.GhostWhite);
             
             _gameWorld.Draw(gameTime);
             

@@ -11,15 +11,17 @@ namespace salty.core.Systems
     public class PlayerControlSystem : EntityProcessingSystem
     {
         private ComponentMapper<PlayerComponent>? _playerMapper;
+        private ComponentMapper<ActorComponent>? _actorMapper;
         private ComponentMapper<Transform2>? _transformMapper;
 
-        public PlayerControlSystem() : base(Aspect.All(typeof(PlayerComponent), typeof(Transform2)))
+        public PlayerControlSystem() : base(Aspect.All(typeof(PlayerComponent), typeof(ActorComponent), typeof(Transform2)))
         {
         }
 
         public override void Initialize(IComponentMapperService mapperService)
         {
             _playerMapper = mapperService.GetMapper<PlayerComponent>();
+            _actorMapper = mapperService.GetMapper<ActorComponent>();
             _transformMapper = mapperService.GetMapper<Transform2>();
         }
         
@@ -27,22 +29,26 @@ namespace salty.core.Systems
         {
             var player = _playerMapper?.Get(entityId);
             var transform = _transformMapper?.Get(entityId);
-            if (player == null || transform == null)
+            var actorComponent = _actorMapper?.Get(entityId);
+
+            if (player == null || transform == null || actorComponent == null)
                 return;
+            
+            var speed = actorComponent.Speed * gameTime.GetElapsedSeconds();
             
             var keyboardState = KeyboardExtended.GetState();
             if (keyboardState.IsKeyDown(Keys.Up))
             {
-                transform.Position = new Vector2(transform.Position.X, transform.Position.Y - 10);
+                transform.Position = new Vector2(transform.Position.X, transform.Position.Y - speed);
             } if (keyboardState.IsKeyDown(Keys.Down))
             {
-                transform.Position = new Vector2(transform.Position.X, transform.Position.Y + 10);
+                transform.Position = new Vector2(transform.Position.X, transform.Position.Y + speed);
             } if (keyboardState.IsKeyDown(Keys.Right))
             {
-                transform.Position = new Vector2(transform.Position.X + 10, transform.Position.Y);
+                transform.Position = new Vector2(transform.Position.X + speed, transform.Position.Y);
             } if (keyboardState.IsKeyDown(Keys.Left))
             {
-                transform.Position = new Vector2(transform.Position.X - 10, transform.Position.Y);
+                transform.Position = new Vector2(transform.Position.X - speed, transform.Position.Y);
             }
         }
     }

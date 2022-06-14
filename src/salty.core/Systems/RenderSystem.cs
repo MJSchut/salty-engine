@@ -34,8 +34,7 @@ namespace salty.core.Systems
 
         public override void Draw(GameTime gameTime)
         {
-            _camera.Zoom = 0.5f;
-            var transformMatrix = _camera.GetViewMatrix(Vector2.Zero);
+            var transformMatrix = _camera.GetViewMatrix(Vector2.One);
             _spriteBatch.Begin(transformMatrix: transformMatrix, samplerState: SamplerState.PointClamp);
 
             foreach (var entity in ActiveEntities)

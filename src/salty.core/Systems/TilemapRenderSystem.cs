@@ -1,6 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Linq;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Extended;
 using MonoGame.Extended.Entities;
 using MonoGame.Extended.Entities.Systems;
 using MonoGame.Extended.Tiled;
@@ -11,13 +13,15 @@ namespace salty.core.Systems
     public class TilemapRenderSystem : EntityDrawSystem
     {
         private ComponentMapper<TiledMap>? _tileMap;
-        private TiledMapRenderer _tiledMapRenderer;
+        private TiledMapRenderer? _tiledMapRenderer;
         private GraphicsDevice device;
+        private OrthographicCamera _camera;
         
-        public TilemapRenderSystem(GraphicsDevice device) 
+        public TilemapRenderSystem(GraphicsDevice device, OrthographicCamera camera) 
             : base(Aspect.All(typeof(TiledMap)))
         {
             this.device = device;
+            _camera = camera;
         }
 
         public override void Initialize(IComponentMapperService mapperService)
@@ -27,11 +31,10 @@ namespace salty.core.Systems
 
         public override void Draw(GameTime gameTime)
         {
-            foreach (var entity in ActiveEntities)
-            {
-                _tiledMapRenderer = new TiledMapRenderer(device, _tileMap.Get(entity));
-                _tiledMapRenderer.Draw();
-            }
+            var transformMatrix = _camera.GetViewMatrix(Vector2.One);
+            _tiledMapRenderer ??= new TiledMapRenderer(device, _tileMap.Get(ActiveEntities.First()));
+
+            _tiledMapRenderer.Draw(transformMatrix);
         }
     }
 }

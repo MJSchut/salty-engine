@@ -18,25 +18,33 @@ namespace salty.game
 
         public GameWorld(GraphicsDevice device, ContentManager content, OrthographicCamera camera)
         {
+            this.camera = camera;
+            
             var worldBuilder = new WorldBuilder();
             _world = worldBuilder
                 .AddSystem(new PlayerControlSystem())
+                .AddSystem(new CameraControlSystem())
+                
+                // rendering systems
+                .AddSystem(new TilemapRenderSystem(device, camera))
                 .AddSystem(new RenderSystem(device, camera))
-                .AddSystem(new TilemapRenderSystem(device))
+                
                 .Build();
             
             var player = _world.CreateEntity();
             player.Attach(new Transform2());
             player.Attach(new PlayerComponent());
-            var texture = Texture2DUtils.CreateColoredTexture(device, 100, 100, Color.Firebrick);
+            player.Attach(new ActorComponent(40f));
+            var texture = Texture2DUtils.CreateColoredTexture(device, 16, 32, Color.Firebrick);
             player.Attach(new Sprite(texture));
 
             var tileMap = _world.CreateEntity();
             tileMap.Attach(new Transform2());
             tileMap.Attach(content.Load<TiledMap>("tilemaps/example_map"));
-
-            this.camera = camera;
             
+            var cameraEntity = _world.CreateEntity();
+            cameraEntity.Attach(camera);
+
         }
 
         public void Update(GameTime gameTime){

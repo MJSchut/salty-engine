@@ -16,6 +16,10 @@ namespace salty.core.tests
             var renderSystem = new RenderSystem(testGraphicsDevice, new OrthographicCamera(testGraphicsDevice));
 
             renderSystem.Initialize(new ComponentManager());
+
+            var tilemapRenderSystem =
+                new TilemapRenderSystem(testGraphicsDevice, new OrthographicCamera(testGraphicsDevice));
+            tilemapRenderSystem.Initialize(new ComponentManager());
         }
     }
 }
