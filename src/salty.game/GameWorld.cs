@@ -8,6 +8,7 @@ using MonoGame.Extended.Tiled;
 using salty.core.Components;
 using salty.core.Systems;
 using salty.core.Util;
+using salty.game.Data;
 
 namespace salty.game
 {
@@ -30,20 +31,10 @@ namespace salty.game
                 .AddSystem(new RenderSystem(device, camera))
                 
                 .Build();
-            
-            var player = _world.CreateEntity();
-            player.Attach(new Transform2());
-            player.Attach(new PlayerComponent());
-            player.Attach(new ActorComponent(40f));
-            var texture = Texture2DUtils.CreateColoredTexture(device, 16, 32, Color.Firebrick);
-            player.Attach(new Sprite(texture));
 
-            var tileMap = _world.CreateEntity();
-            tileMap.Attach(new Transform2());
-            tileMap.Attach(content.Load<TiledMap>("tilemaps/example_map"));
-            
-            var cameraEntity = _world.CreateEntity();
-            cameraEntity.Attach(camera);
+            EntityFactory.CreatePlayer(_world, device);
+            EntityFactory.CreateTileMap(_world, content);
+            EntityFactory.CreateOrthographicCamera(_world, camera);
 
         }
 
