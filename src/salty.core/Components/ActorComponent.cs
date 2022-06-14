@@ -2,11 +2,11 @@
 {
     public class ActorComponent
     {
-        public float Speed { get; }
-        
         public ActorComponent(float speed)
         {
             Speed = speed;
         }
+
+        public float Speed { get; }
     }
 }

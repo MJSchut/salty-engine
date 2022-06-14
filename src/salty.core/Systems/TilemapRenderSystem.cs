@@ -11,12 +11,12 @@ namespace salty.core.Systems
 {
     public class TilemapRenderSystem : EntityDrawSystem
     {
-        private ComponentMapper<TiledMap>? _tileMap;
+        private readonly OrthographicCamera _camera;
         private TiledMapRenderer? _tiledMapRenderer;
-        private GraphicsDevice device;
-        private OrthographicCamera _camera;
-        
-        public TilemapRenderSystem(GraphicsDevice device, OrthographicCamera camera) 
+        private ComponentMapper<TiledMap>? _tileMap;
+        private readonly GraphicsDevice device;
+
+        public TilemapRenderSystem(GraphicsDevice device, OrthographicCamera camera)
             : base(Aspect.All(typeof(TiledMap)))
         {
             this.device = device;

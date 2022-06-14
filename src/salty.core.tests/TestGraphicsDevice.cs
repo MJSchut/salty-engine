@@ -4,7 +4,7 @@ namespace salty.core.tests
 {
     public class TestGraphicsDevice : GraphicsDevice
     {
-        public TestGraphicsDevice() 
+        public TestGraphicsDevice()
             : base(GraphicsAdapter.DefaultAdapter, GraphicsProfile.Reach, new PresentationParameters())
         {
         }

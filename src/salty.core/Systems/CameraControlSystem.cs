@@ -11,9 +11,10 @@ namespace salty.core.Systems
         private ComponentMapper<OrthographicCamera>? _cameraMapper;
         private ComponentMapper<PlayerComponent>? _playerComponentMapper;
         private ComponentMapper<Transform2>? _transformMapper;
-        
-        public  CameraControlSystem(): base(Aspect.One(typeof(OrthographicCamera), typeof(PlayerComponent)))
-        { }
+
+        public CameraControlSystem() : base(Aspect.One(typeof(OrthographicCamera), typeof(PlayerComponent)))
+        {
+        }
 
         public override void Initialize(IComponentMapperService mapperService)
         {
@@ -35,10 +36,8 @@ namespace salty.core.Systems
                     playerComponent = _transformMapper?.Get(entity);
             }
 
-            if (orthographicCamera != null) 
+            if (orthographicCamera != null)
                 orthographicCamera.LookAt(playerComponent?.Position ?? new Vector2());
         }
     }
-
-
 }

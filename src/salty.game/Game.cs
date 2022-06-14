@@ -13,13 +13,13 @@ namespace salty.game
     {
         private const string GameName = "LittleGarden";
         private const string GameVersion = "pre-alpha";
-        private string AppDataFolderPath = string.Empty;
-
-        private WindowOptions _windowOptions;
-        private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
-        private GameWorld _gameWorld;
         private OrthographicCamera _camera;
+        private GameWorld _gameWorld;
+        private readonly GraphicsDeviceManager _graphics;
+        private SpriteBatch _spriteBatch;
+
+        private readonly WindowOptions _windowOptions;
+        private string AppDataFolderPath = string.Empty;
 
         public GameState()
         {
@@ -36,10 +36,9 @@ namespace salty.game
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
-        
-        public void OnResize(Object sender, EventArgs e)
-        {
 
+        public void OnResize(object sender, EventArgs e)
+        {
             if (_graphics.PreferredBackBufferWidth != _graphics.GraphicsDevice.Viewport.Width ||
                 _graphics.PreferredBackBufferHeight != _graphics.GraphicsDevice.Viewport.Height)
             {
@@ -53,7 +52,7 @@ namespace salty.game
         {
             base.Initialize();
             Window.Title = $"{GameName} {GameVersion}";
-            
+
             InitializeAppDataFolder();
             LoadWindowData();
         }
@@ -69,7 +68,7 @@ namespace salty.game
             // CreateDirectory will check if every folder in path exists and, if not, create them.
             // If all folders exist then CreateDirectory will do nothing.
             Directory.CreateDirectory(gameFolder);
-            
+
             // Combine the base folder with your specific folder....
             AppDataFolderPath = Path.Combine(gameFolder, $"{GameVersion}");
 
@@ -80,29 +79,30 @@ namespace salty.game
 
         private void LoadWindowData()
         {
-            
         }
 
         protected override void LoadContent()
         {
-            var viewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, _windowOptions.Width, _windowOptions.Height);
-            
+            var viewportAdapter =
+                new BoxingViewportAdapter(Window, GraphicsDevice, _windowOptions.Width, _windowOptions.Height);
+
             _camera = new OrthographicCamera(viewportAdapter);
             _camera.Zoom = 3f;
             _spriteBatch = new SpriteBatch(_graphics.GraphicsDevice);
             _gameWorld = new GameWorld(_graphics.GraphicsDevice, Content, _camera);
-            
+
             _graphics.PreferredBackBufferWidth = _windowOptions.Width;
             _graphics.PreferredBackBufferHeight = _windowOptions.Height;
             _graphics.ApplyChanges();
         }
-        
+
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
+                Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            
+
             _gameWorld.Update(gameTime);
 
             base.Update(gameTime);
@@ -112,9 +112,9 @@ namespace salty.game
         {
             Console.WriteLine(gameTime.GetElapsedSeconds());
             GraphicsDevice.Clear(Color.GhostWhite);
-            
+
             _gameWorld.Draw(gameTime);
-            
+
             base.Draw(gameTime);
         }
     }

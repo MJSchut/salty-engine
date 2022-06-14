@@ -16,29 +16,29 @@ namespace salty.game
         public GameWorld(GraphicsDevice device, ContentManager content, OrthographicCamera camera)
         {
             this.camera = camera;
-            
+
             var worldBuilder = new WorldBuilder();
             _world = worldBuilder
                 .AddSystem(new PlayerControlSystem())
                 .AddSystem(new CameraControlSystem())
-                
+
                 // rendering systems
                 .AddSystem(new TilemapRenderSystem(device, camera))
                 .AddSystem(new RenderSystem(device, camera))
-                
                 .Build();
 
             EntityFactory.CreatePlayer(_world, device);
             EntityFactory.CreateTileMap(_world, content);
             EntityFactory.CreateOrthographicCamera(_world, camera);
-
         }
 
-        public void Update(GameTime gameTime){
+        public void Update(GameTime gameTime)
+        {
             _world.Update(gameTime);
         }
-        
-        public void Draw(GameTime gameTime){
+
+        public void Draw(GameTime gameTime)
+        {
             _world.Draw(gameTime);
         }
     }

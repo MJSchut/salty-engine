@@ -15,6 +15,8 @@ namespace salty.core.tests
             fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList().ForEach(b => fixture.Behaviors.Remove(b));
             fixture.Behaviors.Add(new OmitOnRecursionBehavior());
             return fixture;
-        }) { }
+        })
+        {
+        }
     }
 }

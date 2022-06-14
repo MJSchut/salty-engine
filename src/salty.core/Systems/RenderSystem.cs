@@ -10,12 +10,12 @@ namespace salty.core.Systems
     public class RenderSystem : EntityDrawSystem
     {
         private readonly SpriteBatch _spriteBatch;
-        private OrthographicCamera _camera;
+        private readonly OrthographicCamera _camera;
+        private ComponentMapper<Sprite>? _spriteMapper;
 
         private ComponentMapper<Transform2>? _transformMapper;
-        private ComponentMapper<Sprite>? _spriteMapper;
-        
-        
+
+
         public RenderSystem(GraphicsDevice graphicsDevice, OrthographicCamera camera)
             : base(Aspect.All(typeof(Sprite), typeof(Transform2)))
         {
