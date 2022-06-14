@@ -3,11 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using MonoGame.Extended.Entities;
-using MonoGame.Extended.Sprites;
-using MonoGame.Extended.Tiled;
-using salty.core.Components;
 using salty.core.Systems;
-using salty.core.Util;
 using salty.game.Data;
 
 namespace salty.game

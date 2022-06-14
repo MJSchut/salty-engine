@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using MonoGame.Extended;
+﻿using MonoGame.Extended;
 using MonoGame.Extended.Entities;
 using salty.core.Systems;
 using Xunit;
