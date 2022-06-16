@@ -18,6 +18,7 @@ namespace salty.game.Data
             player.Attach(new Transform2());
             player.Attach(new PlayerComponent());
             player.Attach(new ActorComponent(40f));
+            player.Attach(new SetPositionComponent(500, 500));
             var texture = Texture2DUtils.CreateColoredTexture(device, 16, 32, Color.Firebrick);
             player.Attach(new Sprite(texture));
         }

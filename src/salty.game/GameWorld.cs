@@ -21,6 +21,8 @@ namespace salty.game
             _world = worldBuilder
                 .AddSystem(new PlayerControlSystem())
                 .AddSystem(new CameraControlSystem())
+                
+                .AddSystem(new SetPositionSystem())
 
                 // rendering systems
                 .AddSystem(new TilemapRenderSystem(device, camera))
