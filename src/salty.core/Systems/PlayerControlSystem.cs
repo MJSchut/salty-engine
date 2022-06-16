@@ -4,6 +4,7 @@ using MonoGame.Extended;
 using MonoGame.Extended.Entities;
 using MonoGame.Extended.Entities.Systems;
 using MonoGame.Extended.Input;
+using MonoGame.Extended.Input.InputListeners;
 using salty.core.Components;
 
 namespace salty.core.Systems
@@ -14,8 +15,7 @@ namespace salty.core.Systems
         private ComponentMapper<PlayerComponent>? _playerMapper;
         private ComponentMapper<Transform2>? _transformMapper;
 
-        public PlayerControlSystem() : base(Aspect.All(typeof(PlayerComponent), typeof(ActorComponent),
-            typeof(Transform2)))
+        public PlayerControlSystem() : base(Aspect.All(typeof(PlayerComponent), typeof(ActorComponent), typeof(Transform2)))
         {
         }
 

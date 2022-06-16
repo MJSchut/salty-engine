@@ -31,7 +31,7 @@ namespace salty.core.Systems
         public override void Draw(GameTime gameTime)
         {
             var transformMatrix = _camera.GetViewMatrix(Vector2.One);
-            _tiledMapRenderer ??= new TiledMapRenderer(device, _tileMap.Get(ActiveEntities.First()));
+            _tiledMapRenderer ??= new TiledMapRenderer(device, _tileMap?.Get(ActiveEntities.First()));
 
             _tiledMapRenderer.Draw(transformMatrix);
         }

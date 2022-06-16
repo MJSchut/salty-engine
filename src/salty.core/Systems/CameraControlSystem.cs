@@ -36,8 +36,7 @@ namespace salty.core.Systems
                     playerComponent = _transformMapper?.Get(entity);
             }
 
-            if (orthographicCamera != null)
-                orthographicCamera.LookAt(playerComponent?.Position ?? new Vector2());
+            orthographicCamera?.LookAt(playerComponent?.Position ?? new Vector2());
         }
     }
 }

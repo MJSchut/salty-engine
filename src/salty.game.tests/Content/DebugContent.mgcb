@@ -5,7 +5,7 @@
 /intermediateDir:obj/$(Platform)
 /platform:DesktopGL
 /config:
-/profile:HiDef
+/profile:Reach
 /compress:False
 
 #-------------------------------- References --------------------------------#
@@ -13,6 +13,12 @@
 /reference:..\..\..\..\..\..\..\.nuget\packages\monogame.extended.content.pipeline\3.8.0\tools\MonoGame.Extended.Content.Pipeline.dll
 
 #---------------------------------- Content ---------------------------------#
+
+#begin Graphics/stars.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Graphics/stars.fx
 
 #begin sprites/square.png
 /importer:TextureImporter
@@ -37,9 +43,4 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:sprites/worldtileset.png
-
-#begin tilemaps/example_map.tmx
-/importer:TiledMapImporter
-/processor:TiledMapProcessor
-/build:tilemaps/example_map.tmx
 

@@ -9,6 +9,7 @@ namespace salty.desktopgl
         private static void Main()
         {
             using var game = new GameState();
+
             game.Run();
         }
     }

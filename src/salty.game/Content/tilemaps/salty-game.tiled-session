@@ -1,0 +1,77 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "example_map.tmx",
+    "automapping.whileDrawing": true,
+    "expandedProjectPaths": [
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "": {
+            "scaleInEditor": 1
+        },
+        "C:/Users/marti_2mwzmqg/AppData/Local/Temp/Temp1_assets-6a3b3a06d9df585805d29f6f45628bcd.zip/tiled/LightShadow_pipo.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/marti_2mwzmqg/AppData/Local/Temp/Temp1_assets-6a3b3a06d9df585805d29f6f45628bcd.zip/tiled/[A]Flower_pipo.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/marti_2mwzmqg/AppData/Local/Temp/Temp1_assets-6a3b3a06d9df585805d29f6f45628bcd.zip/tiled/[A]Grass_pipo.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/marti_2mwzmqg/AppData/Local/Temp/Temp1_assets-6a3b3a06d9df585805d29f6f45628bcd.zip/tiled/[A]WaterFall_pipo.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/marti_2mwzmqg/AppData/Local/Temp/Temp1_assets-6a3b3a06d9df585805d29f6f45628bcd.zip/tiled/[A]Water_pipo.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/marti_2mwzmqg/AppData/Local/Temp/Temp1_assets-6a3b3a06d9df585805d29f6f45628bcd.zip/tiled/samplemap.tmx": {
+            "scale": 0.09203125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 825.8064516129033,
+                "y": 961.6298811544991
+            }
+        },
+        "C:/Users/marti_2mwzmqg/AppData/Local/Temp/Temp1_assets-6a3b3a06d9df585805d29f6f45628bcd.zip/tiled/samplemap.tmx#[Base]BaseChip_pipo": {
+            "scaleInDock": 1
+        },
+        "C:/Users/marti_2mwzmqg/OneDrive/Documents/GitHub/salty-engine/src/salty.game/Content/sprites/worldtileset.tsx": {
+            "scaleInDock": 1
+        },
+        "example_map.tmx": {
+            "scale": 0.72615625,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 800.1032835563972,
+                "y": 736.0674785901795
+            }
+        }
+    },
+    "last.externalTilesetPath": "C:/Users/marti_2mwzmqg/AppData/Local/Temp/Temp1_assets-6a3b3a06d9df585805d29f6f45628bcd.zip/tiled",
+    "last.imagePath": "C:/Users/marti_2mwzmqg/OneDrive/Documents/GitHub/salty-engine/src/salty.game/Content/sprites",
+    "last.worldFilePath": "C:/Users/marti_2mwzmqg/OneDrive/Documents/GitHub/salty-engine/src/salty.game/Content/tilemaps",
+    "loadedWorlds": [
+        "C:/Users/marti_2mwzmqg/OneDrive/Documents/GitHub/salty-engine/src/salty.game/Content/tilemaps/salty-game-world.world"
+    ],
+    "map.height": 100,
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "map.width": 100,
+    "openFiles": [
+        "example_map.tmx"
+    ],
+    "project": "salty-game.tiled-project",
+    "recentFiles": [
+        "example_map.tmx",
+        "C:/Users/marti_2mwzmqg/AppData/Local/Temp/Temp1_assets-6a3b3a06d9df585805d29f6f45628bcd.zip/tiled/samplemap.tmx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
+}

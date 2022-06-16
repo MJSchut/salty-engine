@@ -26,6 +26,7 @@
     <TrimmerRootAssembly Include="Microsoft.Xna.Framework.Content.ContentTypeReader" Visible="false" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\salty.game.tests\salty.game.tests.csproj" />
     <ProjectReference Include="..\salty.game\salty.game.csproj" />
   </ItemGroup>
   <ItemGroup>
