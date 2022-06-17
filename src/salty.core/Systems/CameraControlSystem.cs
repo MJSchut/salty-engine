@@ -16,7 +16,6 @@ namespace salty.core.Systems
 
         protected override void Update(float elapsedTime, in Entity entity)
         {
-            
             Transform2? playerComponent = entity.Get<Transform2>();
             OrthographicCamera? orthographicCamera = World.Get<OrthographicCamera>();
             orthographicCamera?.LookAt(playerComponent?.Position ?? new Vector2());

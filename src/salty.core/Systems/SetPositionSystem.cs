@@ -18,9 +18,6 @@ namespace salty.core.Systems
             var setPosition = entity.Get<SetPositionComponent>();
             var currentPosition = entity.Get<Transform2>();
 
-            if (setPosition == null || currentPosition == null)
-                return;
-
             currentPosition.Position = new Vector2(setPosition.x, setPosition.y);
             entity.Remove<SetPositionComponent>();
         }

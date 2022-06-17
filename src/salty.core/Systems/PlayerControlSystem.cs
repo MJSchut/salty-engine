@@ -19,13 +19,8 @@ namespace salty.core.Systems
         
         protected override void Update(float elapsedTime, in Entity entity)
         {
-            var player = entity.Get<PlayerComponent>();
             var transform = entity.Get<Transform2>();
             var actorComponent = entity.Get<ActorComponent>();
-
-            if (player == null || transform == null || actorComponent == null)
-                return;
-
             var speed = actorComponent.Speed * elapsedTime;
 
             var keyboardState = KeyboardExtended.GetState();
