@@ -1,47 +1,42 @@
-﻿using Microsoft.Xna.Framework;
+﻿using DefaultEcs;
+using DefaultEcs.System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
-using MonoGame.Extended.Entities;
-using MonoGame.Extended.Entities.Systems;
 using MonoGame.Extended.Sprites;
 
 namespace salty.core.Systems
 {
-    public class RenderSystem : EntityDrawSystem
+    [With(typeof(Sprite), typeof(Transform2))]
+    public class RenderSystem : AEntitySetSystem<float>
     {
         private readonly SpriteBatch _spriteBatch;
         private readonly OrthographicCamera _camera;
-        private ComponentMapper<Sprite>? _spriteMapper;
-
-        private ComponentMapper<Transform2>? _transformMapper;
 
 
-        public RenderSystem(GraphicsDevice graphicsDevice, OrthographicCamera camera)
-            : base(Aspect.All(typeof(Sprite), typeof(Transform2)))
+        public RenderSystem(World world, GraphicsDevice graphicsDevice, OrthographicCamera camera)
+            : base(world)
         {
             _spriteBatch = new SpriteBatch(graphicsDevice);
             _camera = camera;
         }
-
-        public override void Initialize(IComponentMapperService mapperService)
-        {
-            _transformMapper = mapperService.GetMapper<Transform2>();
-            _spriteMapper = mapperService.GetMapper<Sprite>();
-        }
-
-        public override void Draw(GameTime gameTime)
+        
+        protected override void PreUpdate(float elapsedTime)
         {
             var transformMatrix = _camera.GetViewMatrix(Vector2.One);
             _spriteBatch.Begin(transformMatrix: transformMatrix, samplerState: SamplerState.PointClamp);
+        }
 
-            foreach (var entity in ActiveEntities)
-            {
-                var transform = _transformMapper?.Get(entity);
-                var sprite = _spriteMapper?.Get(entity);
-
-                _spriteBatch.Draw(sprite, transform);
-            }
-
+        protected override void Update(float state, in Entity entity)
+        {
+            var sprite = entity.Get<Sprite>();
+            var transform = entity.Get<Transform2>();
+            
+            _spriteBatch.Draw(sprite, transform);
+        }
+        
+        protected override void PostUpdate(float elapsedTime)
+        {
             _spriteBatch.End();
         }
     }

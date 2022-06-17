@@ -1,38 +1,28 @@
-﻿using Microsoft.Xna.Framework;
+﻿using DefaultEcs;
+using DefaultEcs.System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
-using MonoGame.Extended.Entities;
-using MonoGame.Extended.Entities.Systems;
 using salty.core.Components;
 
 namespace salty.core.Systems
 {
-    
-    public class SetPositionSystem : EntityProcessingSystem
+    [With(typeof(SetPositionComponent), typeof(Transform2))]
+    public class SetPositionSystem : AEntitySetSystem<float>
     {
-        private ComponentMapper<SetPositionComponent>? _setPositionMapper;
-        private ComponentMapper<Transform2>? _transformMapper;
-        
-        public SetPositionSystem() : base(Aspect.All(typeof(SetPositionComponent), typeof(Transform2)))
+        public SetPositionSystem(World world) : base(world)
         {}
-
-        public override void Initialize(IComponentMapperService mapperService)
+        
+        protected override void Update(float timeElapsed, in Entity entity)
         {
-            _setPositionMapper = mapperService.GetMapper<SetPositionComponent>();
-            _transformMapper = mapperService.GetMapper<Transform2>();
-        }
-
-        public override void Process(GameTime gameTime, int entityId)
-        {
-            var setPosition = _setPositionMapper?.Get(entityId);
-            var currentPosition = _transformMapper?.Get(entityId);
+            var setPosition = entity.Get<SetPositionComponent>();
+            var currentPosition = entity.Get<Transform2>();
 
             if (setPosition == null || currentPosition == null)
                 return;
 
             currentPosition.Position = new Vector2(setPosition.x, setPosition.y);
-            
-            _setPositionMapper?.Delete(entityId);
+            entity.Remove<SetPositionComponent>();
         }
     }
 }

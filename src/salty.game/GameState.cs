@@ -102,20 +102,12 @@ namespace salty.game
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
                 Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+            
+            GraphicsDevice.Clear(Color.GhostWhite);
 
             _gameWorld.Update(gameTime);
 
             base.Update(gameTime);
-        }
-
-        protected override void Draw(GameTime gameTime)
-        {
-            Console.WriteLine(gameTime.GetElapsedSeconds());
-            GraphicsDevice.Clear(Color.GhostWhite);
-
-            _gameWorld.Draw(gameTime);
-
-            base.Draw(gameTime);
         }
     }
 }

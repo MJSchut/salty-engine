@@ -1,41 +1,32 @@
-﻿using Microsoft.Xna.Framework;
+﻿using DefaultEcs;
+using DefaultEcs.System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
-using MonoGame.Extended.Entities;
-using MonoGame.Extended.Entities.Systems;
 using MonoGame.Extended.Input;
 using MonoGame.Extended.Input.InputListeners;
 using salty.core.Components;
 
 namespace salty.core.Systems
 {
-    public class PlayerControlSystem : EntityProcessingSystem
+    [With(typeof(PlayerComponent), typeof(Transform2), typeof(ActorComponent))]
+    public sealed class PlayerControlSystem : AEntitySetSystem<float>
     {
-        private ComponentMapper<ActorComponent>? _actorMapper;
-        private ComponentMapper<PlayerComponent>? _playerMapper;
-        private ComponentMapper<Transform2>? _transformMapper;
 
-        public PlayerControlSystem() : base(Aspect.All(typeof(PlayerComponent), typeof(ActorComponent), typeof(Transform2)))
+        public PlayerControlSystem(World world) : base(world)
         {
         }
-
-        public override void Initialize(IComponentMapperService mapperService)
+        
+        protected override void Update(float elapsedTime, in Entity entity)
         {
-            _playerMapper = mapperService.GetMapper<PlayerComponent>();
-            _actorMapper = mapperService.GetMapper<ActorComponent>();
-            _transformMapper = mapperService.GetMapper<Transform2>();
-        }
-
-        public override void Process(GameTime gameTime, int entityId)
-        {
-            var player = _playerMapper?.Get(entityId);
-            var transform = _transformMapper?.Get(entityId);
-            var actorComponent = _actorMapper?.Get(entityId);
+            var player = entity.Get<PlayerComponent>();
+            var transform = entity.Get<Transform2>();
+            var actorComponent = entity.Get<ActorComponent>();
 
             if (player == null || transform == null || actorComponent == null)
                 return;
 
-            var speed = actorComponent.Speed * gameTime.GetElapsedSeconds();
+            var speed = actorComponent.Speed * elapsedTime;
 
             var keyboardState = KeyboardExtended.GetState();
             if (keyboardState.IsKeyDown(Keys.Up))

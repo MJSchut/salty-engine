@@ -2,8 +2,8 @@
     "maps": [
         {
             "fileName": "example_map.tmx",
-            "height": 2400,
-            "width": 800,
+            "height": 1728,
+            "width": 1888,
             "x": 0,
             "y": 0
         }

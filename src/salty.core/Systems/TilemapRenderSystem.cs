@@ -1,38 +1,32 @@
 ﻿using System.Linq;
+using DefaultEcs;
+using DefaultEcs.System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
-using MonoGame.Extended.Entities;
-using MonoGame.Extended.Entities.Systems;
+using MonoGame.Extended.Sprites;
 using MonoGame.Extended.Tiled;
 using MonoGame.Extended.Tiled.Renderers;
 
 namespace salty.core.Systems
 {
-    public class TilemapRenderSystem : EntityDrawSystem
+    public class TilemapRenderSystem : AComponentSystem<float, TiledMap>
     {
         private readonly OrthographicCamera _camera;
         private TiledMapRenderer? _tiledMapRenderer;
-        private ComponentMapper<TiledMap>? _tileMap;
         private readonly GraphicsDevice device;
 
-        public TilemapRenderSystem(GraphicsDevice device, OrthographicCamera camera)
-            : base(Aspect.All(typeof(TiledMap)))
+        public TilemapRenderSystem(World world, GraphicsDevice device, OrthographicCamera camera)
+            : base(world)
         {
             this.device = device;
             _camera = camera;
         }
-
-        public override void Initialize(IComponentMapperService mapperService)
-        {
-            _tileMap = mapperService.GetMapper<TiledMap>();
-        }
-
-        public override void Draw(GameTime gameTime)
+        
+        protected override void Update(float state, ref TiledMap component)
         {
             var transformMatrix = _camera.GetViewMatrix(Vector2.One);
-            _tiledMapRenderer ??= new TiledMapRenderer(device, _tileMap?.Get(ActiveEntities.First()));
-
+            _tiledMapRenderer ??= new TiledMapRenderer(device, component);
             _tiledMapRenderer.Draw(transformMatrix);
         }
     }

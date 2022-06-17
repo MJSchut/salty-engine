@@ -42,11 +42,11 @@
             "scaleInDock": 1
         },
         "example_map.tmx": {
-            "scale": 0.72615625,
-            "selectedLayer": 0,
+            "scale": 1,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 800.1032835563972,
-                "y": 736.0674785901795
+                "x": 470,
+                "y": 574.5
             }
         }
     },

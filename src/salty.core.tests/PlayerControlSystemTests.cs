@@ -1,4 +1,5 @@
-﻿using MonoGame.Extended.Entities;
+﻿
+using DefaultEcs;
 using salty.core.Systems;
 using Xunit;
 
@@ -9,8 +10,7 @@ namespace salty.core.tests
         [Fact]
         public void PlayerControlSystem_CanBe_Initialized()
         {
-            var system = new PlayerControlSystem();
-            system.Initialize(new ComponentManager());
+            new PlayerControlSystem(new World());
         }
     }
 }

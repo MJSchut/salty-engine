@@ -1,5 +1,7 @@
-﻿using MonoGame.Extended;
-using MonoGame.Extended.Entities;
+﻿using DefaultEcs;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Extended;
 using salty.core.Systems;
 using Xunit;
 
@@ -8,17 +10,12 @@ namespace salty.core.tests
     public class RenderSystemTests
     {
         [Fact]
-        public void RenderSystem_CanBe_Initialized()
+        public void RenderSystems_CanBe_Initialized()
         {
             new TestGame();
             var testGraphicsDevice = new TestGraphicsDevice();
-            var renderSystem = new RenderSystem(testGraphicsDevice, new OrthographicCamera(testGraphicsDevice));
-
-            renderSystem.Initialize(new ComponentManager());
-
-            var tilemapRenderSystem =
-                new TilemapRenderSystem(testGraphicsDevice, new OrthographicCamera(testGraphicsDevice));
-            tilemapRenderSystem.Initialize(new ComponentManager());
+            new RenderSystem(new World(), testGraphicsDevice, new OrthographicCamera(testGraphicsDevice));
+            new TilemapRenderSystem(new World(), testGraphicsDevice, new OrthographicCamera(testGraphicsDevice));
         }
     }
 }
