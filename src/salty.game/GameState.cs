@@ -19,7 +19,7 @@ namespace salty.game
         private SpriteBatch _spriteBatch;
 
         private readonly WindowOptions _windowOptions;
-        private string AppDataFolderPath = string.Empty;
+        private string _appDataFolderPath = string.Empty;
 
         public GameState()
         {
@@ -70,11 +70,11 @@ namespace salty.game
             Directory.CreateDirectory(gameFolder);
 
             // Combine the base folder with your specific folder....
-            AppDataFolderPath = Path.Combine(gameFolder, $"{GameVersion}");
+            _appDataFolderPath = Path.Combine(gameFolder, $"{GameVersion}");
 
             // CreateDirectory will check if every folder in path exists and, if not, create them.
             // If all folders exist then CreateDirectory will do nothing.
-            Directory.CreateDirectory(AppDataFolderPath);
+            Directory.CreateDirectory(_appDataFolderPath);
         }
 
         private void LoadWindowData()

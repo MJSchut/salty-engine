@@ -7,12 +7,12 @@ namespace salty.core.Components
     /// </summary>
     public class SetPositionComponent
     {
-        public float x { get; }
-        public float y { get; }
-        public SetPositionComponent(int x, int y)
+        public float X { get; }
+        public float Y { get; }
+        public SetPositionComponent(float x, float y)
         {
-            this.x = x;
-            this.y = y;
+            X = x;
+            Y = y;
         }
     }
 }

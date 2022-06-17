@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using MonoGame.Extended.Input;
-using MonoGame.Extended.Input.InputListeners;
 using salty.core.Components;
 
 namespace salty.core.Systems

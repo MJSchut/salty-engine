@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using DefaultEcs;
 using DefaultEcs.System;
 using DefaultEcs.Threading;
@@ -15,19 +16,22 @@ namespace salty.game
     {
         private readonly World _world;
         private readonly SequentialSystem<float> _system;
-        public OrthographicCamera camera;
+        public OrthographicCamera Camera;
 
         public GameWorld(GraphicsDevice device, ContentManager content, OrthographicCamera camera)
         {
-            this.camera = camera;
+            this.Camera = camera;
             _world = new World();
             _world.Set(camera);
             
-            EntityFactory.CreatePlayer(_world, device);
-            EntityFactory.CreateTileMap(_world, content);
-            
-            var _runner = new DefaultParallelRunner(Environment.ProcessorCount);
-            _world.Set<IParallelRunner>(_runner);
+            var tileMap = EntityFactory.CreateTileMap(_world, content);
+            var playerPosition = tileMap.ObjectLayers
+                .First(l => l.Name == "SpawnPoints").Objects
+                .First(e => e.Name == "Player Spawn").Position;
+            EntityFactory.CreatePlayer(_world, device, playerPosition);
+
+            var runner = new DefaultParallelRunner(Environment.ProcessorCount);
+            _world.Set<IParallelRunner>(runner);
 
             _system = new SequentialSystem<float>(
                 new PlayerControlSystem(_world),

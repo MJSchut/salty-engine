@@ -1,7 +1,6 @@
 ﻿using DefaultEcs;
 using DefaultEcs.System;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using salty.core.Components;
 
@@ -18,7 +17,7 @@ namespace salty.core.Systems
             var setPosition = entity.Get<SetPositionComponent>();
             var currentPosition = entity.Get<Transform2>();
 
-            currentPosition.Position = new Vector2(setPosition.x, setPosition.y);
+            currentPosition.Position = new Vector2(setPosition.X, setPosition.Y);
             entity.Remove<SetPositionComponent>();
         }
     }

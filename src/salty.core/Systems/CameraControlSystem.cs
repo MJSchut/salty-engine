@@ -9,7 +9,7 @@ namespace salty.core.Systems
     [With(typeof(Transform2), typeof(PlayerComponent))]
     public class CameraControlSystem : AEntitySetSystem<float>
     {
-        private World world;
+        private World _world;
         public CameraControlSystem(World world) : base(world)
         {
         }

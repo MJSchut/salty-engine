@@ -1,10 +1,8 @@
-﻿using System.Linq;
-using DefaultEcs;
+﻿using DefaultEcs;
 using DefaultEcs.System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
-using MonoGame.Extended.Sprites;
 using MonoGame.Extended.Tiled;
 using MonoGame.Extended.Tiled.Renderers;
 
@@ -14,19 +12,19 @@ namespace salty.core.Systems
     {
         private readonly OrthographicCamera _camera;
         private TiledMapRenderer? _tiledMapRenderer;
-        private readonly GraphicsDevice device;
+        private readonly GraphicsDevice _device;
 
         public TilemapRenderSystem(World world, GraphicsDevice device, OrthographicCamera camera)
             : base(world)
         {
-            this.device = device;
+            this._device = device;
             _camera = camera;
         }
         
         protected override void Update(float state, ref TiledMap component)
         {
             var transformMatrix = _camera.GetViewMatrix(Vector2.One);
-            _tiledMapRenderer ??= new TiledMapRenderer(device, component);
+            _tiledMapRenderer ??= new TiledMapRenderer(_device, component);
             _tiledMapRenderer.Draw(transformMatrix);
         }
     }
