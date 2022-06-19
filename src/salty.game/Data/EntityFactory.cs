@@ -20,6 +20,7 @@ namespace salty.game.Data
             player.Set(new ActorComponent(40f));
             var (x, y) = position;
             player.Set(new SetPositionComponent(x, y));
+            player.Set(new CollisionComponent(x, y, 16, 32));
 
             var texture = Texture2DUtils.CreateColoredTexture(device, 16, 32, Color.Firebrick);
             player.Set(new Sprite(texture));
