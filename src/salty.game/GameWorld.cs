@@ -8,7 +8,9 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using salty.core.Components;
+using salty.core.Components.Input;
 using salty.core.Systems;
+using salty.core.Systems.Input;
 using salty.core.Systems.RenderSystems;
 using salty.core.Util;
 using salty.game.Data;
@@ -26,6 +28,7 @@ namespace salty.game
             Camera = camera;
             _world = new World();
             _world.Set(camera);
+            _world.Set(new KeyboardComponent());
             
             #if DEBUG
             _world.Set(new DebugRenderComponent());
@@ -38,20 +41,28 @@ namespace salty.game
 
             var runner = new DefaultParallelRunner(Environment.ProcessorCount);
             _world.Set<IParallelRunner>(runner);
-
+            
             _system = new SequentialSystem<float>(
+                // control systems
                 new PlayerControlSystem(_world),
                 new CameraControlSystem(_world),
+                
+                // consumption systems
                 new SetPositionSystem(_world),
+                
+                // world systems
                 new CollisionSystem(_world, runner),
+                
+                // input systems
+                new KeyboardSystem(_world),
+                
+                // render systems
                 new TilemapRenderSystem(_world, device, camera),
                 new RenderSystem(_world, device, camera)
                 #if DEBUG
                 ,new DebugRenderSystem(_world, device, camera)
                 #endif
             );
-            
-            
             
             _world.Optimize();
         }

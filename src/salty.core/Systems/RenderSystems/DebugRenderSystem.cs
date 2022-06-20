@@ -4,9 +4,10 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
-using MonoGame.Extended.Input;
 using MonoGame.Extended.Sprites;
 using salty.core.Components;
+using salty.core.Components.Input;
+using salty.core.Input;
 using salty.core.Util;
 
 namespace salty.core.Systems.RenderSystems
@@ -26,9 +27,9 @@ namespace salty.core.Systems.RenderSystems
         
         protected override void Update(float state, ref DebugRenderComponent component)
         {
+            var keyboardComponent = World.Get<KeyboardComponent>();
             
-            var keyboardState = KeyboardExtended.GetState();
-            if (keyboardState.WasAnyKeyJustDown())
+            if (keyboardComponent.PressedThisFrame(Keys.OemQuestion))
                 component.IsRendering = !component.IsRendering;
 
             if (component.IsRendering == false)

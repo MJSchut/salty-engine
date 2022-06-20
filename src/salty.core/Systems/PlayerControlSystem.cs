@@ -3,8 +3,9 @@ using DefaultEcs.System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
-using MonoGame.Extended.Input;
 using salty.core.Components;
+using salty.core.Components.Input;
+using salty.core.Input;
 
 namespace salty.core.Systems
 {
@@ -18,18 +19,19 @@ namespace salty.core.Systems
         
         protected override void Update(float elapsedTime, in Entity entity)
         {
+            var keyboardComponent = World.Get<KeyboardComponent>();
+            
             var transform = entity.Get<Transform2>();
             var actorComponent = entity.Get<ActorComponent>();
             var speed = actorComponent.Speed * elapsedTime;
-
-            var keyboardState = KeyboardExtended.GetState();
-            if (keyboardState.IsKeyDown(Keys.Up))
+            
+            if (keyboardComponent.IsKeyDown(Keys.Up))
                 transform.Position = new Vector2(transform.Position.X, transform.Position.Y - speed);
-            if (keyboardState.IsKeyDown(Keys.Down))
+            if (keyboardComponent.IsKeyDown(Keys.Down))
                 transform.Position = new Vector2(transform.Position.X, transform.Position.Y + speed);
-            if (keyboardState.IsKeyDown(Keys.Right))
+            if (keyboardComponent.IsKeyDown(Keys.Right))
                 transform.Position = new Vector2(transform.Position.X + speed, transform.Position.Y);
-            if (keyboardState.IsKeyDown(Keys.Left))
+            if (keyboardComponent.IsKeyDown(Keys.Left))
                 transform.Position = new Vector2(transform.Position.X - speed, transform.Position.Y);
         }
     }
