@@ -30,6 +30,8 @@ namespace salty.core.Systems
 
             foreach (var collidableEntity in collidableEntities.GetEntities())
             {
+                if (collidableEntity == entity)
+                    continue;
                 var otherCollisionComponent = collidableEntity.Get<CollisionComponent>();
                 collisionComponent.IsColliding = collisionComponent.CollidesWith(otherCollisionComponent);
             }
