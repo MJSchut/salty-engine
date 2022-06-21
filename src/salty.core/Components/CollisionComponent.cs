@@ -5,6 +5,8 @@ namespace salty.core.Components
     public class CollisionComponent
     {
         public bool IsColliding { get; set; }
+
+        public bool IsSolid { get; set; } = true;
         
         public float X { get; set; }
         public float Y { get; set; }

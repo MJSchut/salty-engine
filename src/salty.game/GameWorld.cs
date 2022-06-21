@@ -38,7 +38,7 @@ namespace salty.game
             
             var playerPosition = TiledMapUtil.GetPlayerPosition(tileMap);
             EntityFactory.CreatePlayer(_world, device, playerPosition);
-            EntityFactory.CreateActor(_world, device, new Vector2(playerPosition.X + 10, playerPosition.Y));
+            EntityFactory.CreateActor(_world, device, new Vector2(playerPosition.X + 25, playerPosition.Y));
 
             var runner = new DefaultParallelRunner(Environment.ProcessorCount);
             _world.Set<IParallelRunner>(runner);

@@ -17,6 +17,7 @@ namespace salty.core.Systems
         {
             var transform = entity.Get<Transform2>();
             var collisionComponent = entity.Get<CollisionComponent>();
+            var actorComponent = entity.Get<ActorComponent>();
             
             collisionComponent.IsColliding = false;
             collisionComponent.X = transform.Position.X;
@@ -27,7 +28,8 @@ namespace salty.core.Systems
                     .With<CollisionComponent>()
                     .With<Transform2>()
                     .AsSet();
-
+            
+            // get collision
             foreach (var collidableEntity in collidableEntities.GetEntities())
             {
                 if (collidableEntity == entity)
@@ -35,6 +37,14 @@ namespace salty.core.Systems
                 var otherCollisionComponent = collidableEntity.Get<CollisionComponent>();
                 collisionComponent.IsColliding = collisionComponent.CollidesWith(otherCollisionComponent);
             }
+            
+            // prevent intersection
+            if (collisionComponent.IsColliding)
+            {
+                transform.Position = actorComponent.LastValidPosition;
+                return;
+            }
+            actorComponent.LastValidPosition = transform.Position;
 
         }
     }

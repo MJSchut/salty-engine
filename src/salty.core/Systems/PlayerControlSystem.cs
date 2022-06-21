@@ -20,19 +20,28 @@ namespace salty.core.Systems
         protected override void Update(float elapsedTime, in Entity entity)
         {
             var keyboardComponent = World.Get<KeyboardComponent>();
-            
             var transform = entity.Get<Transform2>();
             var actorComponent = entity.Get<ActorComponent>();
+            
+            var vectorY = 0;
+            var vectorX = 0;
             var speed = actorComponent.Speed * elapsedTime;
             
             if (keyboardComponent.IsKeyDown(Keys.Up))
-                transform.Position = new Vector2(transform.Position.X, transform.Position.Y - speed);
-            if (keyboardComponent.IsKeyDown(Keys.Down))
-                transform.Position = new Vector2(transform.Position.X, transform.Position.Y + speed);
+                vectorY = -1;
+            else if (keyboardComponent.IsKeyDown(Keys.Down))
+                vectorY = 1;
+            
             if (keyboardComponent.IsKeyDown(Keys.Right))
-                transform.Position = new Vector2(transform.Position.X + speed, transform.Position.Y);
-            if (keyboardComponent.IsKeyDown(Keys.Left))
-                transform.Position = new Vector2(transform.Position.X - speed, transform.Position.Y);
+                vectorX = 1;
+            else if (keyboardComponent.IsKeyDown(Keys.Left))
+                vectorX = -1;
+
+            if (vectorX == 0 && vectorY == 0)
+                return;
+            
+            var movementVector = new Vector2(vectorX, vectorY).NormalizedCopy();
+            transform.Position += movementVector * speed;
         }
     }
 }
