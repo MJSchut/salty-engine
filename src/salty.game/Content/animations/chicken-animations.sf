@@ -1,0 +1,29 @@
+{
+  "textureAtlas": {
+    "texture": "chicken-sprites.png",
+    "regionWidth": 16,
+    "regionHeight": 16
+  },
+  "cycles": {
+    "idleRight": {
+      "frames": [0],
+      "isLooping": false,
+      "frameDuration": 0.2
+    },
+    "walkingRight": {
+      "frames": [0,1,2,3],
+      "isLooping": true,
+      "frameDuration": 0.2
+    },
+    "idleLeft": {
+      "frames": [4],
+      "isLooping": false,
+      "frameDuration": 0.2
+    },
+    "walkingLeft": {
+      "frames": [4,5,6,7],
+      "isLooping": true,
+      "frameDuration": 0.2
+    }
+  }
+}

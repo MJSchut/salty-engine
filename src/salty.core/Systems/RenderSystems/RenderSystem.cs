@@ -7,7 +7,8 @@ using MonoGame.Extended.Sprites;
 
 namespace salty.core.Systems
 {
-    [With(typeof(Sprite), typeof(Transform2))]
+    [With(typeof(Transform2))]
+    [WithEither(typeof(Sprite), typeof(AnimatedSprite))]
     public class RenderSystem : AEntitySetSystem<float>
     {
         private readonly SpriteBatch _spriteBatch;
@@ -29,10 +30,17 @@ namespace salty.core.Systems
 
         protected override void Update(float state, in Entity entity)
         {
-            var sprite = entity.Get<Sprite>();
             var transform = entity.Get<Transform2>();
+            if (entity.Has<Sprite>())
+            {
+                var sprite = entity.Get<Sprite>();
+                _spriteBatch.Draw(sprite, transform);
+                return;
+            }
             
-            _spriteBatch.Draw(sprite, transform);
+            var animatedSprite = entity.Get<AnimatedSprite>();
+            animatedSprite.Update(state);
+            _spriteBatch.Draw(animatedSprite, transform);
         }
         
         protected override void PostUpdate(float elapsedTime)

@@ -43,10 +43,10 @@
         },
         "example_map.tmx": {
             "scale": 1,
-            "selectedLayer": 4,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 470,
-                "y": 574.5
+                "x": 495,
+                "y": 465.5
             }
         }
     },
