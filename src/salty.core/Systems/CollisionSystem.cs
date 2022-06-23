@@ -9,6 +9,8 @@ namespace salty.core.Systems
     [With(typeof(CollisionComponent), typeof(Transform2), typeof(ActorComponent))]
     public class CollisionSystem : AEntitySetSystem<float>
     {
+        private const int CollisionChecks = 4;
+        
         public CollisionSystem(World world, IParallelRunner runner) : base(world, runner)
         {
         }
@@ -41,6 +43,16 @@ namespace salty.core.Systems
             // prevent intersection
             if (collisionComponent.IsColliding)
             {
+                
+                var distance = transform.Position - actorComponent.LastValidPosition;
+
+                for (int i = 0; i < CollisionChecks; i++)
+                {
+                    var ratio = (float)i / CollisionChecks;
+                    var positionToCheck = transform.Position + distance * ratio;
+                    if (!collisionComponent.CollidingAtPoint(positionToCheck))
+                        actorComponent.LastValidPosition = positionToCheck;
+                }
                 transform.Position = actorComponent.LastValidPosition;
                 return;
             }

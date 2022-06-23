@@ -42,9 +42,10 @@ namespace salty.game
             var tileMap = EntityFactory.CreateTileMap(_world, content);
             
             var playerPosition = TiledMapUtil.GetPlayerPosition(tileMap);
+            var chickenData = content.Load<EntityData>("data/chicken");
             
             EntityFactory.CreatePlayer(_world, device, playerPosition);
-            EntityFactory.CreateAnimal(_world, content, new Vector2(playerPosition.X + 25, playerPosition.Y));
+            EntityFactory.CreateAnimal(_world, content, chickenData, new Vector2(playerPosition.X + 25, playerPosition.Y));
 
             var runner = new DefaultParallelRunner(Environment.ProcessorCount);
             _world.Set<IParallelRunner>(runner);

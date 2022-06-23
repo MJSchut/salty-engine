@@ -1,29 +1,33 @@
 {
-  "textureAtlas": {
-    "texture": "chicken-sprites.png",
+  "textureData": {
+    "texture": "sprites/chicken-sprites",
     "regionWidth": 16,
     "regionHeight": 16
   },
-  "cycles": {
-    "idleRight": {
+  "cycles": [
+    {
+	  "name": "IdleRight",
       "frames": [0],
       "isLooping": false,
       "frameDuration": 0.2
     },
-    "walkingRight": {
+    {
+	  "name": "WalkingRight",
       "frames": [0,1,2,3],
       "isLooping": true,
       "frameDuration": 0.2
     },
-    "idleLeft": {
+    {
+	  "name": "IdleLeft",
       "frames": [4],
       "isLooping": false,
       "frameDuration": 0.2
     },
-    "walkingLeft": {
+    {
+	  "name": "WalkingLeft",
       "frames": [4,5,6,7],
       "isLooping": true,
       "frameDuration": 0.2
     }
-  }
+  ]
 }

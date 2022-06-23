@@ -44,7 +44,7 @@ namespace salty.core.Systems.RenderSystems
             {
                 var texture = Texture2DUtils.CreateColoredTexture(_device, (int)collision.Width, (int)collision.Height, collision.IsColliding ? Color.Aqua : Color.Purple);
                 var sprite = new Sprite(texture);
-                _spriteBatch.Draw(sprite, new Transform2(collision.X, collision.Y));
+                _spriteBatch.Draw(sprite, new Transform2(collision.XMid, collision.YMid));
             }
             
             _spriteBatch.End();

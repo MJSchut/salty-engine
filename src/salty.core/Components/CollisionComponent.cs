@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Xna.Framework;
 
 namespace salty.core.Components
 {
@@ -21,13 +22,25 @@ namespace salty.core.Components
         {
             get => X + Width;
         }
+        
+        public float XMid
+        {
+            get => X + Width/2;
+        }
+        
         public float YMin
         {
             get => Y;
         }
+        
         public float YMax
         {
             get => Y + Height;
+        }
+        
+        public float YMid
+        {
+            get => Y + Height/2;
         }
 
         public CollisionComponent(float x, float y, float width, float height)
@@ -51,6 +64,22 @@ namespace salty.core.Components
  
             // If one rectangle is above other
             if (YMin > other.YMax || other.YMin > YMax)
+                return false;
+ 
+            return true;
+        }
+        
+        public bool CollidingAtPoint(Vector2 vec)
+        {
+            return CollidingAtPoint(vec.X, vec.Y);
+        }
+        
+        public bool CollidingAtPoint(float x, float y)
+        {
+            if (XMin > x && x > XMax)
+                return false;
+
+            if (YMin > y && y > YMax)
                 return false;
  
             return true;

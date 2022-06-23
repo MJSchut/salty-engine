@@ -1,9 +1,10 @@
-﻿using DefaultEcs;
+﻿using System.Collections.Generic;
+using DefaultEcs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
-using MonoGame.Extended.Animations.SpriteSheets;
+using MonoGame.Extended.Serialization;
 using MonoGame.Extended.Sprites;
 using MonoGame.Extended.TextureAtlases;
 using MonoGame.Extended.Tiled;
@@ -28,7 +29,7 @@ namespace salty.game.Data
             player.Set(new Sprite(texture));
         }
 
-        public static void CreateAnimal(World world, ContentManager content, Vector2 position)
+        public static void CreateAnimal(World world, ContentManager content, EntityData entityData, Vector2 position)
         {
             var animal = world.CreateEntity();
             animal.Set(new Transform2());
@@ -36,16 +37,17 @@ namespace salty.game.Data
             
             var (x, y) = position;
             animal.Set(new SetPositionComponent(x, y));
-            animal.Set(new CollisionComponent(x, y, 16, 16));
-
-            var chickenAtlas = TextureAtlas.Create("chickenAtlas", content.Load<Texture2D>("sprites/chicken-sprites"), 16, 16);
+            animal.Set(new CollisionComponent(x, y, 8, 8));
+            
+            var chickenAtlas = TextureAtlas.Create("chickenAtlas", 
+                content.Load<Texture2D>(entityData.textureData.texture), 
+                entityData.textureData.regionWidth, 
+                entityData.textureData.regionHeight);
             var spriteSheet = new SpriteSheet {TextureAtlas = chickenAtlas};
-            
-            AddAnimationCycle(spriteSheet, "IdleRight", new[] {0});
-            AddAnimationCycle(spriteSheet, "WalkingRight", new[] {0,1,2,3}, true);
-            AddAnimationCycle(spriteSheet, "IdleLeft", new[] {4});
-            AddAnimationCycle(spriteSheet, "WalkingLeft", new[] {4,5,6,7}, true);
-            
+
+            foreach (var cycle in entityData.cycles)
+                AddAnimationCycle(spriteSheet, cycle.name, cycle.frames.ToArray(), cycle.isLooping, cycle.frameDuration);
+
             var sprite = new AnimatedSprite(spriteSheet, "WalkingLeft");
             animal.Set(sprite);
         }
@@ -70,5 +72,30 @@ namespace salty.game.Data
 
             spriteSheet.Cycles.Add(name, cycle);
         }
+        
+        
+    }
+    
+    public class EntityReader : JsonContentTypeReader<EntityData> { }
+        
+    public class EntityData
+    {
+        public TextureData textureData;
+        public List<Cycle> cycles;
+    }
+
+    public class TextureData
+    {
+        public string texture;
+        public int regionWidth;
+        public int regionHeight;
+    }
+
+    public class Cycle
+    {
+        public string name;
+        public List<int> frames;
+        public bool isLooping;
+        public float frameDuration;
     }
 }
