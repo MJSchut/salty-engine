@@ -37,12 +37,12 @@ namespace salty.game.Data
             
             var (x, y) = position;
             animal.Set(new SetPositionComponent(x, y));
-            animal.Set(new CollisionComponent(x, y, 8, 8));
+            animal.Set(new CollisionComponent(x, y, entityData.hitboxData.width, entityData.hitboxData.height, entityData.hitboxData.xOffset, entityData.hitboxData.yOffset));
             
             var chickenAtlas = TextureAtlas.Create("chickenAtlas", 
                 content.Load<Texture2D>(entityData.textureData.texture), 
-                entityData.textureData.regionWidth, 
-                entityData.textureData.regionHeight);
+                entityData.textureData.width, 
+                entityData.textureData.height);
             var spriteSheet = new SpriteSheet {TextureAtlas = chickenAtlas};
 
             foreach (var cycle in entityData.cycles)
@@ -81,14 +81,23 @@ namespace salty.game.Data
     public class EntityData
     {
         public TextureData textureData;
+        public HitBoxData hitboxData;
         public List<Cycle> cycles;
     }
 
     public class TextureData
     {
         public string texture;
-        public int regionWidth;
-        public int regionHeight;
+        public int width;
+        public int height;
+    }
+    
+    public class HitBoxData
+    {
+        public int width;
+        public int height;
+        public int? xOffset;
+        public int? yOffset;
     }
 
     public class Cycle

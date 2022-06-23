@@ -1,8 +1,13 @@
 {
   "textureData": {
     "texture": "sprites/chicken-sprites",
-    "regionWidth": 16,
-    "regionHeight": 16
+    "width": 16,
+    "height": 16
+  },
+  "hitBoxData": {
+	"width": 8,
+	"height": 8,
+	"yOffset": 0,
   },
   "cycles": [
     {

@@ -38,12 +38,14 @@ namespace salty.core.Systems
                     continue;
                 var otherCollisionComponent = collidableEntity.Get<CollisionComponent>();
                 collisionComponent.IsColliding = collisionComponent.CollidesWith(otherCollisionComponent);
+
+                if (collisionComponent.IsColliding)
+                    break;
             }
             
             // prevent intersection
             if (collisionComponent.IsColliding)
             {
-                
                 var distance = transform.Position - actorComponent.LastValidPosition;
 
                 for (int i = 0; i < CollisionChecks; i++)

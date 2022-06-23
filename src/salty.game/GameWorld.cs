@@ -45,7 +45,10 @@ namespace salty.game
             var chickenData = content.Load<EntityData>("data/chicken");
             
             EntityFactory.CreatePlayer(_world, device, playerPosition);
+            
             EntityFactory.CreateAnimal(_world, content, chickenData, new Vector2(playerPosition.X + 25, playerPosition.Y));
+            EntityFactory.CreateAnimal(_world, content, chickenData, new Vector2(playerPosition.X + 45, playerPosition.Y));
+
 
             var runner = new DefaultParallelRunner(Environment.ProcessorCount);
             _world.Set<IParallelRunner>(runner);
