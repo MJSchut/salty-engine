@@ -11,39 +11,45 @@ namespace salty.core.Components
         
         public float X { get; set; }
         public float Y { get; set; }
+        
         public float Width { get; }
         public float Height { get; }
         
+        public float XOffset { get; set; }
+        public float YOffset { get; set; }
+        
+        
         public float XMin
         {
-            get => X;
+            get => X + XOffset;
         }
         public float XMax
         {
-            get => X + Width;
+            get => X + Width  + XOffset;
         }
         
         public float XMid
         {
-            get => X + Width/2;
+            get => X + Width/2  + XOffset;
         }
         
         public float YMin
         {
-            get => Y;
+            get => Y + YOffset;
         }
         
         public float YMax
         {
-            get => Y + Height;
+            get => Y + Height + YOffset;
         }
         
         public float YMid
         {
-            get => Y + Height/2;
+            get => Y + Height/2 + YOffset;
         }
 
-        public CollisionComponent(float x, float y, float width, float height)
+        public CollisionComponent(float x, float y, float width, float height,
+        float? xOffset = null, float? yOffset = null)
         {
             if (width <= 0)
                 throw new ArgumentException("Width cannot be less than or equal to 0");
@@ -54,6 +60,9 @@ namespace salty.core.Components
             Y = y;
             Width = width;
             Height = height;
+            
+            XOffset = xOffset ?? -width/2;
+            YOffset = yOffset ?? -height/2;
         }
 
         public bool CollidesWith(CollisionComponent other)
