@@ -9,6 +9,7 @@ using MonoGame.Extended.Sprites;
 using MonoGame.Extended.TextureAtlases;
 using MonoGame.Extended.Tiled;
 using salty.core.Components;
+using salty.core.Components.AI;
 using salty.core.Util;
 
 namespace salty.game.Data
@@ -21,6 +22,8 @@ namespace salty.game.Data
             player.Set(new Transform2());
             player.Set(new PlayerComponent());
             player.Set(new ActorComponent(40f));
+            player.Set(new StateComponent());
+            
             var (x, y) = position;
             player.Set(new SetPositionComponent(x, y));
             player.Set(new CollisionComponent(x, y, 16, 16));
@@ -34,7 +37,9 @@ namespace salty.game.Data
             var animal = world.CreateEntity();
             animal.Set(new Transform2());
             animal.Set(new ActorComponent(25f));
-            
+            animal.Set<IAiComponent>(new RandomWanderAiComponent());
+            animal.Set(new StateComponent());
+
             var (x, y) = position;
             animal.Set(new SetPositionComponent(x, y));
             animal.Set(new CollisionComponent(x, y, entityData.hitboxData.width, entityData.hitboxData.height, entityData.hitboxData.xOffset, entityData.hitboxData.yOffset));
@@ -46,7 +51,7 @@ namespace salty.game.Data
             var spriteSheet = new SpriteSheet {TextureAtlas = chickenAtlas};
 
             foreach (var cycle in entityData.cycles)
-                AddAnimationCycle(spriteSheet, cycle.name, cycle.frames.ToArray(), cycle.isLooping, cycle.frameDuration);
+                spriteSheet.Cycles.Add(cycle.name, AnimationCycleUtils.CreateAnimationCycle(cycle.frames.ToArray(), cycle.isLooping, cycle.frameDuration));
 
             var sprite = new AnimatedSprite(spriteSheet, "WalkingLeft");
             animal.Set(sprite);
@@ -58,19 +63,6 @@ namespace salty.game.Data
             tileMap.Set(new Transform2());
             tileMap.Set(content.Load<TiledMap>("tilemaps/example_map"));
             return tileMap.Get<TiledMap>();
-        }
-        
-        private static void AddAnimationCycle(SpriteSheet spriteSheet, string name, int[] frames, bool isLooping = true, float frameDuration = 0.1f)
-        {
-            var cycle = new SpriteSheetAnimationCycle();
-            foreach (var f in frames)
-            {
-                cycle.Frames.Add(new SpriteSheetAnimationFrame(f, frameDuration));
-            }
-
-            cycle.IsLooping = isLooping;
-
-            spriteSheet.Cycles.Add(name, cycle);
         }
         
         

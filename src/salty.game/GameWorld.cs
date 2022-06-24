@@ -57,6 +57,7 @@ namespace salty.game
                 // control systems
                 new PlayerControlSystem(_world),
                 new CameraControlSystem(_world),
+                new AiSystem(_world, runner),
                 
                 // consumption systems
                 new SetPositionSystem(_world),
