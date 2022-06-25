@@ -3,8 +3,6 @@ using Microsoft.Xna.Framework;
 
 namespace salty.core.Components
 {
-
-    
     public class ActorComponent
     {
         

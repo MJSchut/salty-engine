@@ -2,8 +2,8 @@
 
 namespace salty.core.Components.AI
 {
-    public interface IAiComponent
+    public abstract class AiComponent
     {
-        public Vector2 Update(Vector2 originalPosition, float timePassed);
+        public abstract Vector2 Update(Vector2 originalPosition, float speed, float timePassed);
     }
 }

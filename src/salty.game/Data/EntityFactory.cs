@@ -37,7 +37,7 @@ namespace salty.game.Data
             var animal = world.CreateEntity();
             animal.Set(new Transform2());
             animal.Set(new ActorComponent(25f));
-            animal.Set<IAiComponent>(new RandomWanderAiComponent());
+            animal.Set<AiComponent>(new RandomWanderAiComponent());
             animal.Set(new StateComponent());
 
             var (x, y) = position;
@@ -64,8 +64,6 @@ namespace salty.game.Data
             tileMap.Set(content.Load<TiledMap>("tilemaps/example_map"));
             return tileMap.Get<TiledMap>();
         }
-        
-        
     }
     
     public class EntityReader : JsonContentTypeReader<EntityData> { }

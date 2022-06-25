@@ -20,6 +20,35 @@
 /processorParam:ContentType=salty.game.Data.EntityReader, salty.game
 /build:data/chicken.json
 
+#begin fonts/saltyfont.fnt
+/importer:BitmapFontImporter
+/processor:BitmapFontProcessor
+/build:fonts/saltyfont.fnt
+
+#begin fonts/saltyfont_0.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:fonts/saltyfont_0.png
+
+#begin sprites/bush-sprites.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:sprites/bush-sprites.png
+
 #begin sprites/chicken-sprites.png
 /importer:TextureImporter
 /processor:TextureProcessor
