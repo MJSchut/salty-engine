@@ -7,27 +7,26 @@ namespace salty.core.Components.AI
 {
     public class RandomWanderAiComponent : AiComponent
     {
-        private const float randomMin = 3.0f;
-        private const float randomMax = 6.0f;
-        private float newDirectionTimer = 0.5f;
-        private Vector2 oldDirection = Vector2.Zero;
-        
-        
+        private const float RandomMin = 3.0f;
+        private const float RandomMax = 6.0f;
+        private float _newDirectionTimer = 0.5f;
+        private Vector2 _oldDirection = Vector2.Zero;
+
         public override Vector2 Update(Vector2 originalPosition, float speed, float timePassed)
         {
-            var direction = newDirectionTimer > 0 ? oldDirection : GetNewDirection();
+            var direction = _newDirectionTimer > 0 ? _oldDirection : GetNewDirection();
 
-            if (newDirectionTimer > 0)
-                newDirectionTimer -= timePassed;
+            if (_newDirectionTimer > 0)
+                _newDirectionTimer -= timePassed;
             else
-                newDirectionTimer = RandomProvider.Next(randomMin, randomMax);
+                _newDirectionTimer = RandomProvider.Next(RandomMin, RandomMax);
 
-            oldDirection = direction;
+            _oldDirection = direction;
             
             return originalPosition + direction * speed * timePassed;
         }
 
-        private Vector2 GetNewDirection()
+        private static Vector2 GetNewDirection()
         {
             return RandomProvider.Next() < 0.6f ? Vector2.Zero : new Vector2(RandomProvider.Next(-1, 2), RandomProvider.Next(-1, 2)).NormalizedCopy();
         }

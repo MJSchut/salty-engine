@@ -8,21 +8,21 @@
    /// from Normally (Gaussian) distributed random numbers and 
    /// Exponentially distributed random numbers.
    /// </summary>
-   public  class RandomProvider
+   public static class RandomProvider
    {
-      private static Random m_RNG1;
-      private static double m_StoredUniformDeviate;
-      private static bool m_StoredUniformDeviateIsGood = false;
+      private static Random _mRng1;
+      private static double _mStoredUniformDeviate;
+      private static bool _mStoredUniformDeviateIsGood = false;
 
       #region -- Construction/Initialization --
 
       static RandomProvider()
       {
-         Reset();
+         _mRng1 = new Random(Environment.TickCount);
       }
       public static void Reset()
       {
-         m_RNG1 = new Random(Environment.TickCount);
+         _mRng1 = new Random(Environment.TickCount);
       }
 
       #endregion
@@ -34,7 +34,7 @@
       /// </summary>
       public static double Next()
       {
-         return m_RNG1.NextDouble();
+         return _mRng1.NextDouble();
       }
 
       /// <summary>
@@ -42,10 +42,7 @@
       /// </summary>
       public static bool NextBoolean()
       {
-         if (m_RNG1.Next(0,2) == 0)
-            return false;
-         else
-            return true;
+         return _mRng1.Next(0,2) != 0;
       }
 
       /// <summary>
@@ -53,21 +50,21 @@
       /// </summary>
       public static double NextDouble()
       {
-         double rn = m_RNG1.NextDouble();
+         var rn = _mRng1.NextDouble();
          return rn;
       }
 
       /// <summary>
       /// Returns Int16 in the range [min, max)
       /// </summary>
-      public static Int16 Next(Int16 min, Int16 max)
+      public static short Next(short min, short max)
       {
          if (max <= min) 
          {
             string message = "Max must be greater than min.";
             throw new ArgumentException(message);
          }
-         double rn = (max*1.0 - min*1.0)*m_RNG1.NextDouble() + min*1.0;
+         var rn = (max*1.0 - min*1.0)*_mRng1.NextDouble() + min*1.0;
          return Convert.ToInt16(rn);
       }
 
@@ -76,13 +73,13 @@
       /// </summary>
       public static int Next(int min, int max)
       {
-         return m_RNG1.Next(min, max);
+         return _mRng1.Next(min, max);
       }
 
       /// <summary>
       /// Returns Int64 in the range [min, max)
       /// </summary>
-      public static Int64 Next(Int64 min, Int64 max)
+      public static long Next(long min, long max)
       {
          if (max <= min) 
          {
@@ -90,14 +87,14 @@
             throw new ArgumentException(message);
          }
 
-         double rn = (max*1.0 - min*1.0)*m_RNG1.NextDouble() + min*1.0;
+         var rn = (max*1.0 - min*1.0)*_mRng1.NextDouble() + min*1.0;
          return Convert.ToInt64(rn);
       }
 
       /// <summary>
       /// Returns float (Single) in the range [min, max)
       /// </summary>
-      public static Single Next(Single min, Single max)
+      public static float Next(float min, float max)
       {
          if (max <= min) 
          {
@@ -105,7 +102,7 @@
             throw new ArgumentException(message);
          }
 
-         double rn = (max*1.0 - min*1.0)*m_RNG1.NextDouble() + min*1.0;
+         var rn = (max*1.0 - min*1.0)*_mRng1.NextDouble() + min*1.0;
          return Convert.ToSingle(rn);
       }
 
@@ -120,7 +117,7 @@
             throw new ArgumentException(message);
          }
 
-         double rn = (max - min)*m_RNG1.NextDouble() + min;
+         var rn = (max - min)*_mRng1.NextDouble() + min;
          return rn;
       }
 
@@ -134,11 +131,11 @@
             string message = "Max must be greater than min.";
             throw new ArgumentException(message);
          }
-         long minTicks = min.Ticks;
-         long maxTicks = max.Ticks;
-         double rn = (Convert.ToDouble(maxTicks) 
-            - Convert.ToDouble(minTicks))*m_RNG1.NextDouble() 
-            + Convert.ToDouble(minTicks);
+         var minTicks = min.Ticks;
+         var maxTicks = max.Ticks;
+         var rn = (Convert.ToDouble(maxTicks) 
+                   - Convert.ToDouble(minTicks))*_mRng1.NextDouble() 
+                  + Convert.ToDouble(minTicks);
          return new DateTime(Convert.ToInt64(rn));
       }
 
@@ -147,17 +144,17 @@
       /// </summary>
       public static TimeSpan Next(TimeSpan min, TimeSpan max)
       {
-         if (max <= min) 
+         if (max <= min)
          {
-            string message = "Max must be greater than min.";
+            const string message = "Max must be greater than min.";
             throw new ArgumentException(message);
          }
 
-         long minTicks = min.Ticks;
-         long maxTicks = max.Ticks;
-         double rn = (Convert.ToDouble(maxTicks) 
-            - Convert.ToDouble(minTicks))*m_RNG1.NextDouble() 
-            + Convert.ToDouble(minTicks);
+         var minTicks = min.Ticks;
+         var maxTicks = max.Ticks;
+         var rn = (Convert.ToDouble(maxTicks) 
+                   - Convert.ToDouble(minTicks))*_mRng1.NextDouble() 
+                  + Convert.ToDouble(minTicks);
          return new TimeSpan(Convert.ToInt64(rn));
       }
 
@@ -176,7 +173,7 @@
       public static int NextEnum(Type enumType)
       {
          int[] values = (int[])Enum.GetValues(enumType);
-         int randomIndex = Next(0, values.Length);
+         var randomIndex = Next(0, values.Length);
          return values[randomIndex];
       }
 
@@ -190,10 +187,10 @@
       /// </summary>
       public static double NextExponential()
       {
-         double dum = 0.0;
+         var dum = 0.0;
          while (dum == 0.0)
             dum=NextUniform();
-         return -1.0*System.Math.Log(dum, System.Math.E);
+         return -1.0*Math.Log(dum, Math.E);
       }
 
       #endregion
@@ -207,27 +204,23 @@
       public static double NextNormal()
       {
          // based on algorithm from Numerical Recipes
-         if (m_StoredUniformDeviateIsGood)
+         if (_mStoredUniformDeviateIsGood)
          {
-            m_StoredUniformDeviateIsGood = false;
-            return m_StoredUniformDeviate;
+            _mStoredUniformDeviateIsGood = false;
+            return _mStoredUniformDeviate;
          }
-         else
+         var rsq = 0.0;
+         double v1 = 0.0, v2 = 0.0, fac = 0.0;
+         while (rsq >=1.0 || rsq == 0.0)
          {
-            double rsq = 0.0;
-            double v1 = 0.0, v2 = 0.0, fac = 0.0;
-            while (rsq >=1.0 || rsq == 0.0)
-            {
-               v1 = 2.0*Next() - 1.0;
-               v2 = 2.0*Next() - 1.0;
-               rsq = v1*v1 + v2*v2;
-            }
-            fac = System.Math.Sqrt(-2.0
-               *System.Math.Log(rsq, System.Math.E)/rsq);
-            m_StoredUniformDeviate = v1*fac;
-            m_StoredUniformDeviateIsGood = true;
-            return v2*fac;
+            v1 = 2.0*Next() - 1.0;
+            v2 = 2.0*Next() - 1.0;
+            rsq = v1*v1 + v2*v2;
          }
+         fac = Math.Sqrt(-2.0 *Math.Log(rsq, Math.E)/rsq);
+         _mStoredUniformDeviate = v1*fac;
+         _mStoredUniformDeviateIsGood = true;
+         return v2*fac;
       }
 
       #endregion

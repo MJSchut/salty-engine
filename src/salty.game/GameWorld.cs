@@ -36,7 +36,7 @@ namespace salty.game
             _world.Set(new KeyboardComponent());
             
             #if DEBUG
-            _world.Set(new DebugRenderComponent());
+            _world.Set(new DebugRenderComponent(device));
             #endif
             
             var tileMap = EntityFactory.CreateTileMap(_world, content);
@@ -45,10 +45,15 @@ namespace salty.game
             var chickenData = content.Load<EntityData>("data/chicken");
             
             EntityFactory.CreatePlayer(_world, device, playerPosition);
-            
-            EntityFactory.CreateAnimal(_world, content, chickenData, new Vector2(playerPosition.X + 25, playerPosition.Y));
-            EntityFactory.CreateAnimal(_world, content, chickenData, new Vector2(playerPosition.X + 45, playerPosition.Y));
 
+            for (var x = 20; x < 200; x+=20)
+            {
+                for (var y = 20; y < 200; y+=20)
+                {
+                    EntityFactory.CreateAnimal(_world, content, chickenData, new Vector2(playerPosition.X + x, playerPosition.Y + y));
+                }
+            }
+            
 
             var runner = new DefaultParallelRunner(Environment.ProcessorCount);
             _world.Set<IParallelRunner>(runner);

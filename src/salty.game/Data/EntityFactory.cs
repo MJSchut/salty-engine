@@ -42,16 +42,16 @@ namespace salty.game.Data
 
             var (x, y) = position;
             animal.Set(new SetPositionComponent(x, y));
-            animal.Set(new CollisionComponent(x, y, entityData.hitboxData.width, entityData.hitboxData.height, entityData.hitboxData.xOffset, entityData.hitboxData.yOffset));
+            animal.Set(new CollisionComponent(x, y, entityData.HitboxData.Width, entityData.HitboxData.Height, entityData.HitboxData.XOffset, entityData.HitboxData.YOffset));
             
             var chickenAtlas = TextureAtlas.Create("chickenAtlas", 
-                content.Load<Texture2D>(entityData.textureData.texture), 
-                entityData.textureData.width, 
-                entityData.textureData.height);
+                content.Load<Texture2D>(entityData.TextureData.Texture), 
+                entityData.TextureData.Width, 
+                entityData.TextureData.Height);
             var spriteSheet = new SpriteSheet {TextureAtlas = chickenAtlas};
 
-            foreach (var cycle in entityData.cycles)
-                spriteSheet.Cycles.Add(cycle.name, AnimationCycleUtils.CreateAnimationCycle(cycle.frames.ToArray(), cycle.isLooping, cycle.frameDuration));
+            foreach (var cycle in entityData.Cycles)
+                spriteSheet.Cycles.Add(cycle.Name, AnimationCycleUtils.CreateAnimationCycle(cycle.Frames.ToArray(), cycle.IsLooping, cycle.FrameDuration));
 
             var sprite = new AnimatedSprite(spriteSheet, "WalkingLeft");
             animal.Set(sprite);
@@ -70,31 +70,31 @@ namespace salty.game.Data
         
     public class EntityData
     {
-        public TextureData textureData;
-        public HitBoxData hitboxData;
-        public List<Cycle> cycles;
+        public TextureData TextureData;
+        public HitBoxData HitboxData;
+        public List<Cycle> Cycles;
     }
 
     public class TextureData
     {
-        public string texture;
-        public int width;
-        public int height;
+        public string Texture;
+        public int Width;
+        public int Height;
     }
     
     public class HitBoxData
     {
-        public int width;
-        public int height;
-        public int? xOffset;
-        public int? yOffset;
+        public int Width;
+        public int Height;
+        public int? XOffset;
+        public int? YOffset;
     }
 
     public class Cycle
     {
-        public string name;
-        public List<int> frames;
-        public bool isLooping;
-        public float frameDuration;
+        public string Name;
+        public List<int> Frames;
+        public bool IsLooping;
+        public float FrameDuration;
     }
 }

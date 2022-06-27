@@ -28,7 +28,7 @@ namespace salty.core.Systems
             var difference = oldPosition - newPosition;
             
             state.CurrentState = newPosition == oldPosition ? 
-                StateComponent.State.Idle:
+                StateComponent.State.Idle :
                 StateComponent.State.Walking;
             
             if (difference.X < 0)

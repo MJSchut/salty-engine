@@ -42,9 +42,9 @@ namespace salty.core.Systems.RenderSystems
 
             foreach (var collision in collisionComponents)
             {
-                var texture = Texture2DUtils.CreateColoredTexture(_device, (int)collision.Width, (int)collision.Height, collision.IsColliding ? Color.Aqua : Color.Purple);
+                var texture = collision.IsColliding ? component.DebugTextureHit : component.DebugTextureDefault;
                 var sprite = new Sprite(texture);
-                _spriteBatch.Draw(sprite, new Transform2(collision.XMid, collision.YMid));
+                _spriteBatch.Draw(sprite, new Vector2(collision.XMid, collision.YMid), 0, new Vector2(collision.Width, collision.Height));
             }
             
             _spriteBatch.End();

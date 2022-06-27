@@ -17,7 +17,7 @@ namespace salty.core.Systems
         public TilemapRenderSystem(World world, GraphicsDevice device, OrthographicCamera camera)
             : base(world)
         {
-            this._device = device;
+            _device = device;
             _camera = camera;
         }
         
