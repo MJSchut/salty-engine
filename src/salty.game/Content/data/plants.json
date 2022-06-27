@@ -1,5 +1,11 @@
 {
+  "plants":
   [
-	"name": "Onion",
+	{ 
+		"name": "Onion",
+		"description": "The onion has been grown and selectively bred in cultivation for at least 7,000 years. It is a biennial plant but is usually grown as an annual. Modern varieties typically grow to a height of 15 to 45 cm (6 to 18 in). From the underside of the plate, a bundle of fibrous roots extends for a short way into the soil. As the onion matures, food reserves accumulate in the leaf bases, and the bulb of the onion swells.",
+		"value": 102,
+		"stageSprites": [0, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4]
+	}
   ]
 }

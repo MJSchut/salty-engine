@@ -44,11 +44,11 @@ namespace salty.game.Data
             animal.Set(new SetPositionComponent(x, y));
             animal.Set(new CollisionComponent(x, y, entityData.HitboxData.Width, entityData.HitboxData.Height, entityData.HitboxData.XOffset, entityData.HitboxData.YOffset));
             
-            var chickenAtlas = TextureAtlas.Create("chickenAtlas", 
+            var animalAtlas = TextureAtlas.Create("animalAtlas", 
                 content.Load<Texture2D>(entityData.TextureData.Texture), 
                 entityData.TextureData.Width, 
                 entityData.TextureData.Height);
-            var spriteSheet = new SpriteSheet {TextureAtlas = chickenAtlas};
+            var spriteSheet = new SpriteSheet {TextureAtlas = animalAtlas};
 
             foreach (var cycle in entityData.Cycles)
                 spriteSheet.Cycles.Add(cycle.Name, AnimationCycleUtils.CreateAnimationCycle(cycle.Frames.ToArray(), cycle.IsLooping, cycle.FrameDuration));
@@ -57,9 +57,9 @@ namespace salty.game.Data
             animal.Set(sprite);
         }
 
-        public static void CreatePlant(World world)
+        public static void CreatePlant(World world, Plant plant, SpriteSheet spriteSheet)
         {
-            
+            var newPlant = world.CreateEntity();
         }
 
         public static TiledMap CreateTileMap(World world, ContentManager content)

@@ -13,5 +13,8 @@ namespace salty.game.Data
     public class Plant
     {
         public string Name;
+        public string Description;
+        public int Value;
+        public List<int> StageSprites = new();
     }
 }

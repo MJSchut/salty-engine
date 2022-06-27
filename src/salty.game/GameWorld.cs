@@ -11,6 +11,7 @@ using MonoGame.Extended.Animations.SpriteSheets;
 using MonoGame.Extended.Content;
 using MonoGame.Extended.Serialization;
 using MonoGame.Extended.Sprites;
+using MonoGame.Extended.TextureAtlases;
 using salty.core.Components;
 using salty.core.Components.Input;
 using salty.core.Systems;
@@ -41,9 +42,13 @@ namespace salty.game
             
             var tileMap = EntityFactory.CreateTileMap(_world, content);
             var playerPosition = TiledMapUtil.GetPlayerPosition(tileMap);
-            
             var chickenData = content.Load<EntityData>("data/chicken");
             
+            var plantData = content.Load<PlantData>("data/plants");
+            var plantSprites = content.Load<Texture2D>("sprites/plants");
+            var plantAtlas = TextureAtlas.Create("plantAtlas", plantSprites, 16, 32);
+            var plantSpriteSheet = new SpriteSheet {TextureAtlas = plantAtlas};
+
             EntityFactory.CreatePlayer(_world, device, playerPosition);
 
             for (var x = 20; x < 200; x+=20)
@@ -53,6 +58,8 @@ namespace salty.game
                     EntityFactory.CreateAnimal(_world, content, chickenData, new Vector2(playerPosition.X + x, playerPosition.Y + y));
                 }
             }
+            
+            EntityFactory.CreatePlant(_world, plantData.Plants.First(), plantSpriteSheet);
             
 
             var runner = new DefaultParallelRunner(Environment.ProcessorCount);

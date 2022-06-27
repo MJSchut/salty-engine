@@ -10,6 +10,7 @@
     <File>C:/Users/marti_2mwzmqg/OneDrive/Documents/GitHub/salty-engine/src/salty.game/Content/fonts/saltyfont_0.png</File>
     <File>C:/Users/marti_2mwzmqg/OneDrive/Documents/GitHub/salty-engine/src/salty.game/Content/sprites/bush-sprites.png</File>
     <File>C:/Users/marti_2mwzmqg/OneDrive/Documents/GitHub/salty-engine/src/salty.game/Content/sprites/chicken-sprites.png</File>
+    <File>C:/Users/marti_2mwzmqg/OneDrive/Documents/GitHub/salty-engine/src/salty.game/Content/sprites/plantables.png</File>
     <File>C:/Users/marti_2mwzmqg/OneDrive/Documents/GitHub/salty-engine/src/salty.game/Content/sprites/square.png</File>
     <File>C:/Users/marti_2mwzmqg/OneDrive/Documents/GitHub/salty-engine/src/salty.game/Content/sprites/worldtileset.png</File>
     <File>C:/Users/marti_2mwzmqg/OneDrive/Documents/GitHub/salty-engine/src/salty.game/Content/tilemaps/example_map.tmx</File>
@@ -21,6 +22,7 @@
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
+    <File>sprites/plants.png</File>
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
