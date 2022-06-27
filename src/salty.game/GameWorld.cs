@@ -40,8 +40,8 @@ namespace salty.game
             #endif
             
             var tileMap = EntityFactory.CreateTileMap(_world, content);
-            
             var playerPosition = TiledMapUtil.GetPlayerPosition(tileMap);
+            
             var chickenData = content.Load<EntityData>("data/chicken");
             
             EntityFactory.CreatePlayer(_world, device, playerPosition);

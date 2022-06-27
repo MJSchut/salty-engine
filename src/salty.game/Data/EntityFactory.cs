@@ -57,6 +57,11 @@ namespace salty.game.Data
             animal.Set(sprite);
         }
 
+        public static void CreatePlant(World world)
+        {
+            
+        }
+
         public static TiledMap CreateTileMap(World world, ContentManager content)
         {
             var tileMap = world.CreateEntity();
@@ -64,37 +69,5 @@ namespace salty.game.Data
             tileMap.Set(content.Load<TiledMap>("tilemaps/example_map"));
             return tileMap.Get<TiledMap>();
         }
-    }
-    
-    public class EntityReader : JsonContentTypeReader<EntityData> { }
-        
-    public class EntityData
-    {
-        public TextureData TextureData;
-        public HitBoxData HitboxData;
-        public List<Cycle> Cycles;
-    }
-
-    public class TextureData
-    {
-        public string Texture;
-        public int Width;
-        public int Height;
-    }
-    
-    public class HitBoxData
-    {
-        public int Width;
-        public int Height;
-        public int? XOffset;
-        public int? YOffset;
-    }
-
-    public class Cycle
-    {
-        public string Name;
-        public List<int> Frames;
-        public bool IsLooping;
-        public float FrameDuration;
     }
 }
