@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using DefaultEcs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -10,6 +11,7 @@ using MonoGame.Extended.TextureAtlases;
 using MonoGame.Extended.Tiled;
 using salty.core.Components;
 using salty.core.Components.AI;
+using salty.core.Components.EntityComponent;
 using salty.core.Util;
 
 namespace salty.game.Data
@@ -60,6 +62,23 @@ namespace salty.game.Data
         public static void CreatePlant(World world, Plant plant, SpriteSheet spriteSheet)
         {
             var newPlant = world.CreateEntity();
+            newPlant.Set(new Transform2());
+            newPlant.Set(new SetPositionComponent(320, 240));
+            
+            var plantComponent = new PlantComponent();
+            plantComponent.NumberOfStages = plant.StageSprites.Distinct().Count();
+            plantComponent.DaysToMature = plant.StageSprites.Count;
+            plantComponent.CurrentStage = 0;
+            newPlant.Set(plantComponent);
+
+            for (var i = 0; i < plant.StageSprites.Count; i++)
+            {
+                var cycle = plant.StageSprites[i];
+                spriteSheet.Cycles.Add(i.ToString(), AnimationCycleUtils.CreateAnimationCycle(new []{cycle}, false, 1));
+            }
+            var sprite = new AnimatedSprite(spriteSheet, plantComponent.CurrentStage.ToString());
+            newPlant.Set(sprite);
+
         }
 
         public static TiledMap CreateTileMap(World world, ContentManager content)

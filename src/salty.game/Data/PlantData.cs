@@ -3,11 +3,12 @@ using MonoGame.Extended.Serialization;
 
 namespace salty.game.Data
 {
-    public class PlantReader : JsonContentTypeReader<PlantData> { }
-
     public class PlantData
     {
-        public List<Plant> Plants = new();
+        public List<Plant> Plants = new()
+        {
+            new Plant("Onion", "This is an onion", 120, new List<int> {0,1,1,2,2,2,3,3,3,4})
+        };
     }
 
     public class Plant
@@ -16,5 +17,13 @@ namespace salty.game.Data
         public string Description;
         public int Value;
         public List<int> StageSprites = new();
+
+        public Plant(string name, string description, int value, List<int> stageSprites)
+        {
+            Name = name;
+            Description = description;
+            Value = value;
+            StageSprites = stageSprites;
+        }
     }
 }

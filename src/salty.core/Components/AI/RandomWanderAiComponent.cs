@@ -12,9 +12,11 @@ namespace salty.core.Components.AI
         private float _newDirectionTimer = 0.5f;
         private Vector2 _oldDirection = Vector2.Zero;
 
-        public override Vector2 Update(Vector2 originalPosition, float speed, float timePassed)
+        public override Vector2 Update(Vector2 originalPosition, float speed, float timePassed, bool isColliding = false)
         {
             var direction = _newDirectionTimer > 0 ? _oldDirection : GetNewDirection();
+            if (isColliding)
+                direction = Vector2.Zero;
 
             if (_newDirectionTimer > 0)
                 _newDirectionTimer -= timePassed;
@@ -28,7 +30,7 @@ namespace salty.core.Components.AI
 
         private static Vector2 GetNewDirection()
         {
-            return RandomProvider.Next() < 0.6f ? Vector2.Zero : new Vector2(RandomProvider.Next(-1, 2), RandomProvider.Next(-1, 2)).NormalizedCopy();
+            return RandomProvider.Next() < 0.4f ? Vector2.Zero : new Vector2(RandomProvider.Next(-1, 2), RandomProvider.Next(-1, 2)).NormalizedCopy();
         }
     }
 }

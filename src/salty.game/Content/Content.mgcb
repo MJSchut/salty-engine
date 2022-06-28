@@ -20,12 +20,6 @@
 /processorParam:ContentType=salty.game.Data.EntityReader, salty.game
 /build:data/chicken.json
 
-#begin data/plants.json
-/importer:JsonContentImporter
-/processor:JsonContentProcessor
-/processorParam:ContentType=salty.game.Data.PlantReader, salty.game
-/build:data/plants.json
-
 #begin fonts/saltyfont.fnt
 /importer:BitmapFontImporter
 /processor:BitmapFontProcessor

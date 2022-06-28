@@ -3,6 +3,7 @@ using DefaultEcs.System;
 using Microsoft.Xna.Framework;
 using MonoGame.Extended;
 using salty.core.Components;
+using salty.core.Components.EntityComponent;
 
 namespace salty.core.Systems
 {

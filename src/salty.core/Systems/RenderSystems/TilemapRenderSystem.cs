@@ -6,7 +6,7 @@ using MonoGame.Extended;
 using MonoGame.Extended.Tiled;
 using MonoGame.Extended.Tiled.Renderers;
 
-namespace salty.core.Systems
+namespace salty.core.Systems.RenderSystems
 {
     public class TilemapRenderSystem : AComponentSystem<float, TiledMap>
     {

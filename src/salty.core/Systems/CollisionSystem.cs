@@ -4,6 +4,7 @@ using DefaultEcs.System;
 using DefaultEcs.Threading;
 using MonoGame.Extended;
 using salty.core.Components;
+using salty.core.Components.EntityComponent;
 
 namespace salty.core.Systems
 {

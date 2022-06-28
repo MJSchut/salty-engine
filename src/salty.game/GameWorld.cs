@@ -14,6 +14,7 @@ using MonoGame.Extended.Sprites;
 using MonoGame.Extended.TextureAtlases;
 using salty.core.Components;
 using salty.core.Components.Input;
+using salty.core.Messages;
 using salty.core.Systems;
 using salty.core.Systems.Input;
 using salty.core.Systems.RenderSystems;
@@ -35,7 +36,7 @@ namespace salty.game
             _world = new World();
             _world.Set(camera);
             _world.Set(new KeyboardComponent());
-            
+
             #if DEBUG
             _world.Set(new DebugRenderComponent(device));
             #endif
@@ -44,21 +45,13 @@ namespace salty.game
             var playerPosition = TiledMapUtil.GetPlayerPosition(tileMap);
             var chickenData = content.Load<EntityData>("data/chicken");
             
-            var plantData = content.Load<PlantData>("data/plants");
+            var plantData = new PlantData();
             var plantSprites = content.Load<Texture2D>("sprites/plants");
             var plantAtlas = TextureAtlas.Create("plantAtlas", plantSprites, 16, 32);
+            
             var plantSpriteSheet = new SpriteSheet {TextureAtlas = plantAtlas};
 
             EntityFactory.CreatePlayer(_world, device, playerPosition);
-
-            for (var x = 20; x < 200; x+=20)
-            {
-                for (var y = 20; y < 200; y+=20)
-                {
-                    EntityFactory.CreateAnimal(_world, content, chickenData, new Vector2(playerPosition.X + x, playerPosition.Y + y));
-                }
-            }
-            
             EntityFactory.CreatePlant(_world, plantData.Plants.First(), plantSpriteSheet);
             
 
@@ -77,6 +70,7 @@ namespace salty.game
                 
                 // world systems
                 new CollisionSystem(_world, runner),
+                new PlantSystem(_world),
                 
                 // input systems
                 new KeyboardSystem(_world),
@@ -88,7 +82,6 @@ namespace salty.game
                 ,new DebugRenderSystem(_world, device, camera)
                 #endif
             );
-            
             _world.Optimize();
         }
 

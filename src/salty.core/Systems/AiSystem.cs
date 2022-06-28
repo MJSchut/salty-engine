@@ -5,6 +5,7 @@ using DefaultEcs.Threading;
 using MonoGame.Extended;
 using salty.core.Components;
 using salty.core.Components.AI;
+using salty.core.Components.EntityComponent;
 
 namespace salty.core.Systems
 {
@@ -23,8 +24,12 @@ namespace salty.core.Systems
             var state = entity.Get<StateComponent>();
             var actor = entity.Get<ActorComponent>();
 
+            CollisionComponent? collision = null;
+            if (entity.Has<CollisionComponent>())
+                collision = entity.Get<CollisionComponent>();
+
             var oldPosition = transform.Position;
-            var newPosition = aiSystem.Update(transform.Position, actor.Speed, elapsedTime);
+            var newPosition = aiSystem.Update(transform.Position, actor.Speed, elapsedTime, collision?.IsColliding ?? false);
             var difference = oldPosition - newPosition;
             
             state.CurrentState = newPosition == oldPosition ? 
