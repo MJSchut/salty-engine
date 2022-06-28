@@ -78,8 +78,10 @@ namespace salty.game
                 // render systems
                 new TilemapRenderSystem(_world, device, camera),
                 new RenderSystem(_world, device, camera)
+                
                 #if DEBUG
-                ,new DebugRenderSystem(_world, device, camera)
+                ,new DebugRenderSystem(_world, device, camera),
+                new DebugRenderUiSystem(_world, device, camera)
                 #endif
             );
             _world.Optimize();

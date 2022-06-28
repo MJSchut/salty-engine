@@ -15,12 +15,10 @@ namespace salty.core.Systems.RenderSystems
     public class DebugRenderSystem : AComponentSystem<float, DebugRenderComponent>
     {
         private readonly OrthographicCamera _camera;
-        private readonly GraphicsDevice _device;
         private readonly SpriteBatch _spriteBatch;
         
         public DebugRenderSystem(World world, GraphicsDevice graphicsDevice, OrthographicCamera camera) : base(world)
         {
-            _device = graphicsDevice;
             _camera = camera;
             _spriteBatch = new SpriteBatch(graphicsDevice);
         }
@@ -38,6 +36,7 @@ namespace salty.core.Systems.RenderSystems
             var transformMatrix = _camera.GetViewMatrix(Vector2.One);
             var collisionComponents = World.GetAll<CollisionComponent>();
             
+            //sprites
             _spriteBatch.Begin(transformMatrix: transformMatrix, samplerState: SamplerState.PointClamp);
 
             foreach (var collision in collisionComponents)
