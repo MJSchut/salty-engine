@@ -43,6 +43,7 @@ namespace salty.game
             _world = new World();
             _world.Set(camera);
             _world.Set(new KeyboardComponent());
+            _world.Set(new WorldTimeComponent());
 
             var font = content.Load<BitmapFont>("fonts/saltyfont");
             #if DEBUG
@@ -82,6 +83,7 @@ namespace salty.game
                 // world systems
                 new CollisionSystem(_world, runner),
                 new PlantSystem(_world),
+                new WorldTimeSystem(_world),
                 
                 // input systems
                 new KeyboardSystem(_world),
