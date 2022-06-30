@@ -18,18 +18,23 @@ namespace salty.core.Systems.RenderSystems
         private readonly OrthographicCamera _camera;
         private readonly SpriteBatch _spriteBatch;
         
-        public DebugRenderSystem(World world, GraphicsDevice graphicsDevice, OrthographicCamera camera) : base(world)
+        public DebugRenderSystem(World world, SpriteBatch spriteBatch, OrthographicCamera camera) : base(world)
         {
             _camera = camera;
-            _spriteBatch = new SpriteBatch(graphicsDevice);
+            _spriteBatch = spriteBatch;
         }
         
         protected override void Update(float state, ref DebugRenderComponent component)
         {
             var keyboardComponent = World.Get<KeyboardComponent>();
-            
+
             if (keyboardComponent.PressedThisFrame(Keys.OemQuestion))
+            {
                 component.IsRendering = !component.IsRendering;
+                if (World.Has<DebugRenderUiComponent>())
+                    World.Get<DebugRenderUiComponent>().IsRendering = component.IsRendering;
+            }
+               
 
             if (component.IsRendering == false)
                 return;

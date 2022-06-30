@@ -16,10 +16,10 @@ namespace salty.core.Systems.RenderSystems
         private const int SortingDivision = 10000;
 
 
-        public RenderSystem(World world, GraphicsDevice graphicsDevice, OrthographicCamera camera)
+        public RenderSystem(World world, SpriteBatch spriteBatch, OrthographicCamera camera)
             : base(world)
         {
-            _spriteBatch = new SpriteBatch(graphicsDevice);
+            _spriteBatch = spriteBatch;
             _camera = camera;
         }
         

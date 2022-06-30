@@ -27,7 +27,7 @@ namespace salty.core.Systems.Input
             var vectorY = 0;
             var vectorX = 0;
             var speed = actorComponent.Speed * elapsedTime;
-            
+
             if (keyboardComponent.IsKeyDown(Keys.Up))
                 vectorY = -1;
             else if (keyboardComponent.IsKeyDown(Keys.Down))
@@ -43,9 +43,6 @@ namespace salty.core.Systems.Input
             
             var movementVector = new Vector2(vectorX, vectorY).NormalizedCopy();
             transform.Position += movementVector * speed;
-            
-            if (keyboardComponent.IsKeyDown(Keys.Up))
-                world.Publish(new NextDayMessage());
         }
     }
 }

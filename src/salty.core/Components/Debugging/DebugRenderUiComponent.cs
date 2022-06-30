@@ -2,6 +2,6 @@
 {
     public class DebugRenderUiComponent
     {
-        
+        public bool IsRendering;
     }
 }

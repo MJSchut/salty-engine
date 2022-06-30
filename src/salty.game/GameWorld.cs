@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using MonoGame.Extended.Animations.SpriteSheets;
+using MonoGame.Extended.BitmapFonts;
 using MonoGame.Extended.Content;
 using MonoGame.Extended.Serialization;
 using MonoGame.Extended.Sprites;
@@ -43,8 +44,10 @@ namespace salty.game
             _world.Set(camera);
             _world.Set(new KeyboardComponent());
 
+            var font = content.Load<BitmapFont>("fonts/saltyfont");
             #if DEBUG
             _world.Set(new DebugRenderComponent(device));
+            _world.Set(new DebugRenderUiComponent());
             #endif
             
             var tileMap = EntityFactory.CreateTileMap(_world, content);
@@ -63,6 +66,8 @@ namespace salty.game
 
             var runner = new DefaultParallelRunner(Environment.ProcessorCount);
             _world.Set<IParallelRunner>(runner);
+            
+            var spriteBatch = new SpriteBatch(device);
             
             _system = new SequentialSystem<float>(
                 // control systems
@@ -83,11 +88,11 @@ namespace salty.game
                 
                 // render systems
                 new TilemapRenderSystem(_world, device, camera),
-                new RenderSystem(_world, device, camera)
+                new RenderSystem(_world, spriteBatch, camera)
                 
                 #if DEBUG
-                ,new DebugRenderSystem(_world, device, camera),
-                new DebugRenderUiSystem(_world, device, camera)
+                ,new DebugRenderSystem(_world, spriteBatch, camera),
+                new DebugRenderUiSystem(_world, spriteBatch, font)
                 #endif
             );
             _world.Optimize();
