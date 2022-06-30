@@ -22,7 +22,7 @@ namespace salty.core.Components.EntityComponent
         public int CurrentStage
         {
             get => _currentStage;
-            set => _currentStage = Math.Clamp(value, 0, DaysToMature);
+            set => _currentStage = Math.Clamp(value, 0, DaysToMature - 1);
         }
 
         

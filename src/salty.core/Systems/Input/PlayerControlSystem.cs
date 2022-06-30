@@ -5,15 +5,17 @@ using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using salty.core.Components.EntityComponent;
 using salty.core.Components.Input;
+using salty.core.Messages;
 
 namespace salty.core.Systems.Input
 {
     [With(typeof(PlayerComponent), typeof(Transform2), typeof(ActorComponent))]
     public sealed class PlayerControlSystem : AEntitySetSystem<float>
     {
-
+        private World world;
         public PlayerControlSystem(World world) : base(world)
         {
+            this.world = world;
         }
         
         protected override void Update(float elapsedTime, in Entity entity)
@@ -41,6 +43,9 @@ namespace salty.core.Systems.Input
             
             var movementVector = new Vector2(vectorX, vectorY).NormalizedCopy();
             transform.Position += movementVector * speed;
+            
+            if (keyboardComponent.IsKeyDown(Keys.Up))
+                world.Publish(new NextDayMessage());
         }
     }
 }

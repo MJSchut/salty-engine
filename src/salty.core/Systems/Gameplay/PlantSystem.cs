@@ -29,7 +29,7 @@ namespace salty.core.Systems.Gameplay
                 
                 var plantComponent = plant.Get<PlantComponent>();
                 var spriteComponent = plant.Get<AnimatedSprite>();
-
+    
                 plantComponent.CurrentStage += 1;
                 spriteComponent.Play(plantComponent.CurrentStage.ToString());
                 spriteComponent.Update(1);
