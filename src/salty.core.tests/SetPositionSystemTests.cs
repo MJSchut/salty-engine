@@ -6,6 +6,7 @@ using FluentAssertions;
 using MonoGame.Extended;
 using salty.core.Components;
 using salty.core.Systems;
+using salty.core.Systems.Gameplay;
 using Xunit;
 
 namespace salty.core.tests

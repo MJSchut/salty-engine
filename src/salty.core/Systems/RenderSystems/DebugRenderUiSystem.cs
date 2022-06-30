@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using MonoGame.Extended.Sprites;
 using salty.core.Components;
+using salty.core.Components.Debugging;
 
 namespace salty.core.Systems.RenderSystems
 {

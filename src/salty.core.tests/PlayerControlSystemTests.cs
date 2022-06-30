@@ -1,6 +1,7 @@
 ﻿
 using DefaultEcs;
 using salty.core.Systems;
+using salty.core.Systems.Input;
 using Xunit;
 
 namespace salty.core.tests

@@ -1,5 +1,4 @@
-﻿using System;
-using DefaultEcs;
+﻿using DefaultEcs;
 using DefaultEcs.System;
 using DefaultEcs.Threading;
 using MonoGame.Extended;
@@ -7,7 +6,7 @@ using salty.core.Components;
 using salty.core.Components.AI;
 using salty.core.Components.EntityComponent;
 
-namespace salty.core.Systems
+namespace salty.core.Systems.Ai
 {
     [With(typeof(Transform2), typeof(AiComponent), typeof(ActorComponent), typeof(StateComponent))]
     public class AiSystem : AEntitySetSystem<float>
@@ -30,19 +29,19 @@ namespace salty.core.Systems
 
             var oldPosition = transform.Position;
             var newPosition = aiSystem.Update(transform.Position, actor.Speed, elapsedTime, collision?.IsColliding ?? false);
-            var difference = oldPosition - newPosition;
+            var (differenceX, differenceY) = oldPosition - newPosition;
             
             state.CurrentState = newPosition == oldPosition ? 
                 StateComponent.State.Idle :
                 StateComponent.State.Walking;
             
-            if (difference.X < 0)
+            if (differenceX < 0)
                 state.Facing = StateComponent.Direction.Right;
-            else if (difference.X > 0)
+            else if (differenceX > 0)
                 state.Facing = StateComponent.Direction.Left;
-            else if (difference.Y > 0)
+            else if (differenceY > 0)
                 state.Facing = StateComponent.Direction.Up;
-            else if (difference.Y < 0)
+            else if (differenceY < 0)
                 state.Facing = StateComponent.Direction.Down;
             
             transform.Position = newPosition;

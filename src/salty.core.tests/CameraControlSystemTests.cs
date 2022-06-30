@@ -1,5 +1,6 @@
 ﻿using DefaultEcs;
 using salty.core.Systems;
+using salty.core.Systems.Camera;
 using Xunit;
 
 namespace salty.core.tests

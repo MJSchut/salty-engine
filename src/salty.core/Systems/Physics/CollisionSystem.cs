@@ -1,12 +1,11 @@
-﻿using System;
-using DefaultEcs;
+﻿using DefaultEcs;
 using DefaultEcs.System;
 using DefaultEcs.Threading;
 using MonoGame.Extended;
 using salty.core.Components;
 using salty.core.Components.EntityComponent;
 
-namespace salty.core.Systems
+namespace salty.core.Systems.Physics
 {
     [With(typeof(CollisionComponent), typeof(Transform2), typeof(ActorComponent))]
     public class CollisionSystem : AEntitySetSystem<float>

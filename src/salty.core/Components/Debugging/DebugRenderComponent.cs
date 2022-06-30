@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using salty.core.Util;
 
-namespace salty.core.Components
+namespace salty.core.Components.Debugging
 {
     public class DebugRenderComponent
     {

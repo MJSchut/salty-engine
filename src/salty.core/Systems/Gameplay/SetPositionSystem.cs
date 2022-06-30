@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using MonoGame.Extended;
 using salty.core.Components;
 
-namespace salty.core.Systems
+namespace salty.core.Systems.Gameplay
 {
     [With(typeof(SetPositionComponent), typeof(Transform2))]
     public class SetPositionSystem : AEntitySetSystem<float>

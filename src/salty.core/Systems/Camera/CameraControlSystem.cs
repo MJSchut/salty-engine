@@ -2,15 +2,13 @@
 using DefaultEcs.System;
 using Microsoft.Xna.Framework;
 using MonoGame.Extended;
-using salty.core.Components;
 using salty.core.Components.EntityComponent;
 
-namespace salty.core.Systems
+namespace salty.core.Systems.Camera
 {
     [With(typeof(Transform2), typeof(PlayerComponent))]
     public class CameraControlSystem : AEntitySetSystem<float>
     {
-        private World _world;
         public CameraControlSystem(World world) : base(world)
         {
         }

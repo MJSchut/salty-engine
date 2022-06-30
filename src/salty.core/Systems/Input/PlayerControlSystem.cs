@@ -3,12 +3,10 @@ using DefaultEcs.System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
-using salty.core.Components;
 using salty.core.Components.EntityComponent;
 using salty.core.Components.Input;
-using salty.core.Input;
 
-namespace salty.core.Systems
+namespace salty.core.Systems.Input
 {
     [With(typeof(PlayerComponent), typeof(Transform2), typeof(ActorComponent))]
     public sealed class PlayerControlSystem : AEntitySetSystem<float>
@@ -23,7 +21,7 @@ namespace salty.core.Systems
             var keyboardComponent = World.Get<KeyboardComponent>();
             var transform = entity.Get<Transform2>();
             var actorComponent = entity.Get<ActorComponent>();
-            
+
             var vectorY = 0;
             var vectorX = 0;
             var speed = actorComponent.Speed * elapsedTime;

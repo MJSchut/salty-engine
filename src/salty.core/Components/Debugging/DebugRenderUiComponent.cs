@@ -1,4 +1,4 @@
-﻿namespace salty.core.Components
+﻿namespace salty.core.Components.Debugging
 {
     public class DebugRenderUiComponent
     {

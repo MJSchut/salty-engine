@@ -1,12 +1,10 @@
-﻿using System;
-using DefaultEcs;
+﻿using DefaultEcs;
 using DefaultEcs.System;
-using DefaultEcs.Threading;
 using MonoGame.Extended.Sprites;
 using salty.core.Components.EntityComponent;
 using salty.core.Messages;
 
-namespace salty.core.Systems
+namespace salty.core.Systems.Gameplay
 {
     [With(typeof(PlantComponent))]
     public class PlantSystem : ISystem<float>
