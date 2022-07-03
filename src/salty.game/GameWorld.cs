@@ -49,6 +49,7 @@ namespace salty.game
             #if DEBUG
             _world.Set(new DebugRenderComponent(device));
             _world.Set(new DebugRenderUiComponent());
+            _world.Set(new DebugControlComponent());
             #endif
             
             var tileMap = EntityFactory.CreateTileMap(_world, content);
@@ -63,7 +64,6 @@ namespace salty.game
 
             EntityFactory.CreatePlayer(_world, device, playerPosition);
             EntityFactory.CreatePlant(_world, plantData.Plants.First(), plantSpriteSheet);
-            
 
             var runner = new DefaultParallelRunner(Environment.ProcessorCount);
             _world.Set<IParallelRunner>(runner);
@@ -94,7 +94,8 @@ namespace salty.game
                 
                 #if DEBUG
                 ,new DebugRenderSystem(_world, spriteBatch, camera),
-                new DebugRenderUiSystem(_world, spriteBatch, font)
+                new DebugRenderUiSystem(_world, spriteBatch, font),
+                new DebugControlSystem(_world)
                 #endif
             );
             _world.Optimize();
