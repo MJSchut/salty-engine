@@ -1,6 +1,7 @@
 ﻿using DefaultEcs;
 using DefaultEcs.System;
 using Microsoft.Xna.Framework.Input;
+using salty.core.Components;
 using salty.core.Components.Debugging;
 using salty.core.Components.Input;
 using salty.core.Messages;
@@ -19,8 +20,13 @@ namespace salty.core.Systems.Input
         protected override void Update(float state, ref DebugControlComponent component)
         {
             var keyboard = world.Get<KeyboardComponent>();
-            if (keyboard.PressedThisFrame(Keys.P))
-                world.Publish(new NextDayMessage());
+            
+            if (keyboard.PressedThisFrame(Keys.OemPlus))
+            {
+                var timeComponent = world.Get<WorldTimeComponent>();
+                timeComponent.Tick(60*24);
+            }
+                
         }
     }
 }

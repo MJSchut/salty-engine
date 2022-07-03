@@ -30,26 +30,32 @@
                 if (_hour >= 24)
                 {
                     _hour -= 24;
+                    DayNumber++;
                     RollToNextDay = true;
                 }
             }
         }
 
+        public int DayNumber = 1;
         public bool RollToNextDay = false;
 
         public override string ToString()
         {
-            return $"{Hour.ToString()}:{Minute.ToString()}";
+            return $"Day{DayNumber}; {Hour.ToString()}:{Minute.ToString()}";
         }
 
         public void Tick(float deltaTime)
         {
-            _minuteFraction += deltaTime * 50;
+            _minuteFraction += deltaTime;
 
             if (!(_minuteFraction > 1)) return;
             
-            _minuteFraction -= 1;
-            Minute += 1;
+            while (_minuteFraction > 1)
+            {
+                _minuteFraction -= 1;
+                Minute += 1;
+            }
+            
         }
     }
 }
