@@ -54,17 +54,18 @@ namespace salty.game
             
             var tileMap = EntityFactory.CreateTileMap(_world, content);
             var playerPosition = TiledMapUtil.GetPlayerPosition(tileMap);
+            var (bedRollPosition, _) = TiledMapUtil.GetBedRollArea(tileMap);
             var chickenData = content.Load<EntityData>("data/chicken");
             
             var plantData = new PlantData();
             var plantSprites = content.Load<Texture2D>("sprites/plants");
             var plantAtlas = TextureAtlas.Create("plantAtlas", plantSprites, 16, 32);
-            
             var plantSpriteSheet = new SpriteSheet {TextureAtlas = plantAtlas};
 
             EntityFactory.CreatePlayer(_world, device, playerPosition);
             EntityFactory.CreatePlant(_world, plantData.Plants.First(), plantSpriteSheet);
-
+            EntityFactory.CreateBedRoll(_world, content, bedRollPosition);
+            
             var runner = new DefaultParallelRunner(Environment.ProcessorCount);
             _world.Set<IParallelRunner>(runner);
             

@@ -18,6 +18,15 @@ namespace salty.game.Data
 {
     public static class EntityFactory
     {
+        public static void CreateBedRoll(World world, ContentManager content, Vector2 position)
+        {
+            var bedRoll = world.CreateEntity();
+            bedRoll.Set(new Transform2());
+            bedRoll.Set(new SetPositionComponent(position.X, position.Y));
+            var sprite = new Sprite(content.Load<Texture2D>("sprites/bedroll"));
+            bedRoll.Set(sprite);       
+        }
+        
         public static void CreatePlayer(World world, GraphicsDevice device, Vector2 position)
         {
             var player = world.CreateEntity();

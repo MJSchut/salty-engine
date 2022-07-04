@@ -37,6 +37,18 @@
 /processorParam:TextureFormat=Color
 /build:fonts/saltyfont_0.png
 
+#begin sprites/bedroll.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:sprites/bedroll.png
+
 #begin sprites/bush-sprites.png
 /importer:TextureImporter
 /processor:TextureProcessor

@@ -7,6 +7,7 @@
     <File>C:/Users/marti_2mwzmqg/OneDrive/Documents/GitHub/salty-engine/src/salty.game/Content/data/chicken.json</File>
     <File>C:/Users/marti_2mwzmqg/OneDrive/Documents/GitHub/salty-engine/src/salty.game/Content/fonts/saltyfont.fnt</File>
     <File>C:/Users/marti_2mwzmqg/OneDrive/Documents/GitHub/salty-engine/src/salty.game/Content/fonts/saltyfont_0.png</File>
+    <File>C:/Users/marti_2mwzmqg/OneDrive/Documents/GitHub/salty-engine/src/salty.game/Content/sprites/bedroll.png</File>
     <File>C:/Users/marti_2mwzmqg/OneDrive/Documents/GitHub/salty-engine/src/salty.game/Content/sprites/bush-sprites.png</File>
     <File>C:/Users/marti_2mwzmqg/OneDrive/Documents/GitHub/salty-engine/src/salty.game/Content/sprites/chicken-sprites.png</File>
     <File>C:/Users/marti_2mwzmqg/OneDrive/Documents/GitHub/salty-engine/src/salty.game/Content/sprites/plantables.png</File>
@@ -15,6 +16,7 @@
     <File>C:/Users/marti_2mwzmqg/OneDrive/Documents/GitHub/salty-engine/src/salty.game/Content/tilemaps/example_map.tmx</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
