@@ -23,6 +23,7 @@ using salty.core.Systems.Animations;
 using salty.core.Systems.Camera;
 using salty.core.Systems.Gameplay;
 using salty.core.Systems.Input;
+using salty.core.Systems.Interactables;
 using salty.core.Systems.Movement;
 using salty.core.Systems.Physics;
 using salty.core.Systems.RenderSystems;
@@ -58,6 +59,7 @@ namespace salty.game
             var (bedRollPosition, _) = TiledMapUtil.GetBedRollArea(tileMap);
             var chickenData = content.Load<EntityData>("data/chicken");
             
+            
             var plantData = new PlantData();
             var plantSprites = content.Load<Texture2D>("sprites/plants");
             var plantAtlas = TextureAtlas.Create("plantAtlas", plantSprites, 16, 32);
@@ -82,6 +84,7 @@ namespace salty.game
                 // movement systems
                 new SetPositionSystem(_world),
                 new FollowSystem(_world),
+                new CursorInteractableSystem(_world),
                 
                 // world systems
                 new CollisionSystem(_world, runner),

@@ -12,6 +12,7 @@ using MonoGame.Extended.Tiled;
 using salty.core.Components;
 using salty.core.Components.AI;
 using salty.core.Components.EntityComponent;
+using salty.core.Components.Interactables;
 using salty.core.Components.Movement;
 using salty.core.Util;
 
@@ -25,7 +26,9 @@ namespace salty.game.Data
             bedRoll.Set(new Transform2());
             bedRoll.Set(new SetPositionComponent(position.X, position.Y));
             var sprite = new Sprite(content.Load<Texture2D>("sprites/bedroll"));
-            bedRoll.Set(sprite);       
+            
+            bedRoll.Set(sprite);
+            bedRoll.Set<CursorTargetComponent>(new BedInteractableComponent(world));
         }
         
         public static void CreatePlayer(World world, GraphicsDevice device, Vector2 position)
@@ -44,12 +47,13 @@ namespace salty.game.Data
             player.Set(new Sprite(texture));
             
             var cursorTexture = Texture2DUtils.CreateColoredTexture(device, 16, 16, Color.Gray);
+            
             var cursor = world.CreateEntity();
             cursor.Set(new Transform2());
             cursor.Set(new Sprite(cursorTexture));
-            
             cursor.Set(new SetPositionComponent(x, y));
             cursor.Set(new FollowComponent(player.Get<Transform2>()));
+            cursor.Set(new CursorTriggerComponent());
         }
 
         public static void CreateAnimal(World world, ContentManager content, EntityData entityData, Vector2 position)

@@ -13,7 +13,6 @@ namespace salty.core.Systems.Gameplay
         public WorldTimeSystem(World world) : base(world)
         {
             _world = world;
-
         }
         
         protected override void Update(float state, ref WorldTimeComponent component)
