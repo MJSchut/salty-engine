@@ -23,6 +23,7 @@ using salty.core.Systems.Animations;
 using salty.core.Systems.Camera;
 using salty.core.Systems.Gameplay;
 using salty.core.Systems.Input;
+using salty.core.Systems.Movement;
 using salty.core.Systems.Physics;
 using salty.core.Systems.RenderSystems;
 using salty.core.Util;
@@ -78,8 +79,9 @@ namespace salty.game
                 new AnimationControlSystem(_world, runner),
                 new AiSystem(_world, runner),
                 
-                // consumption systems
+                // movement systems
                 new SetPositionSystem(_world),
+                new FollowSystem(_world),
                 
                 // world systems
                 new CollisionSystem(_world, runner),

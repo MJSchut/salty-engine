@@ -12,6 +12,7 @@ using MonoGame.Extended.Tiled;
 using salty.core.Components;
 using salty.core.Components.AI;
 using salty.core.Components.EntityComponent;
+using salty.core.Components.Movement;
 using salty.core.Util;
 
 namespace salty.game.Data
@@ -41,6 +42,14 @@ namespace salty.game.Data
 
             var texture = Texture2DUtils.CreateColoredTexture(device, 16, 32, Color.Firebrick);
             player.Set(new Sprite(texture));
+            
+            var cursorTexture = Texture2DUtils.CreateColoredTexture(device, 16, 16, Color.Gray);
+            var cursor = world.CreateEntity();
+            cursor.Set(new Transform2());
+            cursor.Set(new Sprite(cursorTexture));
+            
+            cursor.Set(new SetPositionComponent(x, y));
+            cursor.Set(new FollowComponent(player.Get<Transform2>()));
         }
 
         public static void CreateAnimal(World world, ContentManager content, EntityData entityData, Vector2 position)

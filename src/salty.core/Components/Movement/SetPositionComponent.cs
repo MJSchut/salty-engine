@@ -1,7 +1,6 @@
-﻿using salty.core.Systems;
-using salty.core.Systems.Gameplay;
+﻿using salty.core.Systems.Movement;
 
-namespace salty.core.Components
+namespace salty.core.Components.Movement
 {
     /// <summary>
     /// Add to an entity to set it's position once, will then be consumed by the <see cref="SetPositionSystem"/>

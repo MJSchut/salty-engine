@@ -2,9 +2,9 @@
 using DefaultEcs.System;
 using Microsoft.Xna.Framework;
 using MonoGame.Extended;
-using salty.core.Components;
+using salty.core.Components.Movement;
 
-namespace salty.core.Systems.Gameplay
+namespace salty.core.Systems.Movement
 {
     [With(typeof(SetPositionComponent), typeof(Transform2))]
     public class SetPositionSystem : AEntitySetSystem<float>
