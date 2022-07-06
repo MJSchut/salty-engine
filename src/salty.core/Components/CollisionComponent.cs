@@ -14,6 +14,8 @@ namespace salty.core.Components
         public Vector2 LastValidPosition { get; set; } = Vector2.Zero;
         
         public bool IsColliding { get; set; }
+        
+        public bool IsCollidingWithSolid { get; set; }
 
         public HashSet<Entity> IsCollidingWith { get; set; } = new ();
 
@@ -91,7 +93,7 @@ namespace salty.core.Components
             YOffset = yOffset ?? -height/2;
         }
 
-        public CollisionComponent(float x, float y, float width, float height, bool isSolid = false)
+        public CollisionComponent(float x, float y, float width, float height, bool isSolid = true)
         {
             if (width <= 0)
                 throw new ArgumentException("Width cannot be less than or equal to 0");
@@ -105,6 +107,23 @@ namespace salty.core.Components
             
             XOffset = -width/2;
             YOffset = -height/2;
+            IsSolid = isSolid;
+        }
+        
+        public CollisionComponent(float x, float y, float width, float height, float xOffset, float yOffset, bool isSolid = true)
+        {
+            if (width <= 0)
+                throw new ArgumentException("Width cannot be less than or equal to 0");
+            if (height <= 0)
+                throw new ArgumentException("Height cannot be less than or equal to 0");
+            
+            X = x;
+            Y = y;
+            Width = width;
+            Height = height;
+            
+            XOffset = xOffset;
+            YOffset = yOffset;
             IsSolid = isSolid;
         }
 

@@ -1,4 +1,5 @@
-﻿using DefaultEcs;
+﻿using System.Linq;
+using DefaultEcs;
 using DefaultEcs.System;
 using DefaultEcs.Threading;
 using MonoGame.Extended;
@@ -33,6 +34,7 @@ namespace salty.core.Systems.Physics
             collisionComponent.X = transform.Position.X;
             collisionComponent.Y = transform.Position.Y;
             collisionComponent.IsCollidingWith.Clear();
+            collisionComponent.IsCollidingWithSolid = false;
 
             var entities = collidableEntities.GetEntities();
 
@@ -47,13 +49,14 @@ namespace salty.core.Systems.Physics
 
                 if (collisionComponent.IsColliding)
                 {
+                    collisionComponent.IsCollidingWithSolid = otherCollisionComponent.IsSolid;
                     collisionComponent.IsCollidingWith.Add(collidableEntity);
                     break;
                 }
             }
             
             // prevent intersection
-            if (collisionComponent.IsColliding && collisionComponent.IsSolid)
+            if (collisionComponent.IsColliding && collisionComponent.IsSolid && collisionComponent.IsCollidingWithSolid)
             {
                 transform.Position = collisionComponent.LastValidPosition;
                 return;

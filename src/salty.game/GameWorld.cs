@@ -67,7 +67,7 @@ namespace salty.game
 
             EntityFactory.CreatePlayer(_world, device, playerPosition);
             EntityFactory.CreatePlant(_world, plantData.Plants.First(), plantSpriteSheet);
-            EntityFactory.CreateBedRoll(_world, content, bedRollPosition);
+            EntityFactory.CreateBedRoll(_world, content, new Vector2(playerPosition.X - 24, playerPosition.Y));
             
             var runner = new DefaultParallelRunner(Environment.ProcessorCount);
             _world.Set<IParallelRunner>(runner);
