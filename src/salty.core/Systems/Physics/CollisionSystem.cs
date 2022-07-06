@@ -7,7 +7,7 @@ using salty.core.Components.EntityComponent;
 
 namespace salty.core.Systems.Physics
 {
-    [With(typeof(CollisionComponent), typeof(Transform2), typeof(ActorComponent))]
+    [With(typeof(CollisionComponent), typeof(Transform2))]
     public class CollisionSystem : AEntitySetSystem<float>
     {
         private EntitySet collidableEntities;
@@ -25,14 +25,14 @@ namespace salty.core.Systems.Physics
         {
             var transform = entity.Get<Transform2>();
             var collisionComponent = entity.Get<CollisionComponent>();
-            var actorComponent = entity.Get<ActorComponent>();
-            
+
             if (float.IsNaN(transform.Position.X))
-                transform.Position = actorComponent.LastValidPosition;
+                transform.Position = collisionComponent.LastValidPosition;
             
             collisionComponent.IsColliding = false;
             collisionComponent.X = transform.Position.X;
             collisionComponent.Y = transform.Position.Y;
+            collisionComponent.IsCollidingWith.Clear();
 
             var entities = collidableEntities.GetEntities();
 
@@ -46,16 +46,19 @@ namespace salty.core.Systems.Physics
                 collisionComponent.IsColliding = collisionComponent.CollidesWith(otherCollisionComponent);
 
                 if (collisionComponent.IsColliding)
+                {
+                    collisionComponent.IsCollidingWith.Add(collidableEntity);
                     break;
+                }
             }
             
             // prevent intersection
-            if (collisionComponent.IsColliding)
+            if (collisionComponent.IsColliding && collisionComponent.IsSolid)
             {
-                transform.Position = actorComponent.LastValidPosition;
+                transform.Position = collisionComponent.LastValidPosition;
                 return;
             }
-            actorComponent.LastValidPosition = transform.Position;
+            collisionComponent.LastValidPosition = transform.Position;
         }
     }
 }

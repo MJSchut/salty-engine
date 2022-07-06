@@ -29,6 +29,7 @@ namespace salty.game.Data
             
             bedRoll.Set(sprite);
             bedRoll.Set<CursorTargetComponent>(new BedInteractableComponent(world));
+            bedRoll.Set(new CollisionComponent(position.X, position.Y, 16, 32));
         }
         
         public static void CreatePlayer(World world, GraphicsDevice device, Vector2 position)
@@ -41,7 +42,7 @@ namespace salty.game.Data
             
             var (x, y) = position;
             player.Set(new SetPositionComponent(x, y));
-            player.Set(new CollisionComponent(x, y, 16, 16));
+            //player.Set(new CollisionComponent(x, y, 16, 16));
 
             var texture = Texture2DUtils.CreateColoredTexture(device, 16, 32, Color.Firebrick);
             player.Set(new Sprite(texture));
@@ -54,6 +55,7 @@ namespace salty.game.Data
             cursor.Set(new SetPositionComponent(x, y));
             cursor.Set(new FollowComponent(player.Get<Transform2>()));
             cursor.Set(new CursorTriggerComponent());
+            cursor.Set(new CollisionComponent(x, y, 32, 32, false));
         }
 
         public static void CreateAnimal(World world, ContentManager content, EntityData entityData, Vector2 position)

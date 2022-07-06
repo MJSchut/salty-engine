@@ -1,10 +1,17 @@
 ﻿using DefaultEcs;
 using DefaultEcs.System;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
+using MonoGame.Extended;
+using MonoGame.Extended.Sprites;
+using salty.core.Components;
+using salty.core.Components.Input;
 using salty.core.Components.Interactables;
 
 namespace salty.core.Systems.Interactables
 {
-    public class CursorInteractableSystem : AComponentSystem<float, CursorTriggerComponent>
+    [With(typeof(CursorTriggerComponent), typeof(CollisionComponent))]
+    public class CursorInteractableSystem : AEntitySetSystem<float>
     {
         private World _world;
 
@@ -13,12 +20,20 @@ namespace salty.core.Systems.Interactables
             _world = world;
         }
         
-        protected override void Update(float state, ref CursorTriggerComponent component)
+        protected override void Update(float state, in Entity entity)
         {
-            var targets = _world.GetAll<CursorTargetComponent>();
-            foreach (var target in targets)
+            var keyBoard = _world.Get<KeyboardComponent>();
+
+            if (!keyBoard.PressedThisFrame(Keys.Space))
+                return;
+            
+            var collisionData = entity.Get<CollisionComponent>();
+            var collidingWith = collisionData.IsCollidingWith;
+
+            foreach (var target in collidingWith)
             {
-                target.OnInteract();
+                if (target.Has<CursorTargetComponent>())
+                    target.Get<CursorTargetComponent>().OnInteract();
             }
         }
     }
