@@ -90,10 +90,12 @@ namespace salty.game.Data
             newPlant.Set(new Transform2());
             newPlant.Set(new SetPositionComponent(320, 240));
             
-            var plantComponent = new PlantComponent();
-            plantComponent.NumberOfStages = plant.StageSprites.Distinct().Count();
-            plantComponent.DaysToMature = plant.StageSprites.Count;
-            plantComponent.CurrentStage = 0;
+            var plantComponent = new PlantComponent
+            {
+                NumberOfStages = plant.StageSprites.Distinct().Count(),
+                DaysToMature = plant.StageSprites.Count,
+                CurrentStage = 0
+            };
             newPlant.Set(plantComponent);
 
             for (var i = 0; i < plant.StageSprites.Count; i++)
@@ -107,7 +109,6 @@ namespace salty.game.Data
             newPlant.Set(new CollisionComponent(320, 240, 12, 12, -6, 6, false));
             
             newPlant.Set(new SellableComponent(plant.Value));
-
         }
 
         public static TiledMap CreateTileMap(World world, ContentManager content)

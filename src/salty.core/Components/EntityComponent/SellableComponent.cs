@@ -5,7 +5,7 @@
         /// <summary>
         /// Value when this item is sold.
         /// </summary>
-        public int Value;
+        public readonly int Value;
 
         public SellableComponent(int value)
         {

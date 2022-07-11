@@ -6,8 +6,8 @@ namespace salty.core.Components.Interactables
 {
     public class PlantInteractableComponent : CursorTargetComponent
     {
-        private World _world;
-        private Entity _entity;
+        private readonly World _world;
+        private readonly Entity _entity;
 
         public PlantInteractableComponent(World world, Entity thisEntity)
         {
@@ -17,16 +17,13 @@ namespace salty.core.Components.Interactables
         
         public override void OnInteract()
         {
-            if (_entity.Has<PlantComponent>())
-            {
-                var plantComponent = _entity.Get<PlantComponent>();
-                if (_entity.Has<SellableComponent>())
-                {
-                    var sellable = _entity.Get<SellableComponent>();
-                    _world.Publish(new AddMoneyMessage(sellable.Value));
-                }
-            }
+            if (!_entity.Has<PlantComponent>()) return;
             
+            var plantComponent = _entity.Get<PlantComponent>();
+            if (!_entity.Has<SellableComponent>() || !plantComponent.FullyGrown) return;
+            
+            var sellable = _entity.Get<SellableComponent>();
+            _world.Publish(new AddMoneyMessage(sellable.Value));
             _entity.Dispose();
         }
     }
