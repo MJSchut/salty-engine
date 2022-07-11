@@ -46,6 +46,7 @@ namespace salty.game.Data
 
             var texture = Texture2DUtils.CreateColoredTexture(device, 16, 32, Color.Firebrick);
             player.Set(new Sprite(texture));
+            player.Set(new PlayerWalletComponent());
             
             var cursorTexture = Texture2DUtils.CreateColoredTexture(device, 16, 16, Color.Gray);
             
@@ -102,7 +103,10 @@ namespace salty.game.Data
             }
             var sprite = new AnimatedSprite(spriteSheet, plantComponent.CurrentStage.ToString());
             newPlant.Set(sprite);
-            newPlant.Set(new PlantInteractableComponent(newPlant));
+            newPlant.Set<CursorTargetComponent>(new PlantInteractableComponent(world, newPlant));
+            newPlant.Set(new CollisionComponent(320, 240, 12, 12, -6, 6, false));
+            
+            newPlant.Set(new SellableComponent(plant.Value));
 
         }
 

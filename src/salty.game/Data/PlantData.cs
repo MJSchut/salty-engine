@@ -7,7 +7,7 @@ namespace salty.game.Data
     {
         public List<Plant> Plants = new()
         {
-            new Plant("Onion",new List<int> {0,1,1,2,2,2,3,3,3,4})
+            new Plant("Onion", 100,new List<int> {0,1,1,2,2,2,3,3,3,4})
         };
     }
 
@@ -15,11 +15,13 @@ namespace salty.game.Data
     {
         public string Name;
         public readonly List<int> StageSprites;
+        public int Value;
 
-        public Plant(string name, List<int> stageSprites)
+        public Plant(string name, int value, List<int> stageSprites)
         {
             Name = name;
             StageSprites = stageSprites;
+            Value = value;
         }
     }
 }

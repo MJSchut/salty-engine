@@ -6,5 +6,10 @@
         /// Value when this item is sold.
         /// </summary>
         public int Value;
+
+        public SellableComponent(int value)
+        {
+            Value = value;
+        }
     }
 }

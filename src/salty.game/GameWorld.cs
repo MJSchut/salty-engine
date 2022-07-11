@@ -80,6 +80,7 @@ namespace salty.game
                 new CameraControlSystem(_world),
                 new AnimationControlSystem(_world, runner),
                 new AiSystem(_world, runner),
+                new PlayerMoneySystem(_world),
                 
                 // movement systems
                 new SetPositionSystem(_world),
