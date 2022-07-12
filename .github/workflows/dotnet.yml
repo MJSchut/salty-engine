@@ -12,15 +12,15 @@ jobs:
     
     strategy:
       matrix:
-        dotnet-version: ['6.0.x', '3.1.x']
+        dotnet-version: '3.1.x'
     
     steps:
     - uses: actions/checkout@v3
-    - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
+    - name: Setup .NET
       uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: ${{ matrix.dotnet-version }}
-    - name: Restore dependencies 
+        dotnet-version: 
+    - name: Restore dependencies
       run: dotnet restore "src/salty-engine.sln"
     - name: Build
       run: dotnet build "src/salty-engine.sln" --no-restore
