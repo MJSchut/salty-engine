@@ -57,6 +57,7 @@ namespace salty.game.Data
             cursor.Set(new FollowComponent(player.Get<Transform2>()));
             cursor.Set(new CursorTriggerComponent());
             cursor.Set(new CollisionComponent(x, y, 16, 16, -8, -24, false));
+            cursor.Set(new RestrictToGridComponent());
         }
 
         public static void CreateAnimal(World world, ContentManager content, EntityData entityData, Vector2 position)
@@ -89,6 +90,7 @@ namespace salty.game.Data
             var newPlant = world.CreateEntity();
             newPlant.Set(new Transform2());
             newPlant.Set(new SetPositionComponent(320, 240));
+            newPlant.Set(new RestrictToGridComponent());
             
             var plantComponent = new PlantComponent
             {

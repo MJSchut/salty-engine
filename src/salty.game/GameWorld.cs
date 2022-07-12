@@ -59,7 +59,6 @@ namespace salty.game
             var (bedRollPosition, _) = TiledMapUtil.GetBedRollArea(tileMap);
             var chickenData = content.Load<EntityData>("data/chicken");
             
-            
             var plantData = new PlantData();
             var plantSprites = content.Load<Texture2D>("sprites/plants");
             var plantAtlas = TextureAtlas.Create("plantAtlas", plantSprites, 16, 32);
@@ -86,6 +85,7 @@ namespace salty.game
                 new SetPositionSystem(_world),
                 new FollowSystem(_world),
                 new CursorInteractableSystem(_world),
+                new RestrictToGridSystem(_world, runner),
                 
                 // world systems
                 new CollisionSystem(_world, runner),

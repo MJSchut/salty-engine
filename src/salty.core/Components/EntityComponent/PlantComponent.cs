@@ -10,7 +10,7 @@ namespace salty.core.Components.EntityComponent
         /// </summary>
         public int NumberOfStages;
 
-        public bool FullyGrown => CurrentStage == DaysToMature;
+        public bool FullyGrown => CurrentStage == DaysToMature - 1;
         
         /// <summary>
         /// number of days to mature
