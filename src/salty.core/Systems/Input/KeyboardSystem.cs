@@ -1,6 +1,5 @@
 ﻿using DefaultEcs;
 using DefaultEcs.System;
-using MonoGame.Extended.Tiled;
 using salty.core.Components.Input;
 
 namespace salty.core.Systems.Input

@@ -1,7 +1,6 @@
 ﻿using DefaultEcs;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
-using salty.core.Systems;
 using salty.core.Systems.RenderSystems;
 using Xunit;
 

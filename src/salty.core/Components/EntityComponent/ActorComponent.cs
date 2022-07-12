@@ -1,6 +1,4 @@
 ﻿
-using Microsoft.Xna.Framework;
-
 namespace salty.core.Components.EntityComponent
 {
     public class ActorComponent

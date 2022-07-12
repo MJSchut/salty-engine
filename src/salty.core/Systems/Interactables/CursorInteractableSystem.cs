@@ -1,9 +1,6 @@
 ﻿using DefaultEcs;
 using DefaultEcs.System;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using MonoGame.Extended;
-using MonoGame.Extended.Sprites;
 using salty.core.Components;
 using salty.core.Components.Input;
 using salty.core.Components.Interactables;

@@ -4,10 +4,7 @@ using DefaultEcs.System;
 using DefaultEcs.Threading;
 using FluentAssertions;
 using MonoGame.Extended;
-using salty.core.Components;
 using salty.core.Components.Movement;
-using salty.core.Systems;
-using salty.core.Systems.Gameplay;
 using salty.core.Systems.Movement;
 using Xunit;
 

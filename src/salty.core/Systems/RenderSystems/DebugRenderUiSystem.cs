@@ -1,11 +1,8 @@
-﻿using System.Text;
-using DefaultEcs;
+﻿using DefaultEcs;
 using DefaultEcs.System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended;
 using MonoGame.Extended.BitmapFonts;
-using MonoGame.Extended.Sprites;
 using salty.core.Components;
 using salty.core.Components.Debugging;
 using salty.core.Components.EntityComponent;

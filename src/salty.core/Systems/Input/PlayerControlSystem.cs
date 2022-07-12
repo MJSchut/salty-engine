@@ -5,7 +5,6 @@ using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using salty.core.Components.EntityComponent;
 using salty.core.Components.Input;
-using salty.core.Messages;
 
 namespace salty.core.Systems.Input
 {

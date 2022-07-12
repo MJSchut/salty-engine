@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using MonoGame.Extended.Serialization;
 
 namespace salty.game.Data
 {

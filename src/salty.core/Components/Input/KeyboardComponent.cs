@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework.Input;
-using salty.core.Input;
 
 namespace salty.core.Components.Input
 {

@@ -16,8 +16,10 @@ namespace salty.core.tests
             int daysToMature)
         {
             var plant = world.CreateEntity();
-            var newPlantComponent = new PlantComponent();
-            newPlantComponent.DaysToMature = daysToMature;
+            var newPlantComponent = new PlantComponent
+            {
+                DaysToMature = daysToMature
+            };
             plant.Set(newPlantComponent);
             
             var runner = new DefaultParallelRunner(1);
@@ -37,8 +39,10 @@ namespace salty.core.tests
             int daysToMature)
         {
             var plant = world.CreateEntity();
-            var newPlantComponent = new PlantComponent();
-            newPlantComponent.DaysToMature = daysToMature;
+            var newPlantComponent = new PlantComponent
+            {
+                DaysToMature = daysToMature
+            };
             plant.Set(newPlantComponent);
             
             var runner = new DefaultParallelRunner(1);
@@ -46,7 +50,7 @@ namespace salty.core.tests
                 new PlantSystem(world));
             world.Set<IParallelRunner>(runner);
 
-            for (int i = 0; i < daysToMature + 5; i++)
+            for (var i = 0; i < daysToMature + 5; i++)
             {
                 world.Publish(new NextDayMessage());
                 system.Update(1.0f);

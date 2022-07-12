@@ -1,6 +1,5 @@
 ﻿using DefaultEcs;
 using DefaultEcs.System;
-using MonoGame.Extended.Tiled;
 using salty.core.Components;
 using salty.core.Messages;
 

@@ -1,5 +1,4 @@
 ﻿using DefaultEcs;
-using salty.core.Messages;
 
 namespace salty.core.Components.Interactables
 {

@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using DefaultEcs;
+﻿using DefaultEcs;
 using DefaultEcs.System;
 using salty.core.Components.EntityComponent;
 using salty.core.Messages;

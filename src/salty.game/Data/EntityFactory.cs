@@ -1,11 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using DefaultEcs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
-using MonoGame.Extended.Serialization;
 using MonoGame.Extended.Sprites;
 using MonoGame.Extended.TextureAtlases;
 using MonoGame.Extended.Tiled;
@@ -60,7 +58,7 @@ namespace salty.game.Data
             cursor.Set(new RestrictToGridComponent());
         }
 
-        public static void CreateAnimal(World world, ContentManager content, EntityData entityData, Vector2 position)
+        public static bool CreateAnimal(World world, ContentManager content, EntityData entityData, Vector2 position)
         {
             var animal = world.CreateEntity();
             animal.Set(new Transform2());
@@ -83,13 +81,14 @@ namespace salty.game.Data
 
             var sprite = new AnimatedSprite(spriteSheet, "WalkingLeft");
             animal.Set(sprite);
+            return true;
         }
 
-        public static void CreatePlant(World world, Plant plant, SpriteSheet spriteSheet)
+        public static bool CreatePlant(World world, Plant plant, Vector2 position, SpriteSheet spriteSheet)
         {
             var newPlant = world.CreateEntity();
             newPlant.Set(new Transform2());
-            newPlant.Set(new SetPositionComponent(320, 240));
+            newPlant.Set(new SetPositionComponent(position.X, position.Y));
             newPlant.Set(new RestrictToGridComponent());
             
             var plantComponent = new PlantComponent
@@ -111,6 +110,7 @@ namespace salty.game.Data
             newPlant.Set(new CollisionComponent(320, 240, 12, 12, -6, 6, false));
             
             newPlant.Set(new SellableComponent(plant.Value));
+            return true;
         }
 
         public static TiledMap CreateTileMap(World world, ContentManager content)
