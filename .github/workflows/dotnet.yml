@@ -24,7 +24,5 @@ jobs:
         
     - name: Restore dependencies
       run: dotnet restore "src/salty-engine.sln"
-    - name: Build
-      run: dotnet build "src/salty-engine.sln" --no-restore
     - name: Test
       run: dotnet test "src/salty-engine.sln" --no-build --verbosity normal
