@@ -9,14 +9,18 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    
+    strategy:
+      matrix:
+        dotnet-version: ['6.0.x', '3.1.x']
+    
     steps:
     - uses: actions/checkout@v3
-    - name: Setup .NET
+    - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
       uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: [ '3.1.x', '6.0.x' ]
-    - name: Restore dependencies
+        dotnet-version: 
+    - name: Restore dependencies ${{ matrix.dotnet-version }}
       run: dotnet restore "src/salty-engine.sln"
     - name: Build
       run: dotnet build "src/salty-engine.sln" --no-restore
