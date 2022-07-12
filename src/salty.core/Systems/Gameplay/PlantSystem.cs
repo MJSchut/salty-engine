@@ -20,17 +20,21 @@ namespace salty.core.Systems.Gameplay
         public void On(in NextDayMessage _)
         {
             // update all plants
-            var plants = _world.GetEntities().With<PlantComponent>().With<AnimatedSprite>().AsSet();
+            var plants = _world.GetEntities().With<PlantComponent>().AsSet();
 
             foreach (var plant in plants.GetEntities())
             {
-                if (plant.Has<PlantComponent>() == false || plant.Has<AnimatedSprite>() == false)
+                if (plant.Has<PlantComponent>() == false)
                     continue;
                 
                 var plantComponent = plant.Get<PlantComponent>();
-                var spriteComponent = plant.Get<AnimatedSprite>();
-    
+
                 plantComponent.CurrentStage += 1;
+
+                if (plant.Has<AnimatedSprite>() == false)
+                    continue;
+                
+                var spriteComponent = plant.Get<AnimatedSprite>();
                 spriteComponent.Play(plantComponent.CurrentStage.ToString());
                 spriteComponent.Update(1);
             }

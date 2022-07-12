@@ -15,7 +15,7 @@ namespace salty.core.Components.EntityComponent
         /// <summary>
         /// number of days to mature
         /// </summary>
-        public int DaysToMature;
+        public int DaysToMature = 1;
 
         private int _currentStage;
         /// <summary>
@@ -26,7 +26,5 @@ namespace salty.core.Components.EntityComponent
             get => _currentStage;
             set => _currentStage = Math.Clamp(value, 0, DaysToMature - 1);
         }
-
-        
     }
 }
