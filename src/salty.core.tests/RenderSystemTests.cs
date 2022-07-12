@@ -11,7 +11,7 @@ namespace salty.core.tests
         [Fact]
         public void RenderSystems_CanBe_Initialized()
         {
-            new TestGame();
+            //new TestGame();
             //var testGraphicsDevice = new TestGraphicsDevice();
             //new RenderSystem(new World(), new SpriteBatch(testGraphicsDevice), new OrthographicCamera(testGraphicsDevice));
             //new TilemapRenderSystem(new World(), testGraphicsDevice, new OrthographicCamera(testGraphicsDevice));
