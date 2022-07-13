@@ -146,3 +146,6 @@ src/salty.desktopgl/obj/
 
 src/salty.desktopgl/obj/project.nuget.cache
 src/salty.desktopgl/obj/project.nuget.cache
+src/salty.game/Content/obj/DesktopGL/Content/.mgcontent
+src/salty.game/Content/obj/DesktopGL/Content/.mgstats
+src/salty.game/Content/obj/DesktopGL/Content/sprites/square.mgcontent
