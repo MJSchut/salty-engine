@@ -14,6 +14,7 @@ using MonoGame.Extended.TextureAtlases;
 using salty.core.Components;
 using salty.core.Components.Debugging;
 using salty.core.Components.Input;
+using salty.core.Data;
 using salty.core.Systems.Ai;
 using salty.core.Systems.Animations;
 using salty.core.Systems.Camera;
@@ -65,7 +66,8 @@ namespace salty.game
             
             EntityActions.Add("onion", vec => EntityFactory.CreatePlant(_world, plantData.Plants.First(), vec, plantSpriteSheet));
             EntityActions.Add("chicken", vec => EntityFactory.CreateAnimal(_world, content, chickenData, vec));
-            
+            _world.Set(new EntityCreationData(EntityActions));
+
             var runner = new DefaultParallelRunner(Environment.ProcessorCount);
             _world.Set<IParallelRunner>(runner);
             
@@ -78,6 +80,7 @@ namespace salty.game
                 new AnimationControlSystem(_world, runner),
                 new AiSystem(_world, runner),
                 new PlayerMoneySystem(_world),
+                new ItemPlacingSystem(_world),
                 
                 // movement systems
                 new SetPositionSystem(_world),
