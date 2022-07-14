@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using salty.core.Components.EntityComponent;
 using salty.core.Components.Input;
+using salty.core.Messages;
 
 namespace salty.core.Systems.Input
 {
@@ -42,6 +43,9 @@ namespace salty.core.Systems.Input
             
             var movementVector = new Vector2(vectorX, vectorY).NormalizedCopy();
             transform.Position += movementVector * speed;
+            
+            if(keyboardComponent.PressedThisFrame(Keys.Space))
+                world.Publish(new PlaceItemMessage("onion", transform.Position));
         }
     }
 }

@@ -99,11 +99,15 @@ namespace salty.game.Data
             };
             newPlant.Set(plantComponent);
 
-            for (var i = 0; i < plant.StageSprites.Count; i++)
+            if (spriteSheet.Cycles.Count == 0)
             {
-                var cycle = plant.StageSprites[i];
-                spriteSheet.Cycles.Add(i.ToString(), AnimationCycleUtils.CreateAnimationCycle(new []{cycle}, false, 1));
+                for (var i = 0; i < plant.StageSprites.Count; i++)
+                {
+                    var cycle = plant.StageSprites[i];
+                    spriteSheet.Cycles.Add(i.ToString(), AnimationCycleUtils.CreateAnimationCycle(new []{cycle}, false, 1));
+                }
             }
+            
             var sprite = new AnimatedSprite(spriteSheet, plantComponent.CurrentStage.ToString());
             newPlant.Set(sprite);
             newPlant.Set<CursorTargetComponent>(new PlantInteractableComponent(world, newPlant));
