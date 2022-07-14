@@ -1,10 +1,13 @@
-﻿using DefaultEcs;
+﻿using System.Linq;
+using DefaultEcs;
 using DefaultEcs.System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
+using salty.core.Components;
 using salty.core.Components.EntityComponent;
 using salty.core.Components.Input;
+using salty.core.Components.Interactables;
 using salty.core.Messages;
 
 namespace salty.core.Systems.Input
@@ -23,6 +26,13 @@ namespace salty.core.Systems.Input
             var keyboardComponent = World.Get<KeyboardComponent>();
             var transform = entity.Get<Transform2>();
             var actorComponent = entity.Get<ActorComponent>();
+            
+            if (keyboardComponent.PressedThisFrame(Keys.Space))
+            {
+                var cursor = world.GetEntities().With<CursorTriggerComponent>().With<CollisionComponent>().AsEnumerable();
+                if (!cursor.First().Get<CollisionComponent>().IsColliding)
+                    world.Publish(new PlaceItemMessage("onion", transform.Position));
+            }
 
             var vectorY = 0;
             var vectorX = 0;
@@ -43,9 +53,7 @@ namespace salty.core.Systems.Input
             
             var movementVector = new Vector2(vectorX, vectorY).NormalizedCopy();
             transform.Position += movementVector * speed;
-            
-            if(keyboardComponent.PressedThisFrame(Keys.Space))
-                world.Publish(new PlaceItemMessage("onion", transform.Position));
+
         }
     }
 }
