@@ -4,7 +4,7 @@
     {
         public readonly int GridSizeX;
         public readonly int GridSizeY;
-        
+
         public RestrictToGridComponent(int gridSizeX = 16, int gridSizeY = 16)
         {
             GridSizeX = gridSizeX;

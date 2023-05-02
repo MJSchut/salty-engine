@@ -2,8 +2,12 @@
 {
     public class WorldTimeComponent
     {
-        private float _minuteFraction = 0;
-        private int _minute = 0;
+        private int _hour = 8;
+        private int _minute;
+        private float _minuteFraction;
+
+        public int DayNumber = 1;
+        public bool RollToNextDay;
 
         public int Minute
         {
@@ -16,11 +20,9 @@
                     _minute -= 60;
                     Hour += 1;
                 }
-                
             }
         }
 
-        private int _hour = 8;
         public int Hour
         {
             get => _hour;
@@ -36,9 +38,6 @@
             }
         }
 
-        public int DayNumber = 1;
-        public bool RollToNextDay = false;
-
         public override string ToString()
         {
             return $"Day{DayNumber}; {Hour.ToString()}:{Minute.ToString()}";
@@ -49,13 +48,12 @@
             _minuteFraction += deltaTime;
 
             if (!(_minuteFraction > 1)) return;
-            
+
             while (_minuteFraction > 1)
             {
                 _minuteFraction -= 1;
                 Minute += 1;
             }
-            
         }
     }
 }

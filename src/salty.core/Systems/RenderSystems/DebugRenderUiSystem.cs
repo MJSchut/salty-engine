@@ -11,9 +11,9 @@ namespace salty.core.Systems.RenderSystems
 {
     public class DebugRenderUiSystem : AComponentSystem<float, DebugRenderUiComponent>
     {
-        private readonly World _world;
-        private readonly SpriteBatch _spriteBatch;
         private readonly BitmapFont _font;
+        private readonly SpriteBatch _spriteBatch;
+        private readonly World _world;
 
         public DebugRenderUiSystem(World world, SpriteBatch spriteBatch, BitmapFont font) : base(world)
         {
@@ -37,7 +37,7 @@ namespace salty.core.Systems.RenderSystems
                 var wallet = _world.GetAll<PlayerWalletComponent>().ToArray()[0];
                 walletString = $"${wallet.Value.ToString()}";
             }
-            
+
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             _spriteBatch.DrawString(_font, timeString, Vector2.One, Color.White);
             _spriteBatch.DrawString(_font, walletString, new Vector2(1, 32), Color.White);

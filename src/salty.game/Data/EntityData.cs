@@ -3,36 +3,37 @@ using MonoGame.Extended.Serialization;
 
 namespace salty.game.Data
 {
-    
-    public class EntityReader : JsonContentTypeReader<EntityData> { }
-        
+    public class EntityReader : JsonContentTypeReader<EntityData>
+    {
+    }
+
     public class EntityData
     {
-        public TextureData TextureData;
-        public HitBoxData HitboxData;
         public List<Cycle> Cycles;
+        public HitBoxData HitboxData;
+        public TextureData TextureData;
     }
 
     public class TextureData
     {
+        public int Height;
         public string Texture;
         public int Width;
-        public int Height;
     }
-    
+
     public class HitBoxData
     {
-        public int Width;
         public int Height;
+        public int Width;
         public int? XOffset;
         public int? YOffset;
     }
 
     public class Cycle
     {
-        public string Name;
+        public float FrameDuration;
         public List<int> Frames;
         public bool IsLooping;
-        public float FrameDuration;
+        public string Name;
     }
 }

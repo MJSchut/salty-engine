@@ -10,22 +10,21 @@ namespace salty.core.Systems.Input
     public class DebugControlSystem : AComponentSystem<float, DebugControlComponent>
     {
         private readonly World _world;
-        
+
         public DebugControlSystem(World world) : base(world)
         {
             _world = world;
         }
-        
+
         protected override void Update(float state, ref DebugControlComponent component)
         {
             var keyboard = _world.Get<KeyboardComponent>();
-            
+
             if (keyboard.PressedThisFrame(Keys.OemPlus))
             {
                 var timeComponent = _world.Get<WorldTimeComponent>();
-                timeComponent.Tick(60*24);
+                timeComponent.Tick(60 * 24);
             }
-                
         }
     }
 }

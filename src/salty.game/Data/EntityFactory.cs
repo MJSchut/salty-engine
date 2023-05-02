@@ -24,12 +24,12 @@ namespace salty.game.Data
             bedRoll.Set(new Transform2());
             bedRoll.Set(new SetPositionComponent(position.X, position.Y));
             var sprite = new Sprite(content.Load<Texture2D>("sprites/bedroll"));
-            
+
             bedRoll.Set(sprite);
             bedRoll.Set<CursorTargetComponent>(new BedInteractableComponent(world));
             bedRoll.Set(new CollisionComponent(position.X, position.Y, 16, 32));
         }
-        
+
         public static void CreatePlayer(World world, GraphicsDevice device, Vector2 position)
         {
             var player = world.CreateEntity();
@@ -37,7 +37,7 @@ namespace salty.game.Data
             player.Set(new PlayerComponent());
             player.Set(new ActorComponent(40f));
             player.Set(new StateComponent());
-            
+
             var (x, y) = position;
             player.Set(new SetPositionComponent(x, y));
             player.Set(new CollisionComponent(x, y, 16, 16, -8, 0));
@@ -45,9 +45,9 @@ namespace salty.game.Data
             var texture = Texture2DUtils.CreateColoredTexture(device, 16, 32, Color.Firebrick);
             player.Set(new Sprite(texture));
             player.Set(new PlayerWalletComponent());
-            
+
             var cursorTexture = Texture2DUtils.CreateColoredTexture(device, 16, 16, Color.Gray);
-            
+
             var cursor = world.CreateEntity();
             cursor.Set(new Transform2());
             cursor.Set(new Sprite(cursorTexture));
@@ -68,16 +68,19 @@ namespace salty.game.Data
 
             var (x, y) = position;
             animal.Set(new SetPositionComponent(x, y));
-            animal.Set(new CollisionComponent(x, y, entityData.HitboxData.Width, entityData.HitboxData.Height, entityData.HitboxData.XOffset, entityData.HitboxData.YOffset));
-            
-            var animalAtlas = TextureAtlas.Create("animalAtlas", 
-                content.Load<Texture2D>(entityData.TextureData.Texture), 
-                entityData.TextureData.Width, 
+            animal.Set(new CollisionComponent(x, y, entityData.HitboxData.Width, entityData.HitboxData.Height,
+                entityData.HitboxData.XOffset, entityData.HitboxData.YOffset));
+
+            var animalAtlas = TextureAtlas.Create("animalAtlas",
+                content.Load<Texture2D>(entityData.TextureData.Texture),
+                entityData.TextureData.Width,
                 entityData.TextureData.Height);
             var spriteSheet = new SpriteSheet {TextureAtlas = animalAtlas};
 
             foreach (var cycle in entityData.Cycles)
-                spriteSheet.Cycles.Add(cycle.Name, AnimationCycleUtils.CreateAnimationCycle(cycle.Frames.ToArray(), cycle.IsLooping, cycle.FrameDuration));
+                spriteSheet.Cycles.Add(cycle.Name,
+                    AnimationCycleUtils.CreateAnimationCycle(cycle.Frames.ToArray(), cycle.IsLooping,
+                        cycle.FrameDuration));
 
             var sprite = new AnimatedSprite(spriteSheet, "WalkingLeft");
             animal.Set(sprite);
@@ -90,7 +93,7 @@ namespace salty.game.Data
             newPlant.Set(new Transform2());
             newPlant.Set(new SetPositionComponent(position.X, position.Y));
             newPlant.Set(new RestrictToGridComponent());
-            
+
             var plantComponent = new PlantComponent
             {
                 NumberOfStages = plant.StageSprites.Distinct().Count(),
@@ -100,19 +103,18 @@ namespace salty.game.Data
             newPlant.Set(plantComponent);
 
             if (spriteSheet.Cycles.Count == 0)
-            {
                 for (var i = 0; i < plant.StageSprites.Count; i++)
                 {
                     var cycle = plant.StageSprites[i];
-                    spriteSheet.Cycles.Add(i.ToString(), AnimationCycleUtils.CreateAnimationCycle(new []{cycle}, false, 1));
+                    spriteSheet.Cycles.Add(i.ToString(),
+                        AnimationCycleUtils.CreateAnimationCycle(new[] {cycle}, false, 1));
                 }
-            }
-            
+
             var sprite = new AnimatedSprite(spriteSheet, plantComponent.CurrentStage.ToString());
             newPlant.Set(sprite);
             newPlant.Set<CursorTargetComponent>(new PlantInteractableComponent(world, newPlant));
             newPlant.Set(new CollisionComponent(320, 240, 12, 12, -6, 6, false));
-            
+
             newPlant.Set(new SellableComponent(plant.Value));
             return true;
         }

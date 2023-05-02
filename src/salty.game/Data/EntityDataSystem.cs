@@ -18,12 +18,14 @@ namespace salty.game.Data
         public EntityDataSystem(World world, ContentManager content)
         {
             var chickenData = content.Load<EntityData>("data/chicken");
+            
             var plantData = new PlantData();
             var plantSprites = content.Load<Texture2D>("sprites/plants");
             var plantAtlas = TextureAtlas.Create("plantAtlas", plantSprites, 16, 32);
             var plantSpriteSheet = new SpriteSheet {TextureAtlas = plantAtlas};
-            
-            ActionList.Add("onion", vec => EntityFactory.CreatePlant(world, plantData.Plants.First(), vec, plantSpriteSheet));
+
+            ActionList.Add("onion",
+                vec => EntityFactory.CreatePlant(world, plantData.Plants.First(), vec, plantSpriteSheet));
             ActionList.Add("chicken", vec => EntityFactory.CreateAnimal(world, content, chickenData, vec));
         }
 

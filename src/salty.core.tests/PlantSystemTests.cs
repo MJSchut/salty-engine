@@ -11,7 +11,8 @@ namespace salty.core.tests
 {
     public class PlantSystemTests
     {
-        [Theory, AutoMoqData]
+        [Theory]
+        [AutoMoqData]
         public void PlantSystem_Updates_PlantAgeBasedOnNextDayMessages(World world,
             int daysToMature)
         {
@@ -21,20 +22,21 @@ namespace salty.core.tests
                 DaysToMature = daysToMature
             };
             plant.Set(newPlantComponent);
-            
+
             var runner = new DefaultParallelRunner(1);
             var system = new SequentialSystem<float>(
                 new PlantSystem(world));
             world.Set<IParallelRunner>(runner);
-            
+
             world.Publish(new NextDayMessage());
             system.Update(1.0f);
 
             var plantComponent = plant.Get<PlantComponent>();
             plantComponent.CurrentStage.Should().Be(1);
         }
-        
-        [Theory, AutoMoqData]
+
+        [Theory]
+        [AutoMoqData]
         public void PlantSystem_Updates_FullyGrownGetsSetAndCurrentStageMaxesOut(World world,
             int daysToMature)
         {
@@ -44,7 +46,7 @@ namespace salty.core.tests
                 DaysToMature = daysToMature
             };
             plant.Set(newPlantComponent);
-            
+
             var runner = new DefaultParallelRunner(1);
             var system = new SequentialSystem<float>(
                 new PlantSystem(world));
@@ -55,7 +57,7 @@ namespace salty.core.tests
                 world.Publish(new NextDayMessage());
                 system.Update(1.0f);
             }
-            
+
             var plantComponent = plant.Get<PlantComponent>();
             plantComponent.CurrentStage.Should().Be(daysToMature - 1);
             plantComponent.FullyGrown.Should().BeTrue();

@@ -9,7 +9,7 @@ namespace salty.core.Systems.Input
         public KeyboardSystem(World world) : base(world)
         {
         }
-        
+
         protected override void Update(float state, ref KeyboardComponent component)
         {
             component.Update();

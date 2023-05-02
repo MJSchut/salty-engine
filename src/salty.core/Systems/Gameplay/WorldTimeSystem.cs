@@ -7,13 +7,13 @@ namespace salty.core.Systems.Gameplay
 {
     public class WorldTimeSystem : AComponentSystem<float, WorldTimeComponent>
     {
-        private World _world;
+        private readonly World _world;
 
         public WorldTimeSystem(World world) : base(world)
         {
             _world = world;
         }
-        
+
         protected override void Update(float state, ref WorldTimeComponent component)
         {
             component.Tick(state);
@@ -23,7 +23,6 @@ namespace salty.core.Systems.Gameplay
                 _world.Publish(new NextDayMessage());
                 component.RollToNextDay = false;
             }
-                
         }
     }
 }

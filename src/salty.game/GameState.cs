@@ -13,13 +13,12 @@ namespace salty.game
     {
         private const string GameName = "LittleGarden";
         private const string GameVersion = "pre-alpha";
-        private OrthographicCamera _camera;
-        private GameWorld _gameWorld;
         private readonly GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
 
         private readonly WindowOptions _windowOptions;
         private string _appDataFolderPath = string.Empty;
+        private OrthographicCamera _camera;
+        private GameWorld _gameWorld;
 
         public GameState()
         {
@@ -87,8 +86,7 @@ namespace salty.game
                 new BoxingViewportAdapter(Window, GraphicsDevice, _windowOptions.Width, _windowOptions.Height);
 
             _camera = new OrthographicCamera(viewportAdapter);
-            _camera.Zoom = 3f;
-            _spriteBatch = new SpriteBatch(_graphics.GraphicsDevice);
+            _camera.Zoom = 3;
             _gameWorld = new GameWorld(_graphics.GraphicsDevice, Content, _camera);
 
             _graphics.PreferredBackBufferWidth = _windowOptions.Width;
@@ -102,7 +100,7 @@ namespace salty.game
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
                 Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            
+
             GraphicsDevice.Clear(Color.GhostWhite);
 
             _gameWorld.Update(gameTime);

@@ -9,7 +9,7 @@ namespace salty.core.Util
             if (roundTo == 0)
                 throw new DivideByZeroException();
             var rounded = input / roundTo;
-            return (int)(Math.Round(rounded) * roundTo);
+            return (int) (Math.Round(rounded) * roundTo);
         }
     }
 }

@@ -11,8 +11,8 @@ namespace salty.core.Systems.RenderSystems
     public class TilemapRenderSystem : AComponentSystem<float, TiledMap>
     {
         private readonly OrthographicCamera _camera;
-        private TiledMapRenderer? _tiledMapRenderer;
         private readonly GraphicsDevice _device;
+        private TiledMapRenderer? _tiledMapRenderer;
 
         public TilemapRenderSystem(World world, GraphicsDevice device, OrthographicCamera camera)
             : base(world)
@@ -20,7 +20,7 @@ namespace salty.core.Systems.RenderSystems
             _device = device;
             _camera = camera;
         }
-        
+
         protected override void Update(float state, ref TiledMap component)
         {
             var transformMatrix = _camera.GetViewMatrix(Vector2.One);

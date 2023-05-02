@@ -13,9 +13,8 @@ namespace salty.core.Systems.Movement
     {
         public RestrictToGridSystem(World world, IParallelRunner runner) : base(world, runner)
         {
-            
         }
-        
+
         protected override void Update(float timeElapsed, in Entity entity)
         {
             var restrictToGridComponent = entity.Get<RestrictToGridComponent>();

@@ -2,10 +2,11 @@
 {
     public class AddMoneyMessage
     {
-        public int Value { get; }
         public AddMoneyMessage(int value)
         {
             Value = value;
         }
+
+        public int Value { get; }
     }
 }

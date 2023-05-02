@@ -3,7 +3,7 @@
     public class SellableComponent
     {
         /// <summary>
-        /// Value when this item is sold.
+        ///     Value when this item is sold.
         /// </summary>
         public readonly int Value;
 

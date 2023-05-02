@@ -15,21 +15,23 @@ namespace salty.core.Systems.Input
     [With(typeof(PlayerComponent), typeof(Transform2), typeof(ActorComponent))]
     public sealed class PlayerControlSystem : AEntitySetSystem<float>
     {
-        private World world;
+        private readonly World world;
+
         public PlayerControlSystem(World world) : base(world)
         {
             this.world = world;
         }
-        
+
         protected override void Update(float elapsedTime, in Entity entity)
         {
             var keyboardComponent = World.Get<KeyboardComponent>();
             var transform = entity.Get<Transform2>();
             var actorComponent = entity.Get<ActorComponent>();
-            
+
             if (keyboardComponent.PressedThisFrame(Keys.Space))
             {
-                var cursor = world.GetEntities().With<CursorTriggerComponent>().With<CollisionComponent>().AsEnumerable();
+                var cursor = world.GetEntities().With<CursorTriggerComponent>().With<CollisionComponent>()
+                    .AsEnumerable();
                 if (!cursor.First().Get<CollisionComponent>().IsColliding)
                     world.Publish(new PlaceItemMessage("onion", transform.Position));
             }
@@ -42,7 +44,7 @@ namespace salty.core.Systems.Input
                 vectorY = -1;
             else if (keyboardComponent.IsKeyDown(Keys.Down))
                 vectorY = 1;
-            
+
             if (keyboardComponent.IsKeyDown(Keys.Right))
                 vectorX = 1;
             else if (keyboardComponent.IsKeyDown(Keys.Left))
@@ -50,10 +52,9 @@ namespace salty.core.Systems.Input
 
             if (vectorX == 0 && vectorY == 0)
                 return;
-            
+
             var movementVector = new Vector2(vectorX, vectorY).NormalizedCopy();
             transform.Position += movementVector * speed;
-
         }
     }
 }

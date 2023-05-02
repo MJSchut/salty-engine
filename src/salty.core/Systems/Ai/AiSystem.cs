@@ -11,7 +11,6 @@ namespace salty.core.Systems.Ai
     [With(typeof(Transform2), typeof(AiComponent), typeof(ActorComponent), typeof(StateComponent))]
     public class AiSystem : AEntitySetSystem<float>
     {
-
         public AiSystem(World world, IParallelRunner runner) : base(world, runner)
         {
         }
@@ -28,13 +27,12 @@ namespace salty.core.Systems.Ai
                 collision = entity.Get<CollisionComponent>();
 
             var oldPosition = transform.Position;
-            var newPosition = aiSystem.Update(transform.Position, actor.Speed, elapsedTime, collision?.IsColliding ?? false);
+            var newPosition = aiSystem.Update(transform.Position, actor.Speed, elapsedTime,
+                collision?.IsColliding ?? false);
             var (differenceX, differenceY) = oldPosition - newPosition;
-            
-            state.CurrentState = newPosition == oldPosition ? 
-                StateComponent.State.Idle :
-                StateComponent.State.Walking;
-            
+
+            state.CurrentState = newPosition == oldPosition ? StateComponent.State.Idle : StateComponent.State.Walking;
+
             if (differenceX < 0)
                 state.Facing = StateComponent.Direction.Right;
             else if (differenceX > 0)
@@ -43,7 +41,7 @@ namespace salty.core.Systems.Ai
                 state.Facing = StateComponent.Direction.Up;
             else if (differenceY < 0)
                 state.Facing = StateComponent.Direction.Down;
-            
+
             transform.Position = newPosition;
         }
     }

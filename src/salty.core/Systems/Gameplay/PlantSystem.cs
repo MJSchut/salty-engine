@@ -9,12 +9,23 @@ namespace salty.core.Systems.Gameplay
     [With(typeof(PlantComponent))]
     public class PlantSystem : ISystem<float>
     {
-        private World _world;
+        private readonly World _world;
+
         public PlantSystem(World world)
         {
             _world = world;
             _world.Subscribe(this);
         }
+
+        public void Dispose()
+        {
+        }
+
+        public void Update(float state)
+        {
+        }
+
+        public bool IsEnabled { get; set; }
 
         [Subscribe]
         public void On(in NextDayMessage _)
@@ -26,30 +37,18 @@ namespace salty.core.Systems.Gameplay
             {
                 if (plant.Has<PlantComponent>() == false)
                     continue;
-                
+
                 var plantComponent = plant.Get<PlantComponent>();
 
                 plantComponent.CurrentStage += 1;
 
                 if (plant.Has<AnimatedSprite>() == false)
                     continue;
-                
+
                 var spriteComponent = plant.Get<AnimatedSprite>();
                 spriteComponent.Play(plantComponent.CurrentStage.ToString());
                 spriteComponent.Update(1);
             }
         }
-
-        public void Dispose()
-        {
-            
-        }
-
-        public void Update(float state)
-        {
-            
-        }
-
-        public bool IsEnabled { get; set; }
     }
 }

@@ -31,8 +31,8 @@ namespace salty.game
 {
     public class GameWorld
     {
-        private readonly World _world;
         private readonly SequentialSystem<float> _system;
+        private readonly World _world;
         private readonly Dictionary<string, Func<Vector2, bool>> EntityActions = new();
         public OrthographicCamera Camera;
 
@@ -45,17 +45,17 @@ namespace salty.game
             _world.Set(new WorldTimeComponent());
 
             var font = content.Load<BitmapFont>("fonts/saltyfont");
-            #if DEBUG
+#if DEBUG
             _world.Set(new DebugRenderComponent(device));
             _world.Set(new DebugRenderUiComponent());
             _world.Set(new DebugControlComponent());
-            #endif
-            
+#endif
+
             var tileMap = EntityFactory.CreateTileMap(_world, content);
             var playerPosition = TiledMapUtil.GetPlayerPosition(tileMap);
             var (bedRollPosition, _) = TiledMapUtil.GetBedRollArea(tileMap);
             var chickenData = content.Load<EntityData>("data/chicken");
-            
+
             var plantData = new PlantData();
             var plantSprites = content.Load<Texture2D>("sprites/plants");
             var plantAtlas = TextureAtlas.Create("plantAtlas", plantSprites, 16, 32);
@@ -63,16 +63,17 @@ namespace salty.game
 
             EntityFactory.CreatePlayer(_world, device, playerPosition);
             EntityFactory.CreateBedRoll(_world, content, new Vector2(playerPosition.X - 24, playerPosition.Y));
-            
-            EntityActions.Add("onion", vec => EntityFactory.CreatePlant(_world, plantData.Plants.First(), vec, plantSpriteSheet));
+
+            EntityActions.Add("onion",
+                vec => EntityFactory.CreatePlant(_world, plantData.Plants.First(), vec, plantSpriteSheet));
             EntityActions.Add("chicken", vec => EntityFactory.CreateAnimal(_world, content, chickenData, vec));
             _world.Set(new EntityCreationData(EntityActions));
 
             var runner = new DefaultParallelRunner(Environment.ProcessorCount);
             _world.Set<IParallelRunner>(runner);
-            
+
             var spriteBatch = new SpriteBatch(device);
-            
+
             _system = new SequentialSystem<float>(
                 // control systems
                 new PlayerControlSystem(_world),
@@ -81,30 +82,29 @@ namespace salty.game
                 new AiSystem(_world, runner),
                 new PlayerMoneySystem(_world),
                 new ItemPlacingSystem(_world),
-                
+
                 // movement systems
                 new SetPositionSystem(_world),
                 new FollowSystem(_world),
                 new CursorInteractableSystem(_world),
                 new RestrictToGridSystem(_world, runner),
-                
+
                 // world systems
                 new CollisionSystem(_world, runner),
                 new PlantSystem(_world),
                 new WorldTimeSystem(_world),
-                
+
                 // input systems
                 new KeyboardSystem(_world),
-                
+
                 // render systems
                 new TilemapRenderSystem(_world, device, camera),
                 new RenderSystem(_world, spriteBatch, camera)
-                
-                #if DEBUG
-                ,new DebugRenderSystem(_world, spriteBatch, camera),
+#if DEBUG
+                , new DebugRenderSystem(_world, spriteBatch, camera),
                 new DebugRenderUiSystem(_world, spriteBatch, font),
                 new DebugControlSystem(_world)
-                #endif
+#endif
             );
             _world.Optimize();
         }

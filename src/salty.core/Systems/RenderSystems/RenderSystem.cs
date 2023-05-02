@@ -11,9 +11,9 @@ namespace salty.core.Systems.RenderSystems
     [WithEither(typeof(Sprite), typeof(AnimatedSprite))]
     public class RenderSystem : AEntitySetSystem<float>
     {
-        private readonly SpriteBatch _spriteBatch;
-        private readonly OrthographicCamera _camera;
         private const int SortingDivision = 10000;
+        private readonly OrthographicCamera _camera;
+        private readonly SpriteBatch _spriteBatch;
 
 
         public RenderSystem(World world, SpriteBatch spriteBatch, OrthographicCamera camera)
@@ -22,13 +22,14 @@ namespace salty.core.Systems.RenderSystems
             _spriteBatch = spriteBatch;
             _camera = camera;
         }
-        
+
         protected override void PreUpdate(float elapsedTime)
         {
             var transformMatrix = _camera.GetViewMatrix(Vector2.One);
             _spriteBatch.Begin(
-                transformMatrix: transformMatrix, 
-                samplerState: SamplerState.PointClamp, 
+                transformMatrix: transformMatrix,
+                samplerState: SamplerState.AnisotropicClamp,
+                rasterizerState: RasterizerState.CullNone,
                 sortMode: SpriteSortMode.FrontToBack);
         }
 
@@ -38,17 +39,17 @@ namespace salty.core.Systems.RenderSystems
             if (entity.Has<Sprite>())
             {
                 var sprite = entity.Get<Sprite>();
-                sprite.Depth = transform.Position.Y/SortingDivision;
-                _spriteBatch.Draw(sprite, transform.Position, 0, Vector2.One );
+                sprite.Depth = transform.Position.Y / SortingDivision;
+                _spriteBatch.Draw(sprite, transform.Position, 0, Vector2.One);
                 return;
             }
-            
+
             var animatedSprite = entity.Get<AnimatedSprite>();
             animatedSprite.Update(state);
-            animatedSprite.Depth = transform.Position.Y/SortingDivision;
+            animatedSprite.Depth = transform.Position.Y / SortingDivision;
             _spriteBatch.Draw(animatedSprite, transform);
         }
-        
+
         protected override void PostUpdate(float elapsedTime)
         {
             _spriteBatch.End();

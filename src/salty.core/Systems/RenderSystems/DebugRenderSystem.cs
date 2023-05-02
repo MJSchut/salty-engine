@@ -15,13 +15,13 @@ namespace salty.core.Systems.RenderSystems
     {
         private readonly OrthographicCamera _camera;
         private readonly SpriteBatch _spriteBatch;
-        
+
         public DebugRenderSystem(World world, SpriteBatch spriteBatch, OrthographicCamera camera) : base(world)
         {
             _camera = camera;
             _spriteBatch = spriteBatch;
         }
-        
+
         protected override void Update(float state, ref DebugRenderComponent component)
         {
             var keyboardComponent = World.Get<KeyboardComponent>();
@@ -32,14 +32,14 @@ namespace salty.core.Systems.RenderSystems
                 if (World.Has<DebugRenderUiComponent>())
                     World.Get<DebugRenderUiComponent>().IsRendering = component.IsRendering;
             }
-               
+
 
             if (component.IsRendering == false)
                 return;
-            
+
             var transformMatrix = _camera.GetViewMatrix(Vector2.One);
             var collisionComponents = World.GetAll<CollisionComponent>();
-            
+
             //sprites
             _spriteBatch.Begin(transformMatrix: transformMatrix, samplerState: SamplerState.PointClamp);
 
@@ -47,9 +47,10 @@ namespace salty.core.Systems.RenderSystems
             {
                 var texture = collision.IsColliding ? component.DebugTextureHit : component.DebugTextureDefault;
                 var sprite = new Sprite(texture);
-                _spriteBatch.Draw(sprite, new Vector2(collision.XMid, collision.YMid), 0, new Vector2(collision.Width, collision.Height));
+                _spriteBatch.Draw(sprite, new Vector2(collision.XMid, collision.YMid), 0,
+                    new Vector2(collision.Width, collision.Height));
             }
-            
+
             _spriteBatch.End();
         }
     }

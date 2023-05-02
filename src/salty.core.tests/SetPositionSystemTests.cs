@@ -17,15 +17,16 @@ namespace salty.core.tests
         {
             new SetPositionSystem(new World());
         }
-        
-        [Theory,AutoMoqData]
+
+        [Theory]
+        [AutoMoqData]
         public void SetPositionSystem_SetsTransform2Position(
             World world, (float, float) initialPosition, (int, int) endPosition)
         {
             var entity = world.CreateEntity();
             entity.Set(new Transform2(initialPosition.Item1, initialPosition.Item2));
             entity.Set(new SetPositionComponent(endPosition.Item1, endPosition.Item2));
-            
+
             var runner = new DefaultParallelRunner(1);
             var system = new SequentialSystem<float>(new SetPositionSystem(world));
             world.Set<IParallelRunner>(runner);
@@ -36,7 +37,8 @@ namespace salty.core.tests
             output.Position.Y.Should().Be(endPosition.Item2);
         }
 
-        [Theory, AutoMoqData]
+        [Theory]
+        [AutoMoqData]
         public void SetPositionSystem_ConsumesSetPositionComponent(
             World world, (float, float) initialPosition, (int, int) endPosition)
         {

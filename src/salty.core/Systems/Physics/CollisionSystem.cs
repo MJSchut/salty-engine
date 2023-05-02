@@ -9,17 +9,17 @@ namespace salty.core.Systems.Physics
     [With(typeof(CollisionComponent), typeof(Transform2))]
     public class CollisionSystem : AEntitySetSystem<float>
     {
-        private EntitySet collidableEntities;
-        
+        private readonly EntitySet collidableEntities;
+
         public CollisionSystem(World world, IParallelRunner runner) : base(world, runner)
-        { 
+        {
             collidableEntities =
                 World.GetEntities()
                     .With<CollisionComponent>()
                     .With<Transform2>()
                     .AsSet();
         }
-        
+
         protected override void Update(float elapsedTime, in Entity entity)
         {
             var transform = entity.Get<Transform2>();
@@ -27,7 +27,7 @@ namespace salty.core.Systems.Physics
 
             if (float.IsNaN(transform.Position.X))
                 transform.Position = collisionComponent.LastValidPosition;
-            
+
             collisionComponent.IsColliding = false;
             collisionComponent.X = transform.Position.X;
             collisionComponent.Y = transform.Position.Y;
@@ -41,7 +41,7 @@ namespace salty.core.Systems.Physics
             {
                 if (collidableEntity == entity)
                     continue;
-                
+
                 var otherCollisionComponent = collidableEntity.Get<CollisionComponent>();
                 collisionComponent.IsColliding = collisionComponent.CollidesWith(otherCollisionComponent);
 
@@ -52,13 +52,14 @@ namespace salty.core.Systems.Physics
                     break;
                 }
             }
-            
+
             // prevent intersection
             if (collisionComponent.IsColliding && collisionComponent.IsSolid && collisionComponent.IsCollidingWithSolid)
             {
                 transform.Position = collisionComponent.LastValidPosition;
                 return;
             }
+
             collisionComponent.LastValidPosition = transform.Position;
         }
     }

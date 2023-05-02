@@ -10,8 +10,9 @@ namespace salty.core.Systems.Movement
     public class SetPositionSystem : AEntitySetSystem<float>
     {
         public SetPositionSystem(World world) : base(world)
-        {}
-        
+        {
+        }
+
         protected override void Update(float timeElapsed, in Entity entity)
         {
             var setPosition = entity.Get<SetPositionComponent>();
